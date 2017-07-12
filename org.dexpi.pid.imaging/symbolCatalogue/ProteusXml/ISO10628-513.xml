@@ -1,0 +1,83 @@
+	<PipingComponent ID="513" ComponentName="ClampedFlangeCoupling_513" ComponentClass="ClampedFlangeCoupling">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-513"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-2.5" Y="-6.25" Z="0" />
+			<Max X="2.5" Y="6.25" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-1.25" Y="-5" />
+				<Max X="-1.25" Y="5" />
+			</Extent>
+			<Coordinate X="-1.25" Y="-5" />
+			<Coordinate X="-1.25" Y="5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="1.25" Y="-5" />
+				<Max X="1.25" Y="5" />
+			</Extent>
+			<Coordinate X="1.25" Y="-5" />
+			<Coordinate X="1.25" Y="5" />
+		</PolyLine>
+		<PolyLine NumPoints="4">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="1.25" Y="3.75" />
+				<Max X="1.25" Y="6.25" />
+			</Extent>
+			<Coordinate X="2.5" Y="3.75" />
+			<Coordinate X="2.5" Y="6.25" />
+			<Coordinate X="-2.5" Y="6.25" />
+			<Coordinate X="-2.5" Y="3.75" />
+		</PolyLine>
+		<PolyLine NumPoints="4">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="1.25" Y="-6.25" />
+				<Max X="1.25" Y="-3.75" />
+			</Extent>
+			<Coordinate X="2.5" Y="-3.75" />
+			<Coordinate X="2.5" Y="-6.25" />
+			<Coordinate X="-2.5" Y="-6.25" />
+			<Coordinate X="-2.5" Y="-3.75" />
+		</PolyLine>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="3" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="-2.5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />		
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="2.5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</PipingComponent>

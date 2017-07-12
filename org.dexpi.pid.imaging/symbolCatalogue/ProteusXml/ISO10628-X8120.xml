@@ -1,0 +1,225 @@
+	<Equipment ID="X8120" ComponentName="RotaryFilterWithScraper_X8120" ComponentClass="RotaryFilterWithScraper">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8120"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-7.5" Y="-12.5" Z="0" />
+			<Max X="10" Y="12.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="-12.5" />
+				<Max X="7.5" Y="12.5" />
+			</Extent>
+			<Coordinate X="-7.5" Y="-12.5" />
+			<Coordinate X="-7.5" Y="12.5" />
+			<Coordinate X="7.5" Y="12.5" />
+			<Coordinate X="7.5" Y="-12.5" />
+			<Coordinate X="-7.5" Y="-12.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="7.5" />
+				<Max X="-5" Y="7.5" />
+			</Extent>
+			<Coordinate X="-7.5" Y="7.5" />
+			<Coordinate X="-5" Y="7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="7.5" />
+				<Max X="2.5" Y="7.5" />
+			</Extent>
+			<Coordinate X="-2.5" Y="7.5" />
+			<Coordinate X="2.5" Y="7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="5" Y="7.5" />
+				<Max X="7.5" Y="7.5" />
+			</Extent>
+			<Coordinate X="7.5" Y="7.5" />
+			<Coordinate X="5" Y="7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="-7.5" />
+				<Max X="-5" Y="-7.5" />
+			</Extent>
+			<Coordinate X="-7.5" Y="-7.5" />
+			<Coordinate X="-5" Y="-7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="-7.5" />
+				<Max X="2.5" Y="-7.5" />
+			</Extent>
+			<Coordinate X="-2.5" Y="-7.5" />
+			<Coordinate X="2.5" Y="-7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="5" Y="-7.5" />
+				<Max X="7.5" Y="-7.5" />
+			</Extent>
+			<Coordinate X="7.5" Y="-7.5" />
+			<Coordinate X="5" Y="-7.5" />
+		</PolyLine>		
+		<TrimmedCurve StartAngle="4" EndAngle="56">			
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Dashed" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.25" Y="-5" />
+					<Max X="1.25" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="64" EndAngle="116">			
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Dashed" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.25" Y="-5" />
+					<Max X="1.25" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>			
+		<TrimmedCurve StartAngle="124" EndAngle="176">			
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Dashed" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.25" Y="-5" />
+					<Max X="1.25" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>			
+		<TrimmedCurve StartAngle="184" EndAngle="236">			
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Dashed" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.25" Y="-5" />
+					<Max X="1.25" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>			
+		<TrimmedCurve StartAngle="244" EndAngle="296">			
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Dashed" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.25" Y="-5" />
+					<Max X="1.25" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>			
+		<TrimmedCurve StartAngle="304" EndAngle="356">			
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Dashed" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.25" Y="-5" />
+					<Max X="1.25" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>						
+		<TrimmedCurve StartAngle="40" EndAngle="130">
+			<Circle Radius="6.25" >
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-6.52" Y="3.537" />
+					<Max X="1.52" Y="5" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>	
+		<PolyLine NumPoints="4">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="-12.5" />
+				<Max X="7.5" Y="12.5" />
+			</Extent>
+			<Coordinate X="10" Y="-5" />
+			<Coordinate X="1.25" Y="-5" />
+			<Coordinate X="1.25" Y="-1.25" />
+			<Coordinate X="6.25" Y="-5" />
+		</PolyLine>	
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="4" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="0" Y="12.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="0" Y="-12.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="7.5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</Equipment>

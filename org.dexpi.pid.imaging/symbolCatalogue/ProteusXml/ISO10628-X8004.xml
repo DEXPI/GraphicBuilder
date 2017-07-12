@@ -1,0 +1,91 @@
+	<Equipment ID="X8004" ComponentName="VesselWithSkirt_X8004" ComponentClass="VesselWithSkirt">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8004"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-10" Y="-17.5" Z="0" />
+			<Max X="10" Y="17.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0"/>
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="5" Y="-17.5" />
+				<Max X="10" Y="15" />
+			</Extent>
+			<Coordinate X="10" Y="15" />
+			<Coordinate X="10" Y="-17.5" />
+			<Coordinate X="5" Y="-17.5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-17.5" />
+				<Max X="-5" Y="15" />
+			</Extent>
+			<Coordinate X="-10" Y="15" />
+			<Coordinate X="-10" Y="-17.5" />
+			<Coordinate X="-5" Y="-17.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="62" EndAngle="118">
+			<Circle Radius="21.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-10" Y="15" Z="0" />
+					<Max X="10" Y="17.5" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="-3.75" Z="0"/>
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="242" EndAngle="298">
+			<Circle Radius="21.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-10" Y="-12.5" Z="0" />
+					<Max X="10" Y="-10" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="8.75" Z="0"/>
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="3" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="-10" Y="12.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="10" Y="-15" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>
+	</Equipment>

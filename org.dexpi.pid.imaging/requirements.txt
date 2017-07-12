@@ -1,0 +1,6 @@
+requirements:
+- rotated text
+- arbitrary rotations for everything (not just 90° steps)
+- PipeFlowArrow, PipeConnectorSymbol, PipeSlopeSymbol, ... in ShapeCatalogue
+- support for DependantAttributeContents in Text ("Value", "ValueAndUnits",...)
+- Filled-Attribut (z.b. bei Circle) sollte berücksichtigt werden

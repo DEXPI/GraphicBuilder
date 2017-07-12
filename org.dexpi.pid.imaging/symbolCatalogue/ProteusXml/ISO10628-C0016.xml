@@ -1,0 +1,59 @@
+	<Equipment ID="C0016" ComponentName="HeatConsumer_C0016" ComponentClass="HeatConsumer">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C0016"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-7.5" Y="-7.5" Z="0" />
+			<Max X="7.5" Y="7.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<Circle Radius="5" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5" Y="-5" />
+				<Max X="5" Y="5" />
+			</Extent>
+			<Position>
+				<Location X="0" Y="0" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<Circle Radius="7.5" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="-7.5" />
+				<Max X="7.5" Y="7.5" />
+			</Extent>
+			<Position>
+				<Location X="0" Y="0" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="2" FlowIn="1" >
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="7.5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</Equipment>

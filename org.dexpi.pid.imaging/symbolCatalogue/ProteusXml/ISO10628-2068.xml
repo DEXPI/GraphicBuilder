@@ -1,0 +1,34 @@
+	<Equipment ID="2068" ComponentName="Bag_2068" ComponentClass="Bag" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS11526002">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-2068"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-3.75" Y="-6.25" Z="0" />
+			<Max X="3.75" Y="6.25" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0"/>
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="10">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-3.75" Y="-6.25" />
+				<Max X="3.75" Y="6.25" />
+			</Extent>
+			<Coordinate X="0" Y="3.75" />
+			<Coordinate X="-3.75" Y="3.75" />
+			<Coordinate X="-3.75" Y="-6.25" />
+			<Coordinate X="3.75" Y="-6.25" />
+			<Coordinate X="3.75" Y="3.75" />
+			<Coordinate X="0" Y="3.75" />
+			<Coordinate X="2.5" Y="6.25" />
+			<Coordinate X="-2.5" Y="6.25" />
+			<Coordinate X="0" Y="3.75" />
+			<Coordinate X="0" Y="6.25" />
+		</PolyLine>
+	</Equipment>

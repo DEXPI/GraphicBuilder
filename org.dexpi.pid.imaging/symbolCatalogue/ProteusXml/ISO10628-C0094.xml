@@ -1,0 +1,71 @@
+	<Equipment ID="C0094" ComponentName="PalletTruck_C0094" ComponentClass="PalletTruck">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C0094"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-15" Y="-12.5" Z="0" />
+			<Max X="17.5" Y="12.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-15" Y="-12.5" />
+				<Max X="17.5" Y="12.5" />
+			</Extent>
+			<Coordinate X="-15" Y="-12.5" />
+			<Coordinate X="-15" Y="12.5" />
+			<Coordinate X="17.5" Y="12.5" />
+			<Coordinate X="17.5" Y="-12.5" />
+			<Coordinate X="-15" Y="-12.5" />
+		</PolyLine>
+		<Circle Radius="2.5" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="11.25" />
+				<Max X="-2.5" Y="6.25" />
+			</Extent>
+			<Position>
+				<Location X="-5" Y="-8.75" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<Circle Radius="2.5" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="10" Y="11.25" />
+				<Max X="15" Y="6.25" />
+			</Extent>
+			<Position>
+				<Location X="12.5" Y="-8.75" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="10" />
+				<Max X="-7.5" Y="10" />
+			</Extent>
+			<Coordinate X="-12.5" Y="10" />
+			<Coordinate X="-7.5" Y="10" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-5" />
+				<Max X="15" Y="10" />
+			</Extent>
+			<Coordinate X="-10" Y="10" />
+			<Coordinate X="-10" Y="-5" />
+			<Coordinate X="15" Y="-5" />
+		</PolyLine>
+	</Equipment>

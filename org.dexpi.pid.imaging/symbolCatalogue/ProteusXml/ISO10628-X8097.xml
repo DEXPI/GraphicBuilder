@@ -1,0 +1,92 @@
+	<Equipment ID="X8097" ComponentName="PistonCompressor_X8097" ComponentClass="PistonCompressor" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS815984">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8097"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-7.5" Y="-7.5" Z="0" />
+			<Max X="7.5" Y="7.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<Circle Radius="7.5" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="-7.5" />
+				<Max X="7.5" Y="7.5" />
+			</Extent>
+			<Position>
+				<Location X="0" Y="0" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-3.9" Y="3.9" />
+				<Max X="6.4" Y="6.4" />
+			</Extent>
+			<Coordinate X="-3.9" Y="6.4" />
+			<Coordinate X="6.4" Y="3.9" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-3.9" Y="-6.4" />
+				<Max X="6.4" Y="-3.9" />
+			</Extent>
+			<Coordinate X="-3.9" Y="-6.4" />
+			<Coordinate X="6.4" Y="-3.9" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="0" />
+				<Max X="2.5" Y="0" />
+			</Extent>
+			<Coordinate X="-2.5" Y="0" />
+			<Coordinate X="2.5" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="-2.5" />
+				<Max X="2.5" Y="2.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="-2.5" />
+			<Coordinate X="2.5" Y="2.5" />
+		</PolyLine>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="3" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="-7.5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="7.5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>
+	</Equipment>

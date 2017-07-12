@@ -1,0 +1,370 @@
+	<Equipment ID="X8011" ComponentName="BubbleCapTrayColumn_X8011" ComponentClass="BubbleCapTrayColumn">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8011"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-10" Y="-22.5" Z="0" />
+			<Max X="10" Y="22.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0"/>
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="10" Y="-20" />
+				<Max X="10" Y="20" />
+			</Extent>
+			<Coordinate X="10" Y="-20" />
+			<Coordinate X="10" Y="20" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-20" />
+				<Max X="-10" Y="20" />
+			</Extent>
+			<Coordinate X="-10" Y="-20" />
+			<Coordinate X="-10" Y="20" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="17.5" />
+				<Max X="-5" Y="17.5" />
+			</Extent>
+			<Coordinate X="-10" Y="17.5" />
+			<Coordinate X="-5" Y="17.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="17.5" />
+				<Max X="2.5" Y="17.5" />
+			</Extent>
+			<Coordinate X="-2.5" Y="17.5" />
+			<Coordinate X="2.5" Y="17.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="5" Y="17.5" />
+				<Max X="10" Y="17.5" />
+			</Extent>
+			<Coordinate X="5" Y="17.5" />
+			<Coordinate X="10" Y="17.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-17.5" />
+				<Max X="-5" Y="-17.5" />
+			</Extent>
+			<Coordinate X="-10" Y="-17.5" />
+			<Coordinate X="-5" Y="-17.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="-17.5" />
+				<Max X="2.5" Y="-17.5" />
+			</Extent>
+			<Coordinate X="-2.5" Y="-17.5" />
+			<Coordinate X="2.5" Y="-17.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="5" Y="-17.5" />
+				<Max X="10" Y="-17.5" />
+			</Extent>
+			<Coordinate X="5" Y="-17.5" />
+			<Coordinate X="10" Y="-17.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="62" EndAngle="118">
+			<Circle Radius="21.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-10" Y="20" />
+					<Max X="10" Y="22.5" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="242" EndAngle="298">
+			<Circle Radius="21.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-10" Y="-22.5" />
+					<Max X="10" Y="-20" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="60" EndAngle="120">
+			<Circle Radius="10">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="13.75" />
+					<Max X="5" Y="15" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="5" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="12.5" />
+				<Max X="-2.5" Y="12.5" />
+			</Extent>
+			<Coordinate X="-10" Y="12.5" />
+			<Coordinate X="-2.5" Y="12.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="12.5" />
+				<Max X="10" Y="12.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="12.5" />
+			<Coordinate X="10" Y="12.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="60" EndAngle="120">
+			<Circle Radius="10">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="8.75" />
+					<Max X="5" Y="10" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="7.5" />
+				<Max X="-2.5" Y="7.5" />
+			</Extent>
+			<Coordinate X="-10" Y="7.5" />
+			<Coordinate X="-2.5" Y="7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="7.5" />
+				<Max X="10" Y="7.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="7.5" />
+			<Coordinate X="10" Y="7.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="60" EndAngle="120">
+			<Circle Radius="10">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="3.75" />
+					<Max X="5" Y="5" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="-5" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="2.5" />
+				<Max X="-2.5" Y="2.5" />
+			</Extent>
+			<Coordinate X="-10" Y="2.5" />
+			<Coordinate X="-2.5" Y="2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="2.5" />
+				<Max X="10" Y="2.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="2.5" />
+			<Coordinate X="10" Y="2.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="60" EndAngle="120">
+			<Circle Radius="10">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="-1.25" />
+					<Max X="5" Y="0" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="-10" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-2.5" />
+				<Max X="-2.5" Y="-2.5" />
+			</Extent>
+			<Coordinate X="-10" Y="-2.5" />
+			<Coordinate X="-2.5" Y="-2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="-2.5" />
+				<Max X="10" Y="-2.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="-2.5" />
+			<Coordinate X="10" Y="-2.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="60" EndAngle="120">
+			<Circle Radius="10">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="-6.25" />
+					<Max X="5" Y="-5"  />
+				</Extent>
+				<Position>
+					<Location X="0" Y="-15" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-7.5" />
+				<Max X="-2.5" Y="-7.5" />
+			</Extent>
+			<Coordinate X="-10" Y="-7.5" />
+			<Coordinate X="-2.5" Y="-7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="-7.5" />
+				<Max X="10" Y="-7.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="-7.5" />
+			<Coordinate X="10" Y="-7.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="60" EndAngle="120">
+			<Circle Radius="10">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="-11.25" />
+					<Max X="5" Y="-10" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="-20" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-12.5" />
+				<Max X="-2.5" Y="-12.5" />
+			</Extent>
+			<Coordinate X="-10" Y="-12.5" />
+			<Coordinate X="-2.5" Y="-12.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="-12.5" />
+				<Max X="10" Y="-12.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="-12.5" />
+			<Coordinate X="10" Y="-12.5" />
+		</PolyLine>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="8" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="0" Y="22.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="0" Y="-22.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="-10" Y="10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="-10" Y="20" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="-10" Y="-15" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="10" Y="15" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="10" Y="-10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</Equipment>

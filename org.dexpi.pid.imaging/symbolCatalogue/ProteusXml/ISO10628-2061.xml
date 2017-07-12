@@ -1,0 +1,28 @@
+	<Equipment ID="2061" ComponentName="OpenTank_2061" ComponentClass="OpenTank" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS4316824468">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-2061"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-10" Y="-7.5" Z="0" />
+			<Max X="10" Y="7.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="4" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-7.5" />
+				<Max X="10" Y="7.5" />
+			</Extent>
+			<Coordinate X="-10" Y="7.5"/>
+			<Coordinate X="-10" Y="-7.5"/>
+			<Coordinate X="10" Y="-7.5"/>
+			<Coordinate X="10" Y="7.5"/>
+		</PolyLine>
+	</Equipment>

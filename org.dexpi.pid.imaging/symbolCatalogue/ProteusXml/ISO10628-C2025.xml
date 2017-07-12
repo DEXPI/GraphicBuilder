@@ -1,0 +1,91 @@
+	<Equipment ID="C2025" ComponentName="PropellerMixer_C2025" ComponentClass="PropellerMixer" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS414041051">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C2025"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-5" Y="-2.5" Z="0" />
+			<Max X="5" Y="10" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="0" Y="-1.25" />
+				<Max X="0" Y="10" />
+			</Extent>
+			<Coordinate X="0" Y="-1.25" />
+			<Coordinate X="0" Y="10" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="70.53" EndAngle="289.47">
+			<Circle Radius="1.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="-1.25" Z="0" />
+					<Max X="-3.3334" Y="0" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="-3.75" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="250.53" EndAngle="109.47">
+			<Circle Radius="1.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="3.3334" Y="-1.25" Z="0" />
+					<Max X="5" Y="0" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="3.75" Y="-1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-3.3333" Y="-2.42852" />
+				<Max X="3.3333" Y="-0.7148" />
+			</Extent>
+			<Coordinate X="-3.3333" Y="-0.07148" />
+			<Coordinate X="3.3333" Y="-2.42852" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-3.3333" Y="-2.42852" />
+				<Max X="3.3333" Y="-0.07148" />
+			</Extent>
+			<Coordinate X="-3.3333" Y="-2.42852" />
+			<Coordinate X="3.3333" Y="-0.07148" />
+		</PolyLine>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="2" FlowIn="1" >
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="0" Y="10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</Equipment>

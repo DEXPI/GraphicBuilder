@@ -1,0 +1,2120 @@
+<rdf:RDF
+  xmlns	    = "http://www.dexpi.org/PIDGraphicalSymbols#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+	
+	<owl:Ontology rdf:about="http://www.dexpi.org/PIDGraphicalSymbols#">
+		<rdfs:label>PID Graphical Symbols Ontology</rdfs:label>
+		<rdfs:comment>An ontology relating the graphical symbols of the ISO10623 and ISO14617 norm 
+						to the Posccaesar database</rdfs:comment>
+	</owl:Ontology>
+
+	<owl:Class rdf:ID="Symbol">
+		<rdfs:label>Symbol</rdfs:label>
+		<rdfs:comment>The class of all symbols</rdfs:comment>
+	</owl:Class>
+
+	<!--the URI leading to the posccaesar equivalent-->
+	<owl:DatatypeProperty rdf:ID="isRepresentationOf"> 
+	  <rdfs:domain rdf:resource="#Symbol" />
+	  <rdfs:range  rdf:resource="xsd:anyURI"/>
+	</owl:DatatypeProperty> 
+
+	<!--the number that identifies the symbol in the ISO10628 norm-->
+	<owl:DatatypeProperty rdf:ID="hasIso10623_RegNr"> 
+	  <rdfs:domain rdf:resource="#Symbol" />
+	  <rdfs:range  rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty> 
+	
+	<!--the number that identifies the symbol in the ISO14617 norm-->
+	<owl:DatatypeProperty rdf:ID="hasIso14617_RegNr"> 
+	  <rdfs:domain rdf:resource="#Symbol" />
+	  <rdfs:range  rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty> 
+	
+	<!--the category of the symbol-->
+	<owl:DatatypeProperty rdf:ID="hasCategory"> 
+	  <rdfs:domain rdf:resource="#Symbol" />
+	  <rdfs:range  rdf:resource="xsd:string"/>
+	</owl:DatatypeProperty> 
+
+	
+	<Symbol rdf:ID="ElectricMotor">
+		<rdfs:label>Electric motor</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS415124</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0082</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ACCurrentMotor">
+		<rdfs:label>Alternating current motor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ElectricMotor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS472994</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8157</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="DCCurrentMotor">
+		<rdfs:label>Direct current motor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ElectricMotor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS472949</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8158</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ElectricGenerator">
+		<rdfs:label>Electric generator</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS415709</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0079</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ACGenerator">
+		<rdfs:label>Alternating current generator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ElectricGenerator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS873359</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8154</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DCGenerator">
+		<rdfs:label>Direct current generator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ElectricGenerator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8155</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Turbine">
+		<rdfs:label>Turbine</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS313289</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2571</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2571</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Gear">
+		<rdfs:label>Gear</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS399209681</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8167</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Motors, engines, drives</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Filter">
+		<rdfs:label>Filter</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS300689</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8116</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2601</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="LiquidFilter">
+		<rdfs:label>Liquid filter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Filter" />
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BagCandleCatridgeFilterForLiquids">
+		<rdfs:label>Bag filter / candle filter / cartridge filter for liquids</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316489029</isPossibleRepresentationOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43165905223</isPossibleRepresentationOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43165905237</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8117</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2606</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FixedBedFilterForLiquids">
+		<rdfs:label>Fixed bed filter for liquids</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8118</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2609</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="SuctionFilter">
+		<rdfs:label>Suction filter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8019</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="RotaryFilter">
+		<rdfs:label>Rotary filter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316851774</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8119</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2603</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RotaryFilterWithScraper">
+		<rdfs:label>Rotary filter with scraper</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#RotaryFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8120</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="BeltFilterForLiquids">
+		<rdfs:label>Belt filter for liquids</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8121</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2608</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FilterPress">
+		<rdfs:label>Filter press</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43166359217</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2611</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2611</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="IonExchangeFilter">
+		<rdfs:label>Ion exchange filter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8020</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2633</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BiofiltrationFilter">
+		<rdfs:label>Biofiltration filter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#LiquidFilter" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43164891249</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8021</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2634</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="GasFilter">
+		<rdfs:label>Gas filter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Filter" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316755843</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8122</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="BagCandleCatridgeFilterForGases">
+		<rdfs:label>Bag filter / candle filter / cartridge filter for gases</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#GasFilter" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316489029</isPossibleRepresentationOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43165905223</isPossibleRepresentationOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43165905237</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8022</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FixedBedFilterForGases">
+		<rdfs:label>Fixed bed filter for gases</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#GasFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8023</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HEPA">
+		<rdfs:label>HEPA</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#GasFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8024</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BeltFilterForGases">
+		<rdfs:label>Belt filter for gases</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#GasFilter" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8025</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Filters, liquid filters, gas filters</hasCategory>
+	</Symbol>	
+	
+	<Symbol rdf:ID="HeatExchanger">
+		<rdfs:label>Heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger, Z-Form</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS304199</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8079</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2501</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="MTypeHeatExchanger">
+		<rdfs:label>Heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger, M-Form</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS304199</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8017</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FixedTubeSheetHeatExchanger">
+		<rdfs:label>Fixed tube heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger with fixed tube sheets</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS439604</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2511</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2511</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FloatingHeadHeatExchanger">
+		<rdfs:label>Floating head heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger of floating type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS439559</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2512</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2512</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="UTubeHeatExchanger">
+		<rdfs:label>U-tube heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger with U-shaped tubes</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11014325</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2513</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2513</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ShellAndCoilHeatExchanger">
+		<rdfs:label>Shell and coil heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger with coil shaped tubes</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11018870</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2514</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2514</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DoublePipeHeatExchanger">
+		<rdfs:label>Double pipe heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger of double-pipe type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS440459</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2515</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2515</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="PlateAndShellHeatExchanger">
+		<rdfs:label>Plate and shell heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger of plate type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS441719</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2516</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2516</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 	
+	<Symbol rdf:ID="SpiralTubeHeatExchanger">
+		<rdfs:label>Spiral tube heat-exchanger</rdfs:label>
+		<rdfs:comment>Heat-exchanger of spiral type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS443924</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2517</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2517</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FinnedTubeHeatExchanger">
+		<rdfs:label>Finned-tube heat exchanger</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS444779</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8018</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FinnedTubeHeatExchangerWithFan">
+		<rdfs:label>Finned-tube heat exchanger with fan</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#FinnedTubeHeatExchanger" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2505</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Evaporator">
+		<rdfs:label>Evaporator</rdfs:label>
+		<rdfs:comment>Evaporator / heat-exchanger with integrated headspace / kettle reboiler</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8131</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ElectricHeater">
+		<rdfs:label>Electric heater</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS14070475</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8132</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FallingFilmEvaporator">
+		<rdfs:label>Falling film evaporator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Evaporator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11017610</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8133</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="UTubeBundle">
+		<rdfs:label>U-tube bundle</rdfs:label>
+		<rdfs:comment>U-shaped tubes</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11014280</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8136</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FloatingHeadTubeBundle">
+		<rdfs:label>Floating head tube bundle</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8137</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2516</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="CoolingTower">
+		<rdfs:label>Cooling tower</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS14072341</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2521</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2521</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="DryCoolingTower">
+		<rdfs:label>Dry cooling tower</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CoolingTower" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS14072386</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8109</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ForcedDraftDryCoolingTower">
+		<rdfs:label>Dry cooling tower with forced draft</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DryCoolingTower" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8110</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2523</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="InducedDraftDryCoolingTower">
+		<rdfs:label>Dry cooling tower with induced draft</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DryCoolingTower" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8111</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2522</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="WetCoolingTower">
+		<rdfs:label>Wet cooling tower</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CoolingTower" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS14071846</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8112</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2521</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ForcedDraftWetCoolingTower">
+		<rdfs:label>Wet cooling tower with forced draft</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#WetCoolingTower" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8113</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="InducedDraftWetCoolingTower">
+		<rdfs:label>Wet cooling tower with induced draft</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#WetCoolingTower" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8114</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="WetAndDryCoolingTower">
+		<rdfs:label>Wet and dry cooling tower</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CoolingTower" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8115</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FallingFilmCooler">
+		<rdfs:label>Falling film cooler</rdfs:label>
+		<rdfs:comment>Water-sprayed cooler / spray cooler / falling film cooler</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2504</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2504</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SteamGenerator">
+		<rdfs:label>Steam generator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13306207</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2532</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2532</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SteamConverter">
+		<rdfs:label>Steam converter</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HeatExchanger" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8103</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Furnace">
+		<rdfs:label>Furnace</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS441134</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2533</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2533</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Burner">
+		<rdfs:label>Burner</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS284399</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8107</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="CombustionChamber">
+		<rdfs:label>Combustion chamber</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS903151432</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8106</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Chimney">
+		<rdfs:label>Chimney</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2041</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FlareTower">
+		<rdfs:label>Flare tower</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS1090349</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2591</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2591</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="Internals">
+		<rdfs:label>Internals</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13048280</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Tray">
+		<rdfs:label>Tray</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Internals" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13034880</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2044</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="TrayWithWeir">
+		<rdfs:label>Tray with weir</rdfs:label>
+		<rdfs:comment>Tray with weir and passage of gas</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Tray" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8166</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BubbleCapTray">
+		<rdfs:label>Bubble cap tray</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Tray" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13035420</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2010</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ValveTray">
+		<rdfs:label>Valve tray</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Tray" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13034430</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2011</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="SieveTray">
+		<rdfs:label>Sieve tray</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Tray" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13034655</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2602</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FilterTray">
+		<rdfs:label>Filter tray</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Tray" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13035105</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2047</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FluidizedBed">
+		<rdfs:label>Fluidized bed</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Internals" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43166360252</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2604</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="PackedBed">
+		<rdfs:label>Packed bed / fixed bed</rdfs:label>
+		<rdfs:comment>Designed to hold packing material</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Internals" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316824649</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8141</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Internal devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Agitator">
+		<rdfs:label>Agitator / stirrer</rdfs:label>
+		<rdfs:comment>Device for mixing or stirring</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS16045622</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2672</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2672</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FlatBladePaddleAgitator">
+		<rdfs:label>Flat blade paddle agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2019</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="GatePaddleAgitator">
+		<rdfs:label>Gate paddle agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2020</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="CrossBeamAgitator">
+		<rdfs:label>Cross-beam agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2021</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="AnchorAgitator">
+		<rdfs:label>Anchor agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2022</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="HelicalAgitator">
+		<rdfs:label>Helical agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2023</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ImpellerAgitator">
+		<rdfs:label>Impeller agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2024</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="PropellerAgitator">
+		<rdfs:label>Propeller agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS414041051</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2025</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="DiskAgitator">
+		<rdfs:label>Disk agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2026</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="TurbineAgitator">
+		<rdfs:label>Turbine agitator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Agitator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2027</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Agitators, stirrers</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Externals">
+		<rdfs:label>Externals</rdfs:label>
+		<rdfs:comment>External devices that can be fitted to other apparatus, such as for example vessels.</rdfs:comment>
+		<hasCategory rdf:datatype="xsd:string">External devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Foot">
+		<rdfs:label>Foot</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Externals" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2005</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">External devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Lug">
+		<rdfs:label>Lug</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Externals" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2006</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">External devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Skirt">
+		<rdfs:label>Skirt</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Externals" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2007</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">External devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="CarrierRing">
+		<rdfs:label>Carrier ring</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Externals" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2008</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">External devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Manhole">
+		<rdfs:label>Manhole</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Externals" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8159</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">External devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Pipe">
+		<rdfs:label>Pipe</rdfs:label>
+		<rdfs:comment>Pipe / Pipeline</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS421199</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-405</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-405</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="SecondaryPipe">
+		<rdfs:label>Secondary pipe</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Pipe" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8156</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="InsulatedPipe">
+		<rdfs:label>Insulated pipe</rdfs:label>
+		<rdfs:comment>Pipe with thermal insulation</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Pipe" />	
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X322</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X322</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="HeatedOrCooledPipe">
+		<rdfs:label>Heated or cooled pipe</rdfs:label>	
+		<rdfs:subClassOf rdf:resource="#Pipe" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0106</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string"></hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="JacketedPipe">
+		<rdfs:label>Jacketed pipe</rdfs:label>
+		<rdfs:comment>Jacketed / sleeved pipe</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Pipe" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X409</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X409</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HeatedOrCooledPipeWithInsulation">
+		<rdfs:label>Heated or cooled pipe with insulation</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Pipe" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8174</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PipingComponent">
+		<rdfs:label>Piping component</rdfs:label>
+		<rdfs:comment>Fitting / piping component</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS225314</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Flange">
+		<rdfs:label>Flange</rdfs:label>
+		<rdfs:comment>Single flange</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13307654</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8152</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="FlangedConnection">
+		<rdfs:label>Flanged connection</rdfs:label>
+		<rdfs:comment>Flanged connection / flange coupling /flange pair</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Flange" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS472994</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-511</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-511</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ClampedFlangeCoupling">
+		<rdfs:label>Clamped flange coupling</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#FlangedConnection" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-513</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-513</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Siphon">
+		<rdfs:label>Siphon</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2038</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2038</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="EndCap">
+		<rdfs:label>End cap</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8153</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Slope">
+		<rdfs:label>Slope</rdfs:label>
+		<rdfs:comment>Indicates for example if a pipe is sloped</rdfs:comment>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3061</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3061</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Nozzle">
+		<rdfs:label>Nozzle</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS415214</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8160</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="MixingNozzle">
+		<rdfs:label>Mixing nozzle</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Nozzle" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0093</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="SprayNozzle">
+		<rdfs:label>Spray nozzle</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Nozzle" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS5855670</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2037</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2037</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Proportioners, feeders and distribution facilities</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="SightGlass">
+		<rdfs:label>Sight glass</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS648674</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2034</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2034</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="LightGlass">
+		<rdfs:label>Light glass</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8089</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	
+	<Symbol rdf:ID="Silencer">
+		<rdfs:label>Silencer</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS1049368591</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2033</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2033</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Compensator">
+		<rdfs:label>Compensator</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS1280084541</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-533</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-533</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Strainer">
+		<rdfs:label>Strainer</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS422504</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8090</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TopHatStrainer">
+		<rdfs:label>Top hat strainer</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Strainer" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS422234</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8150</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="OrificePlate">
+		<rdfs:label>Orifice plate</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS418364</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0096</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="BlindDisk">
+		<rdfs:label>Blind disk</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0097</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FlangedBlindDisk">
+		<rdfs:label>Flanged blind disk</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#BlindDisk" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-517</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="OpenDisk">
+		<rdfs:label>Open disk</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0098</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SpectacleBlindClosedPosition">
+		<rdfs:label>Spectacle blind closed position</rdfs:label>
+		<rdfs:comment>Spectacle blind / interchangeable disk, closed position</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS311759</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2044</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2044</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SpectacleBlindOpenPosition">
+		<rdfs:label>Spectacle blind open position</rdfs:label>
+		<rdfs:comment>Spectacle blind / interchangeable disk, open position</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS311804</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2045</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2045</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Vent">
+		<rdfs:label>Vent</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2039</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2039</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Funnel">
+		<rdfs:label>Funnel</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS6689917</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2040</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2040</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SteamTrap">
+		<rdfs:label>Stream trap</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS5782388</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2181</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2181</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PipeReducer">
+		<rdfs:label>Pipe reducer</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416294</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-516</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-516</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Hose">
+		<rdfs:label>Hose</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Pipe" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS302174</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X411</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Coupling">
+		<rdfs:label>Coupling</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS9683882</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0100</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="Pump">
+		<rdfs:label>Liquid pump</rdfs:label>
+		<rdfs:comment>Pump used for liquids</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS327239</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2301</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2301</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="DynamicPump">
+		<rdfs:label>Dynamic Pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Pump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS432584</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	</Symbol> 
+	<Symbol rdf:ID="DisplacementPump">
+		<rdfs:label>Positive displacement pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Pump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416924</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="CentrifugalPump">
+		<rdfs:label>Centrifugal pump</rdfs:label>
+		<rdfs:comment>Rotodynamic pump</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#DynamicPump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416834</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2322</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2322</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="GearPump">
+		<rdfs:label>Gear pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DisplacementPump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS433979</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8091</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ScrewPump">
+		<rdfs:label>Screw pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DisplacementPump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS432809</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8092</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="EccentricHelicalRotorPump">
+		<rdfs:label>Eccentric helical rotor pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScrewPump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS814049</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8093</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="PistonPump">
+		<rdfs:label>Piston pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DisplacementPump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS393992051</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8094</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="DiaphragmPump">
+		<rdfs:label>Diaphragm pump</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DisplacementPump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS400026131</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8095</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="EjectorPump">
+		<rdfs:label>Ejector Pump</rdfs:label>
+		<rdfs:comment>Ejector / Liquid jet pump</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Pump" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS860624</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8096</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Compressor">
+		<rdfs:label>Compressor</rdfs:label>
+		<rdfs:comment>Gas pump / vacuum pump / compressor</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS14286497</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2302</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2302</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="CentrifugalCompressor">
+		<rdfs:label>Centrifugal compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS417194</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8179</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PistonCompressor">
+		<rdfs:label>Piston compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS815984</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8097</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DiaphragmCompressor">
+		<rdfs:label>Diaphragm compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS813644</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8099</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TurbochargerCompressor">
+		<rdfs:label>Turbocharger compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS13662598</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8102</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="VaneCompressor">
+		<rdfs:label>Vane compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS444644</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8104</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol> 	
+	<Symbol rdf:ID="RotaryCompressor">
+		<rdfs:label>Rotary compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS435374</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8105</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScrewCompressor">
+		<rdfs:label>Screw compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS435419</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8161</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="LiquidRingCompressor">
+		<rdfs:label>Liquid ring compressor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS434654</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8162</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol> 	
+	<Symbol rdf:ID="Ejector">
+		<rdfs:label>Ejector</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS437129</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8163</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol> 	
+	<Symbol rdf:ID="Fan">
+		<rdfs:label>Fan</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Compressor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS415169</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8164</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Compressors, vacuum pumps, blowers, fans</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="Centrifuge">
+		<rdfs:label>Centrifuge</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS420974</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2619</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2619</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="PerforatedShellCentrifuge">
+		<rdfs:label>Perforated shell centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2614</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2614</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SolidShellCentrifuge">
+		<rdfs:label>Solid shell centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8035</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DiskTypeCentrifuge">
+		<rdfs:label>Disk type centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8036</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScrewTypePerforatedShellCentrifuge">
+		<rdfs:label>Screw type perforated shell centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8037</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScrewTypeSolidShellCentrifuge">
+		<rdfs:label>Screw type solid shell centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8082</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PusherCentrifuge">
+		<rdfs:label>Pusher centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8038</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PeelingCentrifuge">
+		<rdfs:label>Peeling centrifuge</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Centrifuge" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8039</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Centrifuges</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScreeningDevice">
+		<rdfs:label>Screening device</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8123</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="VibratingScreenSeparator">
+		<rdfs:label>Vibrating screen separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScreeningDevice" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS43169083115</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2605</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2605</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="CoarseScreen">
+		<rdfs:label>Coarse screen</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScreeningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8026</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FineScreen">
+		<rdfs:label>Fine screen</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScreeningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8027</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScreeningDeviceWithTwoScreens">
+		<rdfs:label>Screening device with two screens</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScreeningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8028</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TurningBarrelSieve">
+		<rdfs:label>Turning barrel sieve</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScreeningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8029</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BasketRibbonSiftingDevice">
+		<rdfs:label>Basket ribbon sifting device</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScreeningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8030</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Screening devices</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Separator">
+		<rdfs:label>Separator</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS2194378711</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8081</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ImpactSeparator">
+		<rdfs:label>Impact separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2616</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2616</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="GravitySeparator">
+		<rdfs:label>Gravity separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS16042131</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8031</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="WetScrubber">
+		<rdfs:label>Wet scrubber</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8124</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SprayScrubber">
+		<rdfs:label>Spray scrubber</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Separator"/>
+			<owl:Class rdf:about="#SprayNozzle"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2621</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2621</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ElectrostaticSeparator">
+		<rdfs:label>Electrostatic separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316635861</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8125</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2627</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ElectrostaticWetSeparator">
+		<rdfs:label>Electrostatic wet separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ElectrostaticSeparator" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#ElectrostaticSeparator"/>
+			<owl:Class rdf:about="#SprayNozzle"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8033</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ElectromagneticSeparator">
+		<rdfs:label>Electromagnetic separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS278954</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8126</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2628</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="MagneticSeparator">
+		<rdfs:label>Magnetic separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS431680651</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8127</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2629</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RotarySeparator">
+		<rdfs:label>Rotary separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2618</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2618</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VenturiSeparator">
+		<rdfs:label>Venturi separator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Separator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8034</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Thickener">
+		<rdfs:label>Thickener</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS9652607</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="OpenThickener">
+		<rdfs:label>Open thickener</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Thickener" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8128</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedThickener">
+		<rdfs:label>Closed thickener</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Thickener" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8129</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Separators</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="Container">
+		<rdfs:label>Container</rdfs:label>
+		<rdfs:comment>Container, general</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS898262151</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FluidContainer">
+		<rdfs:label>Fluid container</rdfs:label>
+		<rdfs:comment>A container capable of containing substances which behave as fluids, i.e. gases, liquids and fluidized solids.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Container" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS898290191</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Vessel">
+		<rdfs:label>Vessel</rdfs:label>
+		<rdfs:comment>Vessel, general</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#FluidContainer" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS414674</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-301</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="OpenTank">
+		<rdfs:label>Open tank</rdfs:label>
+		<rdfs:comment>Open tank, general</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316824468</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2061</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2061</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ConicalRoofTank">
+		<rdfs:label>Conical roof tank</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS436634</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2063</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2063</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DomeRoofTank">
+		<rdfs:label>Dome roof tank</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS437039</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8200</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DishedHeadsVessel">
+		<rdfs:label>Pressure vessel</rdfs:label>
+		<rdfs:comment>Vessel with dished heads</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS427229</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2062</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2062</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TwoDiameterVessel">
+		<rdfs:label>Vessel with two diameters</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8201</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SphericVessel">
+		<rdfs:label>Spheric vessel</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316863640</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2063</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2063</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="OpenConicalBottomTank">
+		<rdfs:label>Open tank with conical bottom</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#OpenTank" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2064</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2064</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ConicalBottomTank">
+		<rdfs:label>Tank with conical bottom</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2062</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2062</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DishedRoofConicalBottomVessel">
+		<rdfs:label>Vessel with dished roof and conical bottom</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8008</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ConicalHeadsVessel">
+		<rdfs:label>Vessel with conical heads</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8009</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ContainerForSolidLiquidGas">
+		<rdfs:label>Container for solids, liquids, gases</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Container" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0001</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Barrel">
+		<rdfs:label>Barrel</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2067</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2067</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="GasBottle">
+		<rdfs:label>Gas bottle</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS5775946</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0002</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Bag">
+		<rdfs:label>Bag</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Container" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11526002</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2068</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2068</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VesselWithFeet">
+		<rdfs:label>Vessel with feet</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#Foot"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8002</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VesselWithLugs">
+		<rdfs:label>Vessel with lugs</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#Lug"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8003</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VesselWithSkirt">
+		<rdfs:label>Vessel with skirt</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#Skirt"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8004</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VesselWithCarrierRing">
+		<rdfs:label>Vessel with carrier ring</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#CarrierRing"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8005</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="JacketedVessel">
+		<rdfs:label>Jacketed vessel</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS292904</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2069</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2069</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DishedHeadsVesselWithExternalElectricHeater">
+		<rdfs:label>Vessel with dished heads and external electric heater</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DishedHeadsVessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2070</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2070</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DishedHeadsVesselWithInsulation">
+		<rdfs:label>Vessel with dished heads and insultation</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DishedHeadsVessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8098</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DishedHeadsVesselWithFillingLevelIndication">
+		<rdfs:label>Vessel with dished heads and indication of filling level</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#DishedHeadsVessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8007</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SphericVesselWithFeet">
+		<rdfs:label>Spherical vessel with feet</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#SphericVessel" />
+		<rdfs:subClassOf rdf:resource="#VesselWithFeet" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#SphericVessel"/>
+			<owl:Class rdf:about="#Foot"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8010</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VesselWithFullTubeCoil">
+		<rdfs:label>Vessel with full-tube coil</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8000</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VesselWithSemiTubeCoil">
+		<rdfs:label>Vessel with semi-tube coil</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8001</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HorizontalVesselWithBoot">
+		<rdfs:label>Horizontal vessel with boot</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316756198</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8202</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="OpenStorage">
+		<rdfs:label>Open storage</rdfs:label>
+		<rdfs:comment>Bulk storage</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Container" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS15936191</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2065</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2065</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels and tanks</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="ProcessColumn">
+		<rdfs:label>Process column</rdfs:label>
+		<rdfs:comment>Vessel / column with internals</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#Internals"/>
+		</owl:intersectionOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316825224</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8100</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TrayColumn">
+		<rdfs:label>Column with trays</rdfs:label>
+		<rdfs:comment>Column with trays / fractionating column</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#ProcessColumn" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#Tray"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8101</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2625</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FluidizedBedColumn">
+		<rdfs:label>Column with fluidized bed</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ProcessColumn" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#FluidizedBed"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8014</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PackedColumn">
+		<rdfs:label>Packed column</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ProcessColumn" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#PackedBed"/>
+		</owl:intersectionOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS4316824677</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8015</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TrayColumnWithGasPassage">
+		<rdfs:label>Tray column with passage for gas</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#TrayColumn" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8013</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2626</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BubbleCapTrayColumn">
+		<rdfs:label>Bubble-cap tray column</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#TrayColumn" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#BubbleCapTray"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8011</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ValveTrayColumn">
+		<rdfs:label>Valve tray column</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#TrayColumn" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8012</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Vessel"/>
+			<owl:Class rdf:about="#ValveTray"/>
+		</owl:intersectionOf>
+	</Symbol>
+	<Symbol rdf:ID="PackedColumnWithSprayNozzles">
+		<rdfs:label>Packed column with two packing zones and spray nozzles</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PackedColumn" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#PackedColumn"/>
+			<owl:Class rdf:about="#SprayNozzle"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8016</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Vessels, process columns and chemical reactors with internals</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HorizontalVesselWithDome">
+		<rdfs:label>Horizontal vessel with dome</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Vessel" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS437399</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8108</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Heat exchangers, steam generators, furnaces</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="Valve">
+		<rdfs:label>Valve</rdfs:label>
+		<rdfs:comment>Valve, general</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS292589</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2101</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2101</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="AngleValve">
+		<rdfs:label>Angle valve</rdfs:label>
+		<rdfs:comment>Angle valve, general</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS5789384</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2102</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2102</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ThreeWayValve">
+		<rdfs:label>Three-way valve</rdfs:label>
+		<rdfs:comment>Three-way valve, general</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS6331499</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2103</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2103</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="GlobeValve">
+		<rdfs:label>Globe valve</rdfs:label>
+		<rdfs:comment>Valve of globe type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416204</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8068</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2121</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="AngleGlobeValve">
+		<rdfs:label>Angle globe valve</rdfs:label>
+		<rdfs:comment>Angle valve of globe type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#AngleValve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS882944</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8069</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ThreeWayGlobeValve">
+		<rdfs:label>Three-way globe valve</rdfs:label>
+		<rdfs:comment>Three-way valve of globe type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#ThreeWayValve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI"></isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8070</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BallValve">
+		<rdfs:label>Ball valve</rdfs:label>
+		<rdfs:comment>Valve of globe type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416654</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8071</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2122</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="AngleBallValve">
+		<rdfs:label>Angle ball valve</rdfs:label>
+		<rdfs:comment>Angle valve of ball type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#AngleValve" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8072</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ThreeWayBallValve">
+		<rdfs:label>Three-way ball valve</rdfs:label>
+		<rdfs:comment>Three-way valve of ball type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#ThreeWayValve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11141410</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8073</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="GateValve">
+		<rdfs:label>Gate valve</rdfs:label>
+		<rdfs:comment>Valve of gate type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416519</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8074</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2124</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ButterflyValve">
+		<rdfs:label>Butterfly valve</rdfs:label>
+		<rdfs:comment>Valve of butterfly type. In the ISO10628 it is also listed under the Reg.-Nr.X8075, although the usage of X8130 is recommended.</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS416609</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8130</hasIso10623_RegNr> 
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2126</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="NeedleValve">
+		<rdfs:label>Needle valve</rdfs:label>
+		<rdfs:comment>Valve of needle type</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS421064</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8076</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2125</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="CheckValve">
+		<rdfs:label>Check valve</rdfs:label>
+		<rdfs:comment>Check valve, general</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS292229</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8077</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2111</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="LiftCheckValve">
+		<rdfs:label>Lift check valve</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CheckValve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS645119</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2113</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SwingCheckValve">
+		<rdfs:label>Swing check valve</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CheckValve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS610424</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8165</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DamperBlade">
+		<rdfs:label>Damper blade</rdfs:label>
+		<rdfs:comment>damper blade with non-return function</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#CheckValve" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8078</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ControlValve">
+		<rdfs:label>Control valve</rdfs:label>
+		<rdfs:comment>Control valve, continuously operated</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS297539</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8087</hasIso10623_RegNr> 
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SafetyValve">
+		<rdfs:label>Safety valve</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS309374</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SafetyValveSpringLoaded">
+		<rdfs:label>Safety valve spring loaded</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#SafetyValve" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2124</hasIso10623_RegNr> 
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="AngleSafetyValveSpringLoaded">
+		<rdfs:label>Angle safety valve spring loaded</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#SafetyValve" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2125</hasIso10623_RegNr> 
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BreatherValve">
+		<rdfs:label>Breather valve</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Valve" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8088</hasIso10623_RegNr> 
+		<hasCategory rdf:datatype="xsd:string">Valves</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RuptureDisc">
+		<rdfs:label>Rupture disc</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS8372601</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8080</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2035</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FlameArrestor">
+		<rdfs:label>Flame arrestor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS1325028651</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2036</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2036</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ExplosionProofFlameArrestor">
+		<rdfs:label>Explosion proof flame arrestor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#FlameArrestor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0087</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DetonationProofFlameArrestor">
+		<rdfs:label>Detonation proof flame arrestor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#FlameArrestor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0088</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FireResistantFlameArrestor">
+		<rdfs:label>Fire resistant flame arrestor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#FlameArrestor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0091</hasIso10623_RegNr> 
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DetonationProofAndFlameResistantFlameArrestor">
+		<rdfs:label>Detonation proof and flame resistant flame arrestor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#FlameArrestor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0089</hasIso10623_RegNr> 
+		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="CrushingMachine">
+		<rdfs:label>Crushing machine</rdfs:label>
+		<rdfs:comment>Crushing machine, general</rdfs:comment>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8084</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="Crusher">
+		<rdfs:label>Crusher</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CrushingMachine" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11589940</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8085</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HammerCrusher">
+		<rdfs:label>Hammer crusher</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Crusher" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8045</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ImpactCrusher">
+		<rdfs:label>Impact crusher</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Crusher" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8046</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="JawCrusher">
+		<rdfs:label>Jaw crusher</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Crusher" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11589760</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8047</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RollerCrusher">
+		<rdfs:label>Roller crusher</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Crusher" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8048</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ConeCrusher">
+		<rdfs:label>Cone crusher</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Crusher" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8049</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Mill">
+		<rdfs:label>Mill</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CrushingMachine" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11589220</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8086</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HammerMill">
+		<rdfs:label>Hammer mill</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mill" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11589670</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8050</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ImpactMill">
+		<rdfs:label>Impact mill</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mill" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8051</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RollerMill">
+		<rdfs:label>Roller mill</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mill" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11588815</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8053</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VibratingMill">
+		<rdfs:label>Vibrating mill</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mill" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8054</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Crushing machines, grinding machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Mixer">
+		<rdfs:label>Mixer</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS419378901</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Mixers, kneaders</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RotaryMixer">
+		<rdfs:label>Rotary mixer</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mixer" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2672</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2672</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Mixers, kneaders</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="StaticMixer">
+		<rdfs:label>Static mixer</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mixer" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS1016684</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X2673</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-X2673</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Mixers, kneaders</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="MixingSection">
+		<rdfs:label>Mixing chamber</rdfs:label>
+		<rdfs:comment>Mixing chamber / mixing section / mixer path</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Mixer" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS9031514334</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8184</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Mixers, kneaders</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Kneader">
+		<rdfs:label>Kneader</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Mixer" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8134</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Mixers, kneaders</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="CoarseningDevice">
+		<rdfs:label>Coarsening device</rdfs:label>
+		<rdfs:comment>A device designed to increase a materials size, roughness or hardness</rdfs:comment>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VerticalCoarseningDevice">
+		<rdfs:label>Vertical coarsening device</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CoarseningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0052</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RollerPress">
+		<rdfs:label>Roller press</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#VerticalCoarseningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8055<hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PistonPress">
+		<rdfs:label>Piston press</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#VerticalCoarseningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8056<hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PelletizingDisk">
+		<rdfs:label>Pelletizing disk</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#VerticalCoarseningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8057<hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="HorizontalCoarseningDevice">
+		<rdfs:label>Horizontal coarsening device</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#CoarseningDevice" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0053</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Extruder">
+		<rdfs:label>Extruder</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#HorizontalCoarseningDevice" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS394044551</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8059<hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScrewTypeExtruder">
+		<rdfs:label>Screw type extruder</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Extruder" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8058<hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
+	</Symbol>
+	
+	<Symbol rdf:ID="Drier">
+		<rdfs:label>Drier</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS1066939451</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0046</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol> 	
+	<Symbol rdf:ID="DryingChamber">
+		<rdfs:label>Drying chamber</rdfs:label>
+		<rdfs:comment>Drying oven, chamber / shelf drier</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Drier" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8083</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>	
+	<Symbol rdf:ID="DiskDrier">
+		<rdfs:label>Disk drier</rdfs:label>
+		<rdfs:comment>Disk drier / moving shelf drier / turbo drier</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Drier" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8040</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="FluidizedBedDrier">
+		<rdfs:label>Fluidized bed drier</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Drier" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Drier"/>
+			<owl:Class rdf:about="#FluidizedBed"/>
+		</owl:intersectionOf>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11017295</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8041</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="SprayDrier">
+		<rdfs:label>Spray drier</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Drier" />
+		<owl:intersectionOf rdf:parseType="Collection">
+			<owl:Class rdf:about="#Drier"/>
+			<owl:Class rdf:about="#SprayNozzle"/>
+		</owl:intersectionOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8042</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BeltDrier">
+		<rdfs:label>Belt drier</rdfs:label>
+		<rdfs:comment>Belt drier, roller-conveyor type drier</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Drier" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8043</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>	
+	<Symbol rdf:ID="RotaryDrier">
+		<rdfs:label>Rotary drier</rdfs:label>
+		<rdfs:comment>Rotary drum drier / rotary drier / tumbling drier</rdfs:comment>
+		<rdfs:subClassOf rdf:resource="#Drier" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8044</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>	
+	<Symbol rdf:ID="HeatConsumer">
+		<rdfs:label>Heat consumer</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0016</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Driers</hasCategory>
+	</Symbol>
+
+	<Symbol rdf:ID="Conveyor">
+		<rdfs:label>Conveyor</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11589895</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8060</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="RollerConveyor">
+		<rdfs:label>Roller conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Conveyor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11588770</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8142</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BeltConveyor">
+		<rdfs:label>Belt conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Conveyor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11590210</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3821</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3821</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedBeltConveyor">
+		<rdfs:label>Closed belt conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#BeltConveyor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8061</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ReversibleBeltConveyor">
+		<rdfs:label>Reversible belt conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#BeltConveyor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8175</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol> 
+	<Symbol rdf:ID="ChainConveyor">
+		<rdfs:label>Chain conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Conveyor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11589805</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedChainConveyor">
+		<rdfs:label>Closed chain conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ChainConveyor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8062</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ScrewConveyor">
+		<rdfs:label>Screw conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Conveyor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11588455</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedScrewConveyor">
+		<rdfs:label>Closed screw conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ScrewConveyor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8063</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="VibratingConveyor">
+		<rdfs:label>Vibrating conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Conveyor" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11588320</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedVibratingConveyor">
+		<rdfs:label>Closed vibrating conveyor</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#VibratingConveyor" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8064</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Elevator">
+		<rdfs:label>Elevator</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS5792527</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3842</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3842</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BucketElevator">
+		<rdfs:label>Bucket elevator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#Elevator" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS16769799</isPossibleRepresentationOf>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedBucketElevator">
+		<rdfs:label>Closed bucket elevator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#BucketElevator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8065</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ClosedZFormBucketElevator">
+		<rdfs:label>Closed Z-form bucket elevator</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#ClosedBucketElevator" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8066</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Crane">
+		<rdfs:label>Crane</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS5800251</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3841</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3841</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="IndustrialTruck">
+		<rdfs:label>Industrial truck</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11524112</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3871</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3871</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="TankTruck">
+		<rdfs:label>Tank truck</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#IndustrialTruck" />
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11523887</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3874</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3874</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="BoxTruck">
+		<rdfs:label>Box truck</rdfs:label>
+		<rdfs:subClassOf rdf:resource="#IndustrialTruck" />
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3872</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3872</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="PalletTruck">
+		<rdfs:label>Pallet truck</rdfs:label>
+		<rdfs:comment>Pallet jack / pallet truck / pallet pump / pump truck / jigger</rdfs:comment>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0094</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Forklift">
+		<rdfs:label>Forklift</rdfs:label>
+		<rdfs:comment>Forklift truck / forklift / lift truck / fork truck</rdfs:comment>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11590075</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3862</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3862</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="Ship">
+		<rdfs:label>Ship</rdfs:label>
+		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS11523932</isPossibleRepresentationOf>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-3881</hasIso10623_RegNr>
+		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-3881</hasIso14617_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Lifting, conveying and transport</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="ProportionerForSolids">
+		<rdfs:label>Proportioner for solids</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C2056</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Proportioners, feeders and distribution facilities</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RotaryValveFeeder">
+		<rdfs:label>Rotary valve feeder</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8067</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Proportioners, feeders and distribution facilities</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="RotaryTable">
+		<rdfs:label>Rotary table</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0074</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Proportioners, feeders and distribution facilities</hasCategory>
+	</Symbol>
+	<Symbol rdf:ID="DosingDevice">
+		<rdfs:label>Dosing device</rdfs:label>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-C0035</hasIso10623_RegNr>
+		<hasCategory rdf:datatype="xsd:string">Proportioners, feeders and distribution facilities</hasCategory>
+	</Symbol>	
+</rdf:RDF>
+
+	

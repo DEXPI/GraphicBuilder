@@ -1,0 +1,88 @@
+	<PipingComponent ID="X8078" ComponentName="DamperBlade_X8078" ComponentClass="DamperBlade">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8078"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-6.2" Y="-2.5" Z="0" />
+			<Max X="5" Y="3.7" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5" Y="-2.5" />
+				<Max X="5" Y="2.5" />
+			</Extent>
+			<Coordinate X="-5" Y="-2.5" />
+			<Coordinate X="-5" Y="2.5" />
+			<Coordinate X="5" Y="-2.5" />
+			<Coordinate X="5" Y="2.5" />	
+			<Coordinate X="-5" Y="-2.5" />		
+		</PolyLine>
+		<Circle Radius="1.2" Filled="Solid">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-1.2" Y="-1.2" />
+				<Max X="1.2" Y="1.2" />
+			</Extent>
+			<Position>
+				<Location X="0" Y="0" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="0" Y="-2.5" />
+				<Max X="0" Y="2.5" />
+			</Extent>
+			<Coordinate X="0" Y="-2.5" />
+			<Coordinate X="0" Y="2.5" />
+		</PolyLine>
+		<Circle Radius="1.2" Filled="Solid">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-6.2" Y="1.3" />
+				<Max X="-3.8" Y="3.7" />
+			</Extent>
+			<Position>
+				<Location X="-5" Y="2.5" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="3" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="-5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="5" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</PipingComponent>

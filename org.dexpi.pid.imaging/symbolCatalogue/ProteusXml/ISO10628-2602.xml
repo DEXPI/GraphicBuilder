@@ -1,0 +1,53 @@
+	<Equipment ID="2602" ComponentName="SieveTray_2602" ComponentClass="SieveTray" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS13034655">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-2602"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-12.5" Y="0" Z="0" />
+			<Max X="15" Y="0" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="0" />
+				<Max X="-7.5" Y="0" />
+			</Extent>
+			<Coordinate X="-12.5" Y="0" />
+			<Coordinate X="-7.5" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5" Y="0" />
+				<Max X="0" Y="0" />
+			</Extent>
+			<Coordinate X="-5" Y="0" />
+			<Coordinate X="0" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="0" />
+				<Max X="7.5" Y="0" />
+			</Extent>
+			<Coordinate X="2.5" Y="0" />
+			<Coordinate X="7.5" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="10" Y="0" />
+				<Max X="15" Y="0" />
+			</Extent>
+			<Coordinate X="10" Y="0" />
+			<Coordinate X="15" Y="0" />
+		</PolyLine>
+	</Equipment>

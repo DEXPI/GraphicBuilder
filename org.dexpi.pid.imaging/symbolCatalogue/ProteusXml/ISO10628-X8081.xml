@@ -1,0 +1,104 @@
+	<Equipment ID="X8081" ComponentName="Separator_X8081" ComponentClass="Separator" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS2194378711">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8081"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-7.5" Y="-10" Z="0" />
+			<Max X="7.5" Y="12.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="6">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="-10" />
+				<Max X="7.5" Y="12.5" />
+			</Extent>
+			<Coordinate X="0" Y="-10" />
+			<Coordinate X="7.5" Y="-2.5" />
+			<Coordinate X="7.5" Y="12.5" />
+			<Coordinate X="-7.5" Y="12.5" />
+			<Coordinate X="-7.5" Y="-2.5" />
+			<Coordinate X="0" Y="-10" />
+		</PolyLine>
+		<Shape NumPoints="4" Filled="Solid">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="9.25" />
+				<Max X="5" Y="10.75" />
+			</Extent>
+			<Coordinate X="5" Y="10" />
+			<Coordinate X="2.5" Y="10.75" />
+			<Coordinate X="2.5" Y="9.25" />
+			<Coordinate X="5" Y="10" />	
+		</Shape>
+		<Shape NumPoints="4" Filled="Solid">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="0.5" />
+				<Max X="0" Y="2" />
+			</Extent>
+			<Coordinate X="3.25" Y="7.5" />
+			<Coordinate X="1.47" Y="9.4" />
+			<Coordinate X="0.72" Y="8.08" />
+			<Coordinate X="3.25" Y="7.5" />
+		</Shape>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.2" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5" Y="10" />
+				<Max X="2.5" Y="10" />
+			</Extent>
+			<Coordinate X="-5" Y="10" />
+			<Coordinate X="2.5" Y="10" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.2" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-1.08" Y="7.5" />
+				<Max X="3.25" Y="10" />
+			</Extent>
+			<Coordinate X="-1.08" Y="10" />
+			<Coordinate X="3.25" Y="7.5" />
+		</PolyLine>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="4" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="-7.5" Y="10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="0" Y="-10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="7.5" Y="10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</Equipment>

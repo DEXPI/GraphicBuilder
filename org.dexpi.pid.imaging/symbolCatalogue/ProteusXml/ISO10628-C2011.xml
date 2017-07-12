@@ -1,0 +1,44 @@
+	<Equipment ID="C2011" ComponentName="ValveTray_C2011" ComponentClass="ValveTray" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS13034430">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C2011"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-10" Y="0" Z="0" />
+			<Max X="10" Y="1.25" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="0" />
+				<Max X="-2.5" Y="0" />
+			</Extent>
+			<Coordinate X="-10" Y="0" />
+			<Coordinate X="-2.5" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="0" />
+				<Max X="10" Y="0" />
+			</Extent>
+			<Coordinate X="10" Y="0" />
+			<Coordinate X="2.5" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="1.25" />
+				<Max X="2.5" Y="1.25" />
+			</Extent>
+			<Coordinate X="-2.5" Y="1.25" />
+			<Coordinate X="2.5" Y="1.25" />
+		</PolyLine>
+	</Equipment>

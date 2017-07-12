@@ -1,0 +1,90 @@
+	<Equipment ID="X8166" ComponentName="TrayWithWeir_X8166" ComponentClass="TrayWithWeir">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8166"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-12.5" Y="-2.5" Z="0" />
+			<Max X="12.5" Y="5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="2.5" />
+				<Max X="-10" Y="2.5" />
+			</Extent>
+			<Coordinate X="-12.5" Y="2.5" />
+			<Coordinate X="-10" Y="2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="2.5" />
+				<Max X="-2.5" Y="2.5" />
+			</Extent>
+			<Coordinate X="-7.5" Y="2.5" />
+			<Coordinate X="-2.5" Y="2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="0" Y="2.5" />
+				<Max X="-5" Y="2.5" />
+			</Extent>
+			<Coordinate X="0" Y="2.5" />
+			<Coordinate X="5" Y="2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="7.5" Y="2.5" />
+				<Max X="10" Y="5" />
+			</Extent>
+			<Coordinate X="7.5" Y="2.5" />
+			<Coordinate X="10" Y="2.5" />
+			<Coordinate X="10" Y="5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-2.5" />
+				<Max X="-7.5" Y="0" />
+			</Extent>
+			<Coordinate X="-10" Y="0" />
+			<Coordinate X="-10" Y="-2.5" />
+			<Coordinate X="-7.5" Y="-2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5" Y="-2.5" />
+				<Max X="0" Y="-2.5" />
+			</Extent>
+			<Coordinate X="-5" Y="-2.5" />
+			<Coordinate X="0" Y="-2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="2.5" Y="-2.5" />
+				<Max X="7.5" Y="-2.5" />
+			</Extent>
+			<Coordinate X="2.5" Y="-2.5" />
+			<Coordinate X="7.5" Y="-2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="10" Y="-2.5" />
+				<Max X="12.5" Y="-2.5" />
+			</Extent>
+			<Coordinate X="10" Y="-2.5" />
+			<Coordinate X="12.5" Y="-2.5" />
+		</PolyLine>
+	</Equipment>

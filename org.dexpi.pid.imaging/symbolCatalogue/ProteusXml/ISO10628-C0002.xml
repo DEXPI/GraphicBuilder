@@ -1,0 +1,74 @@
+	<Equipment ID="C0002" ComponentName="GasBottle_C0002" ComponentClass="GasBottle" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS5775946">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C0002"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-2.5" Y="-6.25" Z="0" />
+			<Max X="2.5" Y="6.25" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0"/>
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="4">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="-6.25" />
+				<Max X="2.5" Y="1.25" />
+			</Extent>
+			<Coordinate X="-2.5" Y="1.25" />
+			<Coordinate X="-2.5" Y="-6.25" />
+			<Coordinate X="2.5" Y="-6.25" />
+			<Coordinate X="2.5" Y="1.25" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="1.25" Y="3.45" />
+				<Max X="1.25" Y="5" />
+			</Extent>
+			<Coordinate X="1.25" Y="3.45" />
+			<Coordinate X="1.25" Y="5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-1.25" Y="3.45" />
+				<Max X="-1.25" Y="5" />
+			</Extent>
+			<Coordinate X="-1.25" Y="3.45" />
+			<Coordinate X="-1.25" Y="5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="0" EndAngle="180">
+			<Circle Radius="2.5">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-2.5" Y="1.25" Z="0" />
+					<Max X="2.5" Y="3.75" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="0" EndAngle="180">
+			<Circle Radius="1.25">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-1.25" Y="5" Z="0" />
+					<Max X="1.25" Y="6.25" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="5" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+	</Equipment>

@@ -1,0 +1,86 @@
+	<Equipment ID="C0001" ComponentName="ContainerForSolidLiquidGas_C0001" ComponentClass="ContainerForSolidLiquidGas">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C0001"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-15" Y="-7.5" Z="0" />
+			<Max X="15" Y="7.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0"/>
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-15" Y="-7.5" />
+				<Max X="15" Y="7.5" />
+			</Extent>
+			<Coordinate X="-15" Y="-7.5" />
+			<Coordinate X="15" Y="-7.5" />
+			<Coordinate X="15" Y="7.5" />
+			<Coordinate X="-15" Y="7.5" />
+			<Coordinate X="-15" Y="-7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-15" Y="3.75" />
+				<Max X="-11.25" Y="7.5" />
+			</Extent>
+			<Coordinate X="-15" Y="3.75" />
+			<Coordinate X="-11.25" Y="3.75" />
+			<Coordinate X="-11.25" Y="7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-15" Y="-7.5" />
+				<Max X="-11.25" Y="-3.75" />
+			</Extent>
+			<Coordinate X="-15" Y="-3.75" />
+			<Coordinate X="-11.25" Y="-3.75" />
+			<Coordinate X="-11.25" Y="-7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="11.25" Y="3.75" />
+				<Max X="15" Y="7.5" />
+			</Extent>
+			<Coordinate X="15" Y="3.75" />
+			<Coordinate X="11.25" Y="3.75" />
+			<Coordinate X="11.25" Y="7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="3">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="11.25" Y="-7.5" />
+				<Max X="15" Y="-3.75" />
+			</Extent>
+			<Coordinate X="15" Y="-3.75" />
+			<Coordinate X="11.25" Y="-3.75" />
+			<Coordinate X="11.25" Y="-7.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-11.25" Y="-3.75" />
+				<Max X="11.25" Y="3.75" />
+			</Extent>
+			<Coordinate X="-11.25" Y="3.75" />
+			<Coordinate X="11.25" Y="-3.75" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-11.25" Y="-3.75" />
+				<Max X="11.25" Y="3.75" />
+			</Extent>
+			<Coordinate X="11.25" Y="3.75" />
+			<Coordinate X="-11.25" Y="-3.75" />
+		</PolyLine>
+	</Equipment>

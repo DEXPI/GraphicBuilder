@@ -1,0 +1,113 @@
+	<Equipment ID="X8043" ComponentName="BeltDryer_X8043" ComponentClass="BeltDryer">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-X8043"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-10" Y="-15" Z="0" />
+			<Max X="10" Y="15" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="7">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-10" Y="-15" />
+				<Max X="10" Y="15" />
+			</Extent>
+			<Coordinate X="-10" Y="-15" />
+			<Coordinate X="-10" Y="10" />
+			<Coordinate X="-7.5" Y="15" />
+			<Coordinate X="7.5" Y="15" />
+			<Coordinate X="10" Y="10" />
+			<Coordinate X="10" Y="-15" />
+			<Coordinate X="-10" Y="-15" />
+		</PolyLine>
+		<Circle Radius="1.875" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="3.75" Y="3.125" />
+				<Max X="7.5" Y="6.875" />
+			</Extent>
+			<Position>
+				<Location X="5.625" Y="5" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<Circle Radius="1.875" >
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-7.5" Y="3.125" />
+				<Max X="-3.75" Y="6.875" />
+			</Extent>
+			<Position>
+				<Location X="-5.625" Y="5" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5.625" Y="3.125" />
+				<Max X="5.625" Y="3.125" />
+			</Extent>
+			<Coordinate X="-5.625" Y="3.125" />
+			<Coordinate X="5.625" Y="3.125" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-5.625" Y="6.875" />
+				<Max X="5.625" Y="6.875" />
+			</Extent>
+			<Coordinate X="-5.625" Y="6.875" />
+			<Coordinate X="5.625" Y="6.875" />
+		</PolyLine>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="5" FlowIn="1" FlowOut="2">
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="0" Y="15" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="0" Y="-15" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="-10" Y="7.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="10" Y="7.5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>	
+	</Equipment>

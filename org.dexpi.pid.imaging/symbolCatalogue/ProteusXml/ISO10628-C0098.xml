@@ -1,0 +1,37 @@
+	<PipingComponent ID="C0098" ComponentName="OpenDisk_C0098" ComponentClass="OpenDisk">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C0098"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-2.5" Y="-10" Z="0" />
+			<Max X="2.5" Y="5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="0" Y="-10" />
+				<Max X="0" Y="0" />
+			</Extent>
+			<Coordinate X="0" Y="-10" />
+			<Coordinate X="0" Y="0" />
+		</PolyLine>
+		<Circle Radius="2.5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-2.5" Y="0" />
+				<Max X="2.5" Y="5" />
+			</Extent>
+			<Position>
+				<Location X="0" Y="2.5" />
+				<Axis X="0" Y="0" Z="1" />
+				<Reference X="1" Y="0" Z="0" />
+			</Position>
+		</Circle>
+	</PipingComponent>

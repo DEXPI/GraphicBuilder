@@ -1,0 +1,72 @@
+	<Equipment ID="C2024" ComponentName="ImpellerAgitator_C2024" ComponentClass="ImpellerAgitator">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-C2024"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-5" Y="-2.5" Z="0" />
+			<Max X="5" Y="10" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="0" Y="-1.25" />
+				<Max X="0" Y="10" />
+			</Extent>
+			<Coordinate X="0" Y="-1.25" />
+			<Coordinate X="0" Y="10" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="225" EndAngle="315">
+			<Circle Radius="3.5355">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-5" Y="-2.2855" Z="0" />
+					<Max X="0" Y="-1.25" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="-2.5" Y="1.25" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<TrimmedCurve StartAngle="45" EndAngle="135">
+			<Circle Radius="3.5355">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="0" Y="-1.25" Z="0" />
+					<Max X="5" Y="-0.2145" Z="0" />
+				</Extent>
+				<Position>
+					<Location X="2.5" Y="-3.75" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		<ConnectionPoints NumPoints="2" FlowIn="1" >
+			<!-- Node 0 : Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="0" Y="10" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+		</ConnectionPoints>		
+	</Equipment>

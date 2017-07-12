@@ -1,0 +1,120 @@
+	<Equipment ID="2513" ComponentName="UTubeHeatExchanger_2513" ComponentClass="UTubeHeatExchanger" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS11014325">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-2513"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-17.5" Y="-5" Z="0" />
+			<Max X="17.5" Y="5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-17.5" Y="-5" />
+				<Max X="17.5" Y="5" />
+			</Extent>
+			<Coordinate X="-17.5" Y="5"/>
+			<Coordinate X="17.5" Y="5"/>
+			<Coordinate X="17.5" Y="-5"/>
+			<Coordinate X="-17.5" Y="-5"/>
+			<Coordinate X="-17.5" Y="5"/>
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-17.5" Y="0" />
+				<Max X="-12.5" Y="0" />
+			</Extent>
+			<Coordinate X="-17.5" Y="0" />
+			<Coordinate X="-12.5" Y="0" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="-5" />
+				<Max X="-12.5" Y="5" />
+			</Extent>
+			<Coordinate X="-12.5" Y="5" />
+			<Coordinate X="-12.5" Y="-5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="2.5" />
+				<Max X="10" Y="2.5" />
+			</Extent>
+			<Coordinate X="-12.5" Y="2.5" />
+			<Coordinate X="10" Y="2.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="-2.5" />
+				<Max X="10" Y="-2.5" />
+			</Extent>
+			<Coordinate X="-12.5" Y="-2.5" />
+			<Coordinate X="10" Y="-2.5" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="270" EndAngle="90">
+			<Circle Radius="2.5">
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="10" Y="-2.5" />
+					<Max X="12.5" Y="2.5" />
+				</Extent>
+				<Position>
+					<Location X="10" Y="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		<!-- Nodes suggested by DIN ISO 10628 -->
+		</TrimmedCurve>
+		<ConnectionPoints NumPoints="5" FlowIn="1" FlowOut="2">
+			<!-- Node 0: Position -->
+			<Node>
+				<Position>
+					<Location X="0" Y="0" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 1: FlowIn -->
+			<Node>
+				<Position>
+					<Location X="-15" Y="5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<!-- Node 2: FlowOut -->
+			<Node>
+				<Position>
+					<Location X="-15" Y="-5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="-10" Y="5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>
+			<Node>
+				<Position>
+					<Location X="15" Y="-5" Z="0" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Node>	
+		</ConnectionPoints>	
+	</Equipment>

@@ -1,0 +1,52 @@
+	<Equipment ID="3841" ComponentName="Crane_3841" ComponentClass="Crane" 
+		ComponentClassURI="http://data.posccaesar.org/rdl/RDS5800251">
+		<GenericAttributes Number="1" Set="DexpiAttributes">
+			<GenericAttribute Name="SymbolRegistrationNumberAssignmentClass"
+				Value="ISO10628-3841"
+				AttributeURI="http://sandbox.dexpi.org/rdl/SymbolRegistrationNumberAssigmentClass" />
+		</GenericAttributes>
+		<Extent>
+			<Min X="-12.5" Y="-12.5" Z="0" />
+			<Max X="12.5" Y="12.5" Z="0" />
+		</Extent>
+		<Position>
+			<Location X="0" Y="0" Z="0" />
+			<Axis X="0" Y="0" Z="1" />
+			<Reference X="1" Y="0" Z="0" />
+		</Position>
+		<PolyLine NumPoints="5">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="-12.5" Y="-12.5" />
+				<Max X="12.5" Y="12.5" />
+			</Extent>
+			<Coordinate X="-12.5" Y="-12.5" />
+			<Coordinate X="-12.5" Y="12.5" />
+			<Coordinate X="12.5" Y="12.5" />
+			<Coordinate X="12.5" Y="-12.5" />
+			<Coordinate X="-12.5" Y="-12.5" />
+		</PolyLine>
+		<PolyLine NumPoints="2">
+			<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+			<Extent>
+				<Min X="0" Y="6.25" />
+				<Max X="0" Y="10" />
+			</Extent>
+			<Coordinate X="0" Y="6.25" />
+			<Coordinate X="0" Y="10" />
+		</PolyLine>
+		<TrimmedCurve StartAngle="180" EndAngle="90">
+			<Circle Radius="3.75" >
+				<Presentation Layer="0" Color="0" LineType="Solid" LineWeight="0.25" R="0" G="0" B="0" />
+				<Extent>
+					<Min X="-3.75" Y="-1.25" />
+					<Max X="3.75" Y="6.25" />
+				</Extent>
+				<Position>
+					<Location X="0" Y="2.5" />
+					<Axis X="0" Y="0" Z="1" />
+					<Reference X="1" Y="0" Z="0" />
+				</Position>
+			</Circle>
+		</TrimmedCurve>
+	</Equipment>
