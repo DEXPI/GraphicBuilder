@@ -6,13 +6,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.WriteAbortedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.dexpi.pid.imaging.drawableElements.TextElement;
+import org.apache.batik.anim.dom.SVGDOMImplementation;
 import org.dexpi.pid.imaging.pidElements.ErrorElement;
 import org.dexpi.pid.imaging.pidElements.PidElement;
+import org.w3c.dom.Element;
 
 /**
  * The imageFactory creates the image and fills it with geometric shapes. The
@@ -34,7 +36,7 @@ import org.dexpi.pid.imaging.pidElements.PidElement;
  *
  */
 
-public class ImageFactory implements GraphicFactory {
+public class ImageFactory_PNG implements GraphicFactory {
 
 	// NOTE: This only works because java matches from left to right and always
 	// works on the first match
@@ -107,7 +109,7 @@ public class ImageFactory implements GraphicFactory {
 		this.g.setColor(backgroundColor);
 		this.g.fillRect((int) origin[0], (int) origin[1], resolutionX, resolutionY);
 	}
-
+	
 	/**
 	 * adds a line to the image
 	 * 
@@ -151,6 +153,7 @@ public class ImageFactory implements GraphicFactory {
 			xIntCoord[i] = (int) ((this.scaleX * this.r * cosPhi1 - this.posX) * this.x);
 			yIntCoord[i] = (int) ((this.posY - this.scaleY * this.r * sinPhi1) * this.x);
 		}
+		
 		this.g.drawPolyline(xIntCoord, yIntCoord, xIntCoord.length);
 
 	}
@@ -172,7 +175,7 @@ public class ImageFactory implements GraphicFactory {
 	@Override
 	public void addShape(Color c, float lineWeight, double xCoordinates[],
 			double yCoordinates[], boolean filled) {
-
+		
 		double cosPhi1;
 		double sinPhi1;
 		this.g.setColor(c);
@@ -536,5 +539,17 @@ public class ImageFactory implements GraphicFactory {
 	@Override
 	public ArrayList<ErrorElement> getErrorList() {
 		return this.listOfErrors;
+	}
+	
+	/**
+	 * Currently not implemented for PNG
+	 * @param destination
+	 * @return
+	 */
+	@Override
+	public boolean writeToDestination(String destination) {
+		//TODO currently not implemented
+		
+		return false;
 	}
 }

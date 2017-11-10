@@ -689,7 +689,7 @@
 	</Symbol> 
 	<Symbol rdf:ID="Siphon">
 		<rdfs:label>Siphon</rdfs:label>
-		<rdfs:subClassOf rdf:resource="#PipingComponent />
+		<rdfs:subClassOf rdf:resource="#PipingComponent" />
 		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-2038</hasIso10623_RegNr>
 		<hasIso14617_RegNr rdf:datatype="xsd:string">ISO14617-2038</hasIso14617_RegNr>
 		<hasCategory rdf:datatype="xsd:string">Piping and piping components</hasCategory>
@@ -872,8 +872,7 @@
 		<rdfs:subClassOf rdf:resource="#Pump" />
 		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS432584</isPossibleRepresentationOf>
 		<hasCategory rdf:datatype="xsd:string">Liquid pumps</hasCategory>
-	</Symbol> 
-	</Symbol> 
+	</Symbol>
 	<Symbol rdf:ID="DisplacementPump">
 		<rdfs:label>Positive displacement pump</rdfs:label>
 		<rdfs:subClassOf rdf:resource="#Pump" />
@@ -1855,19 +1854,19 @@
 	<Symbol rdf:ID="RollerPress">
 		<rdfs:label>Roller press</rdfs:label>
 		<rdfs:subClassOf rdf:resource="#VerticalCoarseningDevice" />
-		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8055<hasIso10623_RegNr>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8055</hasIso10623_RegNr>
 		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
 	</Symbol>
 	<Symbol rdf:ID="PistonPress">
 		<rdfs:label>Piston press</rdfs:label>
 		<rdfs:subClassOf rdf:resource="#VerticalCoarseningDevice" />
-		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8056<hasIso10623_RegNr>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8056</hasIso10623_RegNr>
 		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
 	</Symbol>
 	<Symbol rdf:ID="PelletizingDisk">
 		<rdfs:label>Pelletizing disk</rdfs:label>
 		<rdfs:subClassOf rdf:resource="#VerticalCoarseningDevice" />
-		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8057<hasIso10623_RegNr>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8057</hasIso10623_RegNr>
 		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
 	</Symbol>
 	<Symbol rdf:ID="HorizontalCoarseningDevice">
@@ -1880,13 +1879,13 @@
 		<rdfs:label>Extruder</rdfs:label>
 		<rdfs:subClassOf rdf:resource="#HorizontalCoarseningDevice" />
 		<isPossibleRepresentationOf rdf:datatype="xsd:anyURI">http://data.posccaesar.org/rdl/RDS394044551</isPossibleRepresentationOf>
-		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8059<hasIso10623_RegNr>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8059</hasIso10623_RegNr>
 		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
 	</Symbol>
 	<Symbol rdf:ID="ScrewTypeExtruder">
 		<rdfs:label>Screw type extruder</rdfs:label>
 		<rdfs:subClassOf rdf:resource="#Extruder" />
-		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8058<hasIso10623_RegNr>
+		<hasIso10623_RegNr rdf:datatype="xsd:string">ISO10628-X8058</hasIso10623_RegNr>
 		<hasCategory rdf:datatype="xsd:string">Processing machines, shaping machines</hasCategory>
 	</Symbol>
 	

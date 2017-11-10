@@ -171,6 +171,8 @@ public interface GraphicFactory {
 	 */
 	public BufferedImage buildImage();
 
+	public boolean writeToDestination(String destination);
+	
 	/**
 	 * Creates an imageMapElement of a pidElement. The imageMapElement basically
 	 * defines the area occupied by the pidElement. This allows to display of

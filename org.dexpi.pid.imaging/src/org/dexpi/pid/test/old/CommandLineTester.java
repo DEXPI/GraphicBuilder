@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.dexpi.pid.imaging.GraphicBuilder;
 import org.dexpi.pid.imaging.GraphicBuilderImageWriteListener;
 import org.dexpi.pid.imaging.GraphicFactory;
-import org.dexpi.pid.imaging.ImageFactory;
+import org.dexpi.pid.imaging.ImageFactory_PNG;
 import org.dexpi.pid.imaging.InputRepository;
 import org.dexpi.pid.imaging.JaxbErrorLogRepository;
 import org.dexpi.pid.imaging.JaxbInputRepository;
@@ -72,9 +72,9 @@ public class CommandLineTester {
 
 		JaxbErrorLogRepository errorRep = new JaxbErrorLogRepository(xmlFile);
 		InputRepository inputRep = new JaxbInputRepository(xmlFile);
-		GraphicFactory gFac = new ImageFactory();
+		GraphicFactory gFac = new ImageFactory_PNG();
 		GraphicBuilder gBuilder = new GraphicBuilder(inputRep, gFac, errorRep);
-		BufferedImage image = gBuilder.buildImage(resolutionX);
+		BufferedImage image = gBuilder.buildImage(resolutionX, null);
 
 		// Writing image now:
 

@@ -72,7 +72,7 @@ public class PidElement {
 		this.componentName = componentName;
 		this.componentClass = componentClass;
 		this.type = type;
-		System.out.println("TY: " + this.type);
+//		System.out.println("TY: " + this.type);
 		init();
 	}
 
