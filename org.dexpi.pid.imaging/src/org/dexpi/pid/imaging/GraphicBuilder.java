@@ -1071,6 +1071,7 @@ public class GraphicBuilder {
 	public BufferedImage buildImage(int resolutionX, String destination) {
 		// NOTE This is the entry-point of this class
 		// initialize image
+		
 		if (this.inputRep.getZeroPoint() != null && this.inputRep.getSize() != null
 				&& this.inputRep.getBackgroundcolor() != null) {
 			this.gFac.init(resolutionX, this.inputRep.getZeroPoint(), this.inputRep.getSize(),
@@ -1096,9 +1097,7 @@ public class GraphicBuilder {
 		this.errorRep.generateXmlErrorLog(this.listOfErrors);
 
 		if(destination != null) {
-			System.out.println(destination);
 			this.gFac.writeToDestination(destination);
-			System.exit(0);
 		}
 		
 		return this.gFac.buildImage();

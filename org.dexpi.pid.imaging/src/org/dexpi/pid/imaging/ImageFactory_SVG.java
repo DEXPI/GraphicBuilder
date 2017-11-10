@@ -424,8 +424,6 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		ellipse.setAttributeNS(null, "d", ellipsePath);
 
-		// System.out.println("called the ellipse");
-
 		this.svgRoot.appendChild(ellipse);
 
 		// TODO: verify ellipse-call
@@ -742,6 +740,8 @@ public class ImageFactory_SVG implements GraphicFactory {
 	@Override
 	public BufferedImage buildImage() {
 
+//		System.out.println("Transcoding");
+		
 		PNGTranscoder pngTranscoder = new PNGTranscoder();
 
 		pngTranscoder.addTranscodingHint(XMLAbstractTranscoder.KEY_XML_PARSER_VALIDATING, Boolean.FALSE);
@@ -808,6 +808,8 @@ public class ImageFactory_SVG implements GraphicFactory {
 		bGr.drawImage(img, 0, 0, null);
 		bGr.dispose();
 
+		System.out.println("ret");
+		
 		// Return the newly rendered image.
 		return ret;
 	}
