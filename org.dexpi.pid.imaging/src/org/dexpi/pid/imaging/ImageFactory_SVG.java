@@ -205,14 +205,16 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 	/**
 	 * 
-	 * @param destination Destination where file should be written to, e.g. "c:/destination/fileName.svg"
+	 * @param destination
+	 *            Destination where file should be written to, e.g.
+	 *            "c:/destination/fileName.svg"
 	 * @return true if successful, else false
 	 */
 	@Override
 	public boolean writeToDestination(String destination) {
 		// now write to file
 		destination = destination.replace("xml", "svg").replaceAll("png", "svg");
-		
+
 		DOMSource source = new DOMSource(doc);
 		FileWriter writer;
 		try {
@@ -602,6 +604,12 @@ public class ImageFactory_SVG implements GraphicFactory {
 	@Override
 	public void addText(Color c, double[] position, double[] extent, double textAngle, String string, double height,
 			String font) {
+		System.out.println("\n-----");
+		System.out.println("EX0: " + extent[0]);
+		System.out.println("EX1: " + extent[1]);
+		System.out.println("POS0: " + position[0]);
+		System.out.println("POS1: " + position[1]);
+
 		/*
 		 * check for linebreaks and call this function recursively with corrected
 		 * substrings
@@ -628,23 +636,33 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		double minX = 0;
 		double minY = 0;
-		if (extent == null) {
-			extent = new double[4];
-			extent[0] = 0;
-			extent[2] = 0;
-			// error--> extent is missing
-		}
+//		if (extent == null) {
+//			extent = new double[4];
+//			extent[0] = 0;
+//			extent[2] = 0;
+//			// error--> extent is missing
+//		}
+
+		/*
+		 * NOTE: As we only use absolute coordinates now, the next section is relative
+		 * (as the extent is no longer of interest)
+		 * Hence, it is replaced with the reduced part below
+		 */
+
 		// if text is rotated, lower left corner is reference point
-		if (extent[0] <= 0) {
-			minX = position[0];
-		} else {
-			minX = position[0] + height / 1.44 * Math.sin(textAngle);
-		}
-		if (extent[2] <= 0) {
-			minY = position[1];
-		} else {
-			minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
-		}
+		// if (extent[0] <= 0) {
+		// minX = position[0];
+		// } else {
+		// minX = position[0] + height / 1.44 * Math.sin(textAngle);
+		// }
+		// if (extent[2] <= 0) {
+		// minY = position[1];
+		// } else {
+		// minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
+		// }
+
+		minX = position[0] + height / 1.44 * Math.sin(textAngle);
+		minY = position[1];
 
 		int intPos[] = new int[2];
 		intPos[0] = (int) ((minX - this.posX) * this.x);
@@ -740,8 +758,8 @@ public class ImageFactory_SVG implements GraphicFactory {
 	@Override
 	public BufferedImage buildImage() {
 
-//		System.out.println("Transcoding");
-		
+		// System.out.println("Transcoding");
+
 		PNGTranscoder pngTranscoder = new PNGTranscoder();
 
 		pngTranscoder.addTranscodingHint(XMLAbstractTranscoder.KEY_XML_PARSER_VALIDATING, Boolean.FALSE);
@@ -809,7 +827,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		bGr.dispose();
 
 		System.out.println("ret");
-		
+
 		// Return the newly rendered image.
 		return ret;
 	}

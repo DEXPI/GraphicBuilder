@@ -384,25 +384,25 @@ public class ImageFactory_PNG implements GraphicFactory {
 
 		double minX = 0;
 		double minY = 0;
-		if (extent == null) {
-			extent = new double[4];
-			extent[0] = 0;
-			extent[2] = 0;
-			// error--> extent is missing
-		}
+//		if (extent == null) {
+//			extent = new double[4];
+//			extent[0] = 0;
+//			extent[2] = 0;
+//			// error--> extent is missing
+//		}
 		// if text is rotated, lower left corner is reference point
-		if (extent[0] <= 0) {
+//		if (extent[0] <= 0) {
 			minX = position[0];
-		} else {
-			minX = position[0] + height / 1.44 * Math.sin(textAngle);
-		}
-		if (extent[2] <= 0) {
+//		} else {
+//			minX = position[0] + height / 1.44 * Math.sin(textAngle);
+//		}
+//		if (extent[2] <= 0) {
 			minY = position[1];
-		} else {
-
-			minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
-
-		}
+//		} else {
+//
+//			minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
+//
+//		}
 
 		int intPos[] = new int[2];
 		intPos[0] = (int) ((minX - this.posX) * this.x);
