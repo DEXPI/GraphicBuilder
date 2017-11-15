@@ -207,10 +207,17 @@ public class GraphicBuilder {
 		int c = 0; // circle
 		int e = 0; // ellipse
 
+		
+		//set the current group accordingly to the information given		
+		this.gFac.setCurrentGroupNode(pidElement.getID(), pidElement.getComponentClass());
+		
+		int counter = 0;
+		
 		// check if each drawableElement is correct -
 		// checkAndDraw generates errorMsg and draws element with default
 		// presentation if possible
 		for (Object object : pidElement.getDrawableElements()) {
+			++counter;
 			// NOTE: Switch not applicable due to switch(object) not being
 			// implemented in java || state Nov2015
 
@@ -258,6 +265,13 @@ public class GraphicBuilder {
 				}
 			}
 		}
+		
+		if(counter != 0)
+			this.gFac.addNodeToRoot();
+			
+		//reset current node
+		this.gFac.setCurrentGroupNode(null, null);
+		
 		return drwElmErrors;
 	}
 

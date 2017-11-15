@@ -541,6 +541,17 @@ public class ImageFactory_PNG implements GraphicFactory {
 		return this.listOfErrors;
 	}
 	
+	@Override
+	public void setCurrentGroupNode(String id, String componentClass) {
+		// PNG cannot use groupNodes
+		return;
+	}
+
+	@Override
+	public void addNodeToRoot() {
+		// PNG cannot use groupNodes
+	}
+	
 	/**
 	 * Currently not implemented for PNG
 	 * @param destination
