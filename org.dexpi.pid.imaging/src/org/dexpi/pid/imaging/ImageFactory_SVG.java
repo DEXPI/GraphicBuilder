@@ -709,7 +709,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		// rotate
 		// ((Graphics2D) this.g).rotate(Math.toRadians(-textAngle), rotPt[0], rotPt[1]);
 
-		String rotation = "rotate(" + Math.toRadians(-textAngle) + " " + rotPt[0] + "," + rotPt[1] + ")";
+		String rotation = "rotate(" + textAngle + " " + rotPt[0] + "," + rotPt[1] + ")";
 
 		text.setAttributeNS(null, "x", "" + intPos[0]);
 		text.setAttributeNS(null, "y", "" + intPos[1]);
