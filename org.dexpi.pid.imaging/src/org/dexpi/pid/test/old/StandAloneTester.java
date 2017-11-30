@@ -21,7 +21,6 @@ import org.apache.logging.log4j.Logger;
 import org.dexpi.pid.imaging.GraphicBuilder;
 import org.dexpi.pid.imaging.GraphicBuilderImageWriteListener;
 import org.dexpi.pid.imaging.GraphicFactory;
-import org.dexpi.pid.imaging.ImageFactory_PNG;
 import org.dexpi.pid.imaging.ImageFactory_SVG;
 import org.dexpi.pid.imaging.InputRepository;
 import org.dexpi.pid.imaging.JaxbErrorLogRepository;

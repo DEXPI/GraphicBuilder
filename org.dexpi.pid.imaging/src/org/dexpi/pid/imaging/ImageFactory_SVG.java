@@ -196,6 +196,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 	}
 
 	// debug-function to write the svg to a file for test-purposes
+	@SuppressWarnings("unused")
 	private void debug_writeSVG() {
 		// now write to file
 		DOMSource source = new DOMSource(doc);

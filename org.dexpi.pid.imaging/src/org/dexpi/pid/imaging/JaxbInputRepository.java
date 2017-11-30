@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -271,7 +270,7 @@ public class JaxbInputRepository implements InputRepository {
 	}
 
 	// auxiliary function to read text from a file to a string
-	@SuppressWarnings({ "resource", "static-method" })
+	@SuppressWarnings({ "resource", "static-method", "unused" })
 	private String readFileToString(File file) throws IOException {
 		FileInputStream stream = new FileInputStream(file);
 		try {

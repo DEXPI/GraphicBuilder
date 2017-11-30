@@ -13,7 +13,6 @@ import org.dexpi.pid.imaging.drawableElements.ShapeElement;
 import org.dexpi.pid.imaging.drawableElements.TextElement;
 import org.dexpi.pid.imaging.pidElements.ErrorElement;
 import org.dexpi.pid.imaging.pidElements.PidElement;
-import org.dexpi.pid.xml.Position;
 
 /**
  * Gets all relevant data from the input repository, checks it for errors and

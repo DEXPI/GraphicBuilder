@@ -6,15 +6,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.WriteAbortedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.apache.batik.anim.dom.SVGDOMImplementation;
 import org.dexpi.pid.imaging.pidElements.ErrorElement;
 import org.dexpi.pid.imaging.pidElements.PidElement;
-import org.w3c.dom.Element;
 
 /**
  * The imageFactory creates the image and fills it with geometric shapes. The
