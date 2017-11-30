@@ -411,7 +411,7 @@ public class JaxbInputRepository implements InputRepository {
 			DrawableObjectThatInheritsDirectlyFromPlantItem dotidfpi = (DrawableObjectThatInheritsDirectlyFromPlantItem) plantItem;
 			PidElement dotidfpiElement = new PidElement(dotidfpi.getID(),
 					dotidfpi.getComponentName(), dotidfpi.getComponentClass());
-			dotidfpi.init();
+			dotidfpiElement.init();
 			this.listOfPlantItems
 					.add(handlePlantItem(dotidfpi, dotidfpiElement));
 		} else if (plantItem instanceof Nozzle) {

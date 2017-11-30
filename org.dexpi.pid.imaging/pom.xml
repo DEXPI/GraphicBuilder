@@ -25,24 +25,20 @@
     </plugins>
   </build>
   <dependencies>
-	
-	<!--  XERXES -->
-		<!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
+  <!--  If one prefers to use Maven - well, here it is. -->
+	<!-- 	
 		<dependency>
 		    <groupId>xerces</groupId>
 		    <artifactId>xercesImpl</artifactId>
 		    <version>2.11.0</version>
 		</dependency>
 
-
-	<!-- BATIK -->
 		<dependency>
 		    <groupId>org.apache.xmlgraphics</groupId>
 		    <artifactId>batik-anim</artifactId>
 		    <version>1.9.1</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-transcoder -->
 		<dependency>
 		    <groupId>org.apache.xmlgraphics</groupId>
 		    <artifactId>batik-transcoder</artifactId>
@@ -54,6 +50,6 @@
 		    <artifactId>batik-codec</artifactId>
 		    <version>1.9</version>
 		</dependency>
-	
+	-->
   </dependencies>
 </project>

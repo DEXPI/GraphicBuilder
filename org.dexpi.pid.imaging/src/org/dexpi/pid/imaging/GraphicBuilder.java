@@ -13,6 +13,7 @@ import org.dexpi.pid.imaging.drawableElements.ShapeElement;
 import org.dexpi.pid.imaging.drawableElements.TextElement;
 import org.dexpi.pid.imaging.pidElements.ErrorElement;
 import org.dexpi.pid.imaging.pidElements.PidElement;
+import org.dexpi.pid.xml.Position;
 
 /**
  * Gets all relevant data from the input repository, checks it for errors and
@@ -207,9 +208,8 @@ public class GraphicBuilder {
 		int c = 0; // circle
 		int e = 0; // ellipse
 
-		
 		//set the current group accordingly to the information given		
-		this.gFac.setCurrentGroupNode(pidElement.getID(), pidElement.getComponentClass());
+		this.gFac.setCurrentGroupNode(pidElement.getComponentName(), pidElement.getComponentClass());
 		
 		int counter = 0;
 		

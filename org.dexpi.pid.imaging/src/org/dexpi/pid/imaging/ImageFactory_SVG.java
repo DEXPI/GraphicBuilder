@@ -72,7 +72,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 	private static final double FONT_SIZE_FACTOR = 1.2;
 
 	private DOMImplementation impl;
-	private String svgNS;
+	private String svgNS, dexpiNS, dexpiPrefix;
 	private Document doc;
 	private Element svgRoot;
 
@@ -84,7 +84,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 															// Transformation
 															// and Rotation
 
-	private String groupNodeId;
+	private String groupNodeTagName;
 	private String groupNodeComponentClass;
 	private Element groupNode;
 	
@@ -111,7 +111,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 	@Override
 	public void init(int resolutionX, double[] origin, double[] size, Color backgroundColor) {
 
-		this.groupNodeId = null;
+		this.groupNodeTagName = null;
 		this.groupNodeComponentClass = null;
 		this.groupNode = null;
 		
@@ -144,6 +144,12 @@ public class ImageFactory_SVG implements GraphicFactory {
 		// Create a root-element for the SVG
 		this.svgRoot = this.doc.getDocumentElement();
 
+		//add DEXPI-namespace
+		this.dexpiNS = "http://sandbox.dexpi.org/rdl/";
+		this.dexpiPrefix = "dexpi";
+		
+		svgRoot.setAttribute("xmlns:" + this.dexpiPrefix, this.dexpiNS);
+		
 		// Set the width and height attributes on the root 'svg' element.
 		this.svgRoot.setAttributeNS(null, "width", "" + resolutionX);
 		this.svgRoot.setAttributeNS(null, "height", "" + resolutionY);
@@ -899,21 +905,21 @@ public class ImageFactory_SVG implements GraphicFactory {
 	}
 
 	@Override
-	public void setCurrentGroupNode(String id, String componentClass) {
+	public void setCurrentGroupNode(String tagName, String componentClass) {
 
-		if(id != null && componentClass != null) {
+		if(tagName != null && componentClass != null) {
 			this.groupNode = this.doc.createElementNS(svgNS, "g");
-			this.groupNodeId = id;
+			this.groupNodeTagName = tagName;
 			this.groupNodeComponentClass = componentClass;
 
-			this.groupNode.setAttributeNS(null, "id", this.groupNodeId );
-			this.groupNode.setAttributeNS(null, "componentClass", this.groupNodeComponentClass );
+			this.groupNode.setAttributeNS(dexpiNS, "tagName", this.groupNodeTagName );
+			this.groupNode.setAttributeNS(dexpiNS, "componentClass", this.groupNodeComponentClass );
 			
 //			svgRoot.appendChild(this.groupNode);
 		}
 		else {
 			this.groupNode = null;
-			this.groupNodeId = null;
+			this.groupNodeTagName = null;
 			this.groupNodeComponentClass = null;
 		}
 	}
