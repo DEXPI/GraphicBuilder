@@ -1,5 +1,10 @@
 package org.dexpi.pid.test.old;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * This class is the one that has to be exported as a standalone graphicbuilder-jar!
  * @MaHe08
@@ -7,15 +12,22 @@ package org.dexpi.pid.test.old;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.PrintStream;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dexpi.pid.imaging.GraphicBuilder;
@@ -25,12 +37,13 @@ import org.dexpi.pid.imaging.ImageFactory_SVG;
 import org.dexpi.pid.imaging.InputRepository;
 import org.dexpi.pid.imaging.JaxbErrorLogRepository;
 import org.dexpi.pid.imaging.JaxbInputRepository;
+import org.dexpi.pid.imaging.TextAreaOutputStream;
 
 public class StandAloneTester {
 
 	/**
-	 * Enhanced the CommandLineTester with an input-dialog in the case no
-	 * xml-file is supplied. Still the command-line-functionality works!
+	 * Enhanced the CommandLineTester with an input-dialog in the case no xml-file
+	 * is supplied. Still the command-line-functionality works!
 	 * 
 	 */
 	private static String inputFileName = null;
@@ -39,43 +52,180 @@ public class StandAloneTester {
 
 	private static Logger logger = LogManager.getLogger(Tester.class.getName());
 
-	public static void main(String[] args) throws Exception {
+	private static JTextArea textArea;
+	
+	public static void main(String[] args) throws Exception {		
 		if (args.length == 0) {
-			JFileChooser fileChooser = new JFileChooser();
-			fileChooser.setFileFilter(new FileNameExtensionFilter(
-					"Proteus File", "xml"));
+			//1. Create the frame.
+			JFrame.setDefaultLookAndFeelDecorated(false);
+			JFrame frame = new JFrame("FrameDemo");
 
-			fileChooser.showOpenDialog(null);
+			//2. Optional: What happens when the frame closes?
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.setLayout(new GridLayout(1,2));
+			
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.getContentPane().setLayout(new GridLayout(2, 1));
 
-			try {
-				File f = fileChooser.getSelectedFile();
+			//JLabel emptyLabel = new JLabel("test");
+			JButton buttonFolder = new JButton("SELECT FOLDER");
+			JButton buttonFile = new JButton("SELECT FILE");
+			
+			buttonFolder.addActionListener(createFolderListener());
+			buttonFile.addActionListener(createFileListener());
+			
+			//3. Create components and put them in the frame.
+			buttonPanel.add(buttonFile);
+			buttonPanel.add(buttonFolder);
+			
+			frame.getContentPane().add(buttonPanel);
+			textArea = new JTextArea(10, 80);
+			
+			JScrollPane scrollPane = new JScrollPane(textArea);
+						
+			PrintStream printStream = new PrintStream(new TextAreaOutputStream(textArea));
+			System.setOut(printStream);
+			System.setErr(printStream);
+			
+		    frame.getContentPane().add(scrollPane);
+			
+			//4. Size the frame.
+			frame.pack();
+		    frame.setLocationRelativeTo(null);
 
-				inputFileName = f.getAbsolutePath();
-				try {
-					infoBox("GraphicBuilder is working, this may take a few seconds.",
-							"GB Working");
-					(new StandAloneTester()).startTesting();
-					infoBox("GraphicBuilder has finished!", "GB Finished");
-				} catch (Exception e) {
-					infoBox("GraphicBuilder caught an Exception - please contact the developer!"
-							+ "\n" + e.getMessage(), "GB Finished");
-				}
 
-			} catch (Exception e) {
-				System.out.println("DEXPI GraphicBuilder");
-				infoBox("Please give a ProteusXML-file as argument.", "GB Error");
-				throw new Exception("Please give a ProteusXML-file as argument.");
-			}
-
+			//5. Show it.
+			frame.setVisible(true);
+			
 		} else {
 			System.out.println("DEXPI GraphicBuilder");
 
-			inputFileName = args[0];
-			if (INPUT_FOLDER_NAME != null) {
-				getFileNamesFromFolder();
-			} else {
-				(new StandAloneTester()).startTesting();
+			boolean folderMode = false;
+			for (String str : args) {
+				System.out.println(str);
+				if (str.toLowerCase().equals("foldermode") || str.toLowerCase().equals("-f") || str.toLowerCase().equals("-d"))
+					folderMode = true;
 			}
+
+			if (folderMode) {
+				folderMode();
+			} else {
+				inputFileName = args[0];
+				if (INPUT_FOLDER_NAME != null) {
+					getFileNamesFromFolder();
+				} else {
+					(new StandAloneTester()).startTesting();
+				}
+			}
+		}
+		
+		//OLD
+		//fileMode();
+	}
+	
+	private static ActionListener createFolderListener() {
+		return new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					textArea.setText("");
+					folderMode();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}				
+			}
+		};
+	}
+	
+	private static ActionListener createFileListener() {
+		return new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					textArea.setText("");
+					fileMode();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}				
+			}
+		};
+	}
+
+	private static void folderMode() throws Exception {
+		JFileChooser folderChooser = new JFileChooser();
+		folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		folderChooser.showOpenDialog(null);
+
+		File directory = folderChooser.getSelectedFile();
+
+		inputFileName = directory.getAbsolutePath();
+
+		infoBox("GraphicBuilder is working, this may take a few seconds.", "GB Working");
+		crawlFolder(directory);
+		infoBox("GraphicBuilder has finished!", "GB Finished");
+		
+		System.out.println(inputFileName);
+	}
+
+	private static void crawlFolder(File directory) {
+		File[] listOfFiles = directory.listFiles();
+		
+		for (File file : listOfFiles) {
+			if (file.isDirectory()) {
+				System.out.println(file.getAbsolutePath());
+				System.out.println("Opening now");
+				crawlFolder(file);
+			} else if (file.isFile() && FilenameUtils.getExtension(file.getName()).toLowerCase().equals("xml")
+					&& !file.getName().toLowerCase().contains("graphic_errors")) {
+				try {
+					fileModeForDirectory(file.getAbsolutePath());
+				} catch (Exception e) {
+					System.out.println("Catched an exception for file:" + file.getName());
+				}
+			}
+		}
+	}
+
+	private static void fileModeForDirectory(String input) throws Exception {
+			inputFileName = input;		
+		try {
+			(new StandAloneTester()).startTesting();
+			
+		} catch (Exception e) {
+			// infoBox("GraphicBuilder caught an Exception - please contact the developer!"
+			// + "\n" + e.getMessage(),
+			// "GB Finished");
+			throw e;
+		}
+	}
+
+	private static void fileMode() throws Exception {
+
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setFileFilter(new FileNameExtensionFilter("Proteus File", "xml"));
+
+		fileChooser.showOpenDialog(null);
+
+		try {
+			File f = fileChooser.getSelectedFile();
+
+			inputFileName = f.getAbsolutePath();
+			try {
+				infoBox("GraphicBuilder is working, this may take a few seconds.", "GB Working");
+				(new StandAloneTester()).startTesting();
+				infoBox("GraphicBuilder has finished!", "GB Finished");
+			} catch (Exception e) {
+				infoBox("GraphicBuilder caught an Exception - please contact the developer!" + "\n" + e.getMessage(),
+						"GB Finished");
+			}
+
+		} catch (Exception e) {
+			System.out.println("DEXPI GraphicBuilder");
+			infoBox("Please give a ProteusXML-file as argument.", "GB Error");
+			throw new Exception("Please give a ProteusXML-file as argument.");
 		}
 	}
 
@@ -86,8 +236,7 @@ public class StandAloneTester {
 	 * @param titleBar
 	 */
 	public static void infoBox(String infoMessage, String titleBar) {
-		JOptionPane.showMessageDialog(null, infoMessage,
-				"InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/**
@@ -119,22 +268,21 @@ public class StandAloneTester {
 		// Building image from xmlFile:
 
 		int resolutionX = 6000;
-		
+
 		String outputFileName = inputFileName.replaceAll(".xml", ".png");
 
 		JaxbErrorLogRepository errorRep = new JaxbErrorLogRepository(xmlFile);
 		InputRepository inputRep = new JaxbInputRepository(xmlFile);
 		GraphicFactory gFac = new ImageFactory_SVG();
-//		GraphicFactory gFac = new ImageFactory_PNG();
+		// GraphicFactory gFac = new ImageFactory_PNG();
 		GraphicBuilder gBuilder = new GraphicBuilder(inputRep, gFac, errorRep);
 		BufferedImage image = gBuilder.buildImage(resolutionX, outputFileName);
-		
+
 		// Writing image now:
 
 		// Get all possible Image Writers that are actually available for the
 		// type PNG
-		Iterator<ImageWriter> imageWriters = ImageIO
-				.getImageWritersBySuffix("PNG");
+		Iterator<ImageWriter> imageWriters = ImageIO.getImageWritersBySuffix("PNG");
 
 		// select the first found Writer
 		ImageWriter imageWriter = (ImageWriter) imageWriters.next();
@@ -150,8 +298,7 @@ public class StandAloneTester {
 			// Here we add the Listener which reports to the logger, so we can
 			// see
 			// the progress
-			imageWriter
-					.addIIOWriteProgressListener(new GraphicBuilderImageWriteListener());
+			imageWriter.addIIOWriteProgressListener(new GraphicBuilderImageWriteListener());
 
 			// Now start writing the image
 			imageWriter.write(image);
