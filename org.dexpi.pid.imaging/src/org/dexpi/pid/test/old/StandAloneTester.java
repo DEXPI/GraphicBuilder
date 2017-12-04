@@ -53,57 +53,57 @@ public class StandAloneTester {
 	private static Logger logger = LogManager.getLogger(Tester.class.getName());
 
 	private static JTextArea textArea;
-	
-	public static void main(String[] args) throws Exception {		
+
+	public static void main(String[] args) throws Exception {
 		if (args.length == 0) {
-			//1. Create the frame.
+			// 1. Create the frame.
 			JFrame.setDefaultLookAndFeelDecorated(false);
 			JFrame frame = new JFrame("FrameDemo");
 
-			//2. Optional: What happens when the frame closes?
+			// 2. Optional: What happens when the frame closes?
 			JPanel buttonPanel = new JPanel();
-			buttonPanel.setLayout(new GridLayout(1,2));
-			
+			buttonPanel.setLayout(new GridLayout(1, 2));
+
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.getContentPane().setLayout(new GridLayout(2, 1));
 
-			//JLabel emptyLabel = new JLabel("test");
+			// JLabel emptyLabel = new JLabel("test");
 			JButton buttonFolder = new JButton("SELECT FOLDER");
 			JButton buttonFile = new JButton("SELECT FILE");
-			
+
 			buttonFolder.addActionListener(createFolderListener());
 			buttonFile.addActionListener(createFileListener());
-			
-			//3. Create components and put them in the frame.
+
+			// 3. Create components and put them in the frame.
 			buttonPanel.add(buttonFile);
 			buttonPanel.add(buttonFolder);
-			
+
 			frame.getContentPane().add(buttonPanel);
 			textArea = new JTextArea(10, 80);
-			
+
 			JScrollPane scrollPane = new JScrollPane(textArea);
-						
+
 			PrintStream printStream = new PrintStream(new TextAreaOutputStream(textArea));
 			System.setOut(printStream);
 			System.setErr(printStream);
-			
-		    frame.getContentPane().add(scrollPane);
-			
-			//4. Size the frame.
+
+			frame.getContentPane().add(scrollPane);
+
+			// 4. Size the frame.
 			frame.pack();
-		    frame.setLocationRelativeTo(null);
+			frame.setLocationRelativeTo(null);
 
-
-			//5. Show it.
+			// 5. Show it.
 			frame.setVisible(true);
-			
+
 		} else {
 			System.out.println("DEXPI GraphicBuilder");
 
 			boolean folderMode = false;
 			for (String str : args) {
 				System.out.println(str);
-				if (str.toLowerCase().equals("foldermode") || str.toLowerCase().equals("-f") || str.toLowerCase().equals("-d"))
+				if (str.toLowerCase().equals("foldermode") || str.toLowerCase().equals("-f")
+						|| str.toLowerCase().equals("-d"))
 					folderMode = true;
 			}
 
@@ -118,14 +118,14 @@ public class StandAloneTester {
 				}
 			}
 		}
-		
-		//OLD
-		//fileMode();
+
+		// OLD
+		// fileMode();
 	}
-	
+
 	private static ActionListener createFolderListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -133,14 +133,14 @@ public class StandAloneTester {
 					folderMode();
 				} catch (Exception e1) {
 					e1.printStackTrace();
-				}				
+				}
 			}
 		};
 	}
-	
+
 	private static ActionListener createFileListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -148,7 +148,7 @@ public class StandAloneTester {
 					fileMode();
 				} catch (Exception e1) {
 					e1.printStackTrace();
-				}				
+				}
 			}
 		};
 	}
@@ -157,22 +157,31 @@ public class StandAloneTester {
 		JFileChooser folderChooser = new JFileChooser();
 		folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-		folderChooser.showOpenDialog(null);
+		File directory = null;
 
-		File directory = folderChooser.getSelectedFile();
+		try {
+			folderChooser.showOpenDialog(null);
+			directory = folderChooser.getSelectedFile();
 
-		inputFileName = directory.getAbsolutePath();
+			inputFileName = directory.getAbsolutePath();
+		} catch (Exception e) {
+			System.out.println("Please select a folder!");
+		}
+
+		if (directory == null)
+			return;
 
 		infoBox("GraphicBuilder is working, this may take a few seconds.", "GB Working");
 		crawlFolder(directory);
 		infoBox("GraphicBuilder has finished!", "GB Finished");
-		
+
 		System.out.println(inputFileName);
+
 	}
 
 	private static void crawlFolder(File directory) {
 		File[] listOfFiles = directory.listFiles();
-		
+
 		for (File file : listOfFiles) {
 			if (file.isDirectory()) {
 				System.out.println(file.getAbsolutePath());
@@ -190,10 +199,10 @@ public class StandAloneTester {
 	}
 
 	private static void fileModeForDirectory(String input) throws Exception {
-			inputFileName = input;		
+		inputFileName = input;
 		try {
 			(new StandAloneTester()).startTesting();
-			
+
 		} catch (Exception e) {
 			// infoBox("GraphicBuilder caught an Exception - please contact the developer!"
 			// + "\n" + e.getMessage(),
@@ -225,7 +234,8 @@ public class StandAloneTester {
 		} catch (Exception e) {
 			System.out.println("DEXPI GraphicBuilder");
 			infoBox("Please give a ProteusXML-file as argument.", "GB Error");
-			throw new Exception("Please give a ProteusXML-file as argument.");
+			System.out.println("Please give a ProteusXML-file as argument.");
+			// throw new Exception("Please give a ProteusXML-file as argument.");
 		}
 	}
 
