@@ -2,8 +2,13 @@ package org.dexpi.pid.imaging;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.logging.Handler;
 import java.util.logging.Logger;
+import java.util.logging.StreamHandler;
+
+//import javax.swing.plaf.SeparatorUI;
 
 import org.dexpi.pid.imaging.drawableElements.CircleElement;
 import org.dexpi.pid.imaging.drawableElements.DrawableElement;
@@ -48,6 +53,8 @@ public class GraphicBuilder {
 	private String defaultFont = "Arial";
 	private double defaultTextHeight = 6.5;
 	private Logger logger;
+
+	public PrintStream outStreamHandle = System.out;
 
 	/**
 	 * Initializes the GraphicBuilder.
@@ -100,7 +107,15 @@ public class GraphicBuilder {
 		if (!this.inputRep.getLoggerList().isEmpty()) {
 			// NOTE currently we only use the GraphicBuidler logger here,
 			// therefore it will only be created if necessary
+			TinyFormatter fmt = new TinyFormatter();
+			StreamHandler sh = new StreamHandler(this.outStreamHandle, fmt);
+
 			this.logger = Logger.getLogger(GraphicBuilder.class.getName());
+
+			logger.setUseParentHandlers(false);
+
+			this.logger.addHandler(sh);
+
 			for (String warning : this.inputRep.getLoggerList()) {
 				this.logger.warning(warning);
 			}
@@ -207,11 +222,11 @@ public class GraphicBuilder {
 		int c = 0; // circle
 		int e = 0; // ellipse
 
-		//set the current group accordingly to the information given		
+		// set the current group accordingly to the information given
 		this.gFac.setCurrentGroupNode(pidElement.getComponentName(), pidElement.getComponentClass());
-		
+
 		int counter = 0;
-		
+
 		// check if each drawableElement is correct -
 		// checkAndDraw generates errorMsg and draws element with default
 		// presentation if possible
@@ -264,13 +279,13 @@ public class GraphicBuilder {
 				}
 			}
 		}
-		
-		if(counter != 0)
+
+		if (counter != 0)
 			this.gFac.addNodeToRoot();
-			
-		//reset current node
+
+		// reset current node
 		this.gFac.setCurrentGroupNode(null, null);
-		
+
 		return drwElmErrors;
 	}
 
@@ -1084,7 +1099,7 @@ public class GraphicBuilder {
 	public BufferedImage buildImage(int resolutionX, String destination) {
 		// NOTE This is the entry-point of this class
 		// initialize image
-		
+
 		if (this.inputRep.getZeroPoint() != null && this.inputRep.getSize() != null
 				&& this.inputRep.getBackgroundcolor() != null) {
 			this.gFac.init(resolutionX, this.inputRep.getZeroPoint(), this.inputRep.getSize(),
@@ -1109,10 +1124,10 @@ public class GraphicBuilder {
 		getInputData();
 		this.errorRep.generateXmlErrorLog(this.listOfErrors);
 
-		if(destination != null) {
+		if (destination != null) {
 			this.gFac.writeToDestination(destination);
 		}
-		
+
 		return this.gFac.buildImage();
 
 	}
@@ -1127,5 +1142,9 @@ public class GraphicBuilder {
 	 */
 	public String generateHTMLimageMap(String mapName) {
 		return ImageMapObject.generateImageMap(this.gFac.getImageMapObjects(), mapName);
+	}
+
+	public void setOutStreamHandle(PrintStream newHandle) {
+		this.outStreamHandle = newHandle;
 	}
 }

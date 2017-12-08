@@ -638,6 +638,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		 * check for linebreaks and call this function recursively with corrected
 		 * substrings
 		 */
+		
 		if (string.contains("\r") || string.contains("\n") || string.contains("&#xD;") || string.contains("&#xA;")) {
 			String[] subStrings = linebreakPattern.split(string);
 			double posYBackup = this.posY;
@@ -709,7 +710,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		// rotate
 		// ((Graphics2D) this.g).rotate(Math.toRadians(-textAngle), rotPt[0], rotPt[1]);
 
-		String rotation = "rotate(" + textAngle + " " + rotPt[0] + "," + rotPt[1] + ")";
+		String rotation = "rotate(" + (-textAngle) + " " + rotPt[0] + "," + rotPt[1] + ")";
 
 		text.setAttributeNS(null, "x", "" + intPos[0]);
 		text.setAttributeNS(null, "y", "" + intPos[1]);

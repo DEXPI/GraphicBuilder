@@ -1,7 +1,5 @@
 package org.dexpi.pid.test.old;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +12,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.Iterator;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
+import java.util.logging.Logger;
+import java.util.logging.StreamHandler;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
@@ -28,8 +30,6 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.dexpi.pid.imaging.GraphicBuilder;
 import org.dexpi.pid.imaging.GraphicBuilderImageWriteListener;
 import org.dexpi.pid.imaging.GraphicFactory;
@@ -38,6 +38,11 @@ import org.dexpi.pid.imaging.InputRepository;
 import org.dexpi.pid.imaging.JaxbErrorLogRepository;
 import org.dexpi.pid.imaging.JaxbInputRepository;
 import org.dexpi.pid.imaging.TextAreaOutputStream;
+import org.dexpi.pid.imaging.TinyFormatter;
+
+import net.miginfocom.layout.AC;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
 
 public class StandAloneTester {
 
@@ -50,44 +55,58 @@ public class StandAloneTester {
 
 	public static String INPUT_FOLDER_NAME = null;
 
-	private static Logger logger = LogManager.getLogger(Tester.class.getName());
+	// private static Logger logger = LogManager.getLogger(Tester.class.getName());
+	private static Logger logger = Logger.getLogger(GraphicBuilder.class.getName());
 
 	private static JTextArea textArea;
 
+	private static PrintStream printStreamHandle = null;
+
 	public static void main(String[] args) throws Exception {
+		
 		if (args.length == 0) {
 			// 1. Create the frame.
 			JFrame.setDefaultLookAndFeelDecorated(false);
-			JFrame frame = new JFrame("FrameDemo");
+			JFrame frame = new JFrame("GraphicBuilder");
 
 			// 2. Optional: What happens when the frame closes?
 			JPanel buttonPanel = new JPanel();
-			buttonPanel.setLayout(new GridLayout(1, 2));
+			// buttonPanel.setLayout(new GridLayout(1, 2));
+			buttonPanel.setLayout(new MigLayout( new LC().fillX(),
+					 new AC().align("left").gap("rel").grow().fill(),
+					 new AC().gap("10") ));
 
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.getContentPane().setLayout(new GridLayout(2, 1));
+			// frame.getContentPane().setLayout(new GridLayout(2, 1));
+			frame.getContentPane().setLayout(new MigLayout());
 
 			// JLabel emptyLabel = new JLabel("test");
-			JButton buttonFolder = new JButton("SELECT FOLDER");
-			JButton buttonFile = new JButton("SELECT FILE");
+			JButton buttonFolder = new JButton("Select folder");
+			JButton buttonFile = new JButton("Select file");
 
 			buttonFolder.addActionListener(createFolderListener());
 			buttonFile.addActionListener(createFileListener());
 
 			// 3. Create components and put them in the frame.
-			buttonPanel.add(buttonFile);
-			buttonPanel.add(buttonFolder);
+			buttonPanel.add(buttonFile, "Cell 0 0");
+			buttonPanel.add(buttonFolder, "Cell 0 1");
 
-			frame.getContentPane().add(buttonPanel);
+			frame.getContentPane().add(buttonPanel, "Cell 0 0");
 			textArea = new JTextArea(10, 80);
 
 			JScrollPane scrollPane = new JScrollPane(textArea);
 
 			PrintStream printStream = new PrintStream(new TextAreaOutputStream(textArea));
+			printStreamHandle = printStream;
+
+			TinyFormatter fmt = new TinyFormatter();
+			StreamHandler sh = new StreamHandler(printStreamHandle, fmt);
+			logger.addHandler(sh);
+			
 			System.setOut(printStream);
 			System.setErr(printStream);
 
-			frame.getContentPane().add(scrollPane);
+			frame.getContentPane().add(scrollPane, "Cell 0 1");
 
 			// 4. Size the frame.
 			frame.pack();
@@ -286,6 +305,9 @@ public class StandAloneTester {
 		GraphicFactory gFac = new ImageFactory_SVG();
 		// GraphicFactory gFac = new ImageFactory_PNG();
 		GraphicBuilder gBuilder = new GraphicBuilder(inputRep, gFac, errorRep);
+		if (printStreamHandle != null) {
+			gBuilder.setOutStreamHandle(printStreamHandle);
+		}
 		BufferedImage image = gBuilder.buildImage(resolutionX, outputFileName);
 
 		// Writing image now:
@@ -320,4 +342,7 @@ public class StandAloneTester {
 
 	}
 
+	public static PrintStream getPrintStreamHandle() {
+		return printStreamHandle;
+	}
 }
