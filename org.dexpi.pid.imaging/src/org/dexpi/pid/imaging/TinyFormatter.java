@@ -8,7 +8,7 @@ public class TinyFormatter extends SimpleFormatter {
 	public synchronized String format(LogRecord record) {
 
 		record.setSourceClassName("");
-		return String.format("$s\n", formatMessage(record));
+		return record.getMessage() + "\n";
 
 	}
 

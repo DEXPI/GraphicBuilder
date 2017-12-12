@@ -116,11 +116,11 @@ public class StandAloneTester {
 			frame.setVisible(true);
 
 		} else {
-			System.out.println("DEXPI GraphicBuilder");
+			logger.info("DEXPI GraphicBuilder");
 
 			boolean folderMode = false;
 			for (String str : args) {
-				System.out.println(str);
+				logger.info(str);
 				if (str.toLowerCase().equals("foldermode") || str.toLowerCase().equals("-f")
 						|| str.toLowerCase().equals("-d"))
 					folderMode = true;
@@ -184,7 +184,7 @@ public class StandAloneTester {
 
 			inputFileName = directory.getAbsolutePath();
 		} catch (Exception e) {
-			System.out.println("Please select a folder!");
+			logger.info("Please select a folder!");
 		}
 
 		if (directory == null)
@@ -194,7 +194,7 @@ public class StandAloneTester {
 		crawlFolder(directory);
 		infoBox("GraphicBuilder has finished!", "GB Finished");
 
-		System.out.println(inputFileName);
+		logger.info(inputFileName);
 
 	}
 
@@ -203,15 +203,15 @@ public class StandAloneTester {
 
 		for (File file : listOfFiles) {
 			if (file.isDirectory()) {
-				System.out.println(file.getAbsolutePath());
-				System.out.println("Opening now");
+				logger.info(file.getAbsolutePath());
+				logger.info("Opening now");
 				crawlFolder(file);
 			} else if (file.isFile() && FilenameUtils.getExtension(file.getName()).toLowerCase().equals("xml")
 					&& !file.getName().toLowerCase().contains("graphic_errors")) {
 				try {
 					fileModeForDirectory(file.getAbsolutePath());
 				} catch (Exception e) {
-					System.out.println("Catched an exception for file:" + file.getName());
+					logger.info("Catched an exception for file:" + file.getName());
 				}
 			}
 		}
@@ -251,9 +251,9 @@ public class StandAloneTester {
 			}
 
 		} catch (Exception e) {
-			System.out.println("DEXPI GraphicBuilder");
+			logger.info("DEXPI GraphicBuilder");
 			infoBox("Please give a ProteusXML-file as argument.", "GB Error");
-			System.out.println("Please give a ProteusXML-file as argument.");
+			logger.info("Please give a ProteusXML-file as argument.");
 			// throw new Exception("Please give a ProteusXML-file as argument.");
 		}
 	}
