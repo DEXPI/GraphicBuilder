@@ -2,8 +2,13 @@ package org.dexpi.pid.imaging;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.logging.Handler;
 import java.util.logging.Logger;
+import java.util.logging.StreamHandler;
+
+//import javax.swing.plaf.SeparatorUI;
 
 import org.dexpi.pid.imaging.drawableElements.CircleElement;
 import org.dexpi.pid.imaging.drawableElements.DrawableElement;
@@ -13,6 +18,7 @@ import org.dexpi.pid.imaging.drawableElements.ShapeElement;
 import org.dexpi.pid.imaging.drawableElements.TextElement;
 import org.dexpi.pid.imaging.pidElements.ErrorElement;
 import org.dexpi.pid.imaging.pidElements.PidElement;
+import org.dexpi.pid.xml.PlantItem;
 
 /**
  * Gets all relevant data from the input repository, checks it for errors and
@@ -49,6 +55,8 @@ public class GraphicBuilder {
 	private double defaultTextHeight = 6.5;
 	private Logger logger;
 
+	public PrintStream outStreamHandle = System.out;
+
 	/**
 	 * Initializes the GraphicBuilder.
 	 * 
@@ -60,8 +68,7 @@ public class GraphicBuilder {
 	 * @param errorRep
 	 *            the error repository
 	 */
-	public GraphicBuilder(InputRepository inputRep, GraphicFactory gFac,
-			JaxbErrorLogRepository errorRep) {
+	public GraphicBuilder(InputRepository inputRep, GraphicFactory gFac, JaxbErrorLogRepository errorRep) {
 		this.inputRep = inputRep;
 		this.gFac = gFac;
 		this.errorRep = errorRep;
@@ -92,8 +99,7 @@ public class GraphicBuilder {
 
 		createImageMapElements(listOfPlantItems);
 
-		ArrayList<PidElement> listOfAnnotationItems = this.inputRep
-				.getAnnotationItems();
+		ArrayList<PidElement> listOfAnnotationItems = this.inputRep.getAnnotationItems();
 		drawList(listOfAnnotationItems);
 
 		ArrayList<PidElement> listOfPiping = this.inputRep.getPiping();
@@ -102,20 +108,26 @@ public class GraphicBuilder {
 		if (!this.inputRep.getLoggerList().isEmpty()) {
 			// NOTE currently we only use the GraphicBuidler logger here,
 			// therefore it will only be created if necessary
+			TinyFormatter fmt = new TinyFormatter();
+			StreamHandler sh = new StreamHandler(this.outStreamHandle, fmt);
+
 			this.logger = Logger.getLogger(GraphicBuilder.class.getName());
+
+			logger.setUseParentHandlers(false);
+
+			this.logger.addHandler(sh);
+
 			for (String warning : this.inputRep.getLoggerList()) {
 				this.logger.warning(warning);
 			}
 		}
 
-		ArrayList<ErrorElement> listOfInputRepErrors = this.inputRep
-				.getErrorList();
+		ArrayList<ErrorElement> listOfInputRepErrors = this.inputRep.getErrorList();
 		for (ErrorElement error : listOfInputRepErrors) {
 			this.listOfErrors.add(error);
 		}
 
-		ArrayList<ErrorElement> listOfGraphicFactoryErrors = this.gFac
-				.getErrorList();
+		ArrayList<ErrorElement> listOfGraphicFactoryErrors = this.gFac.getErrorList();
 		for (ErrorElement error : listOfGraphicFactoryErrors) {
 			this.listOfErrors.add(error);
 		}
@@ -158,14 +170,13 @@ public class GraphicBuilder {
 
 	/**
 	 * Checks the pidElement for errors, if none are found it will be drawn. Any
-	 * occuring errors in the pidElement or its drawableElements will be added
-	 * to the errorLog.
+	 * occuring errors in the pidElement or its drawableElements will be added to
+	 * the errorLog.
 	 *
 	 * @param pidElement
 	 *            the element to be drawn
 	 */
 	private void drawPidElement(PidElement pidElement) {
-
 		// check element for Errors
 		ErrorElement eE = checkPidElement(pidElement);
 		if (eE != null) {
@@ -173,8 +184,7 @@ public class GraphicBuilder {
 		} else {
 			// set Scale, Reference and Position if SC is referenced
 			if (pidElement.getScRef() == true) {
-				this.gFac.setScaleAnglePos(pidElement.getReference(),
-						pidElement.getScale(), pidElement.getPosition());
+				this.gFac.setScaleAnglePos(pidElement.getReference(), pidElement.getScale(), pidElement.getPosition());
 			}
 
 			// start drawing the Element
@@ -185,10 +195,8 @@ public class GraphicBuilder {
 
 			// if errors occured in drawableElements->add new error to list
 			if (drwElmErrors.isEmpty() == false) {
-				ErrorElement newError = new ErrorElement(pidElement.getID(),
-						pidElement.getComponentName(),
-						pidElement.getComponentClass(),
-						pidElement.getLineNumber());
+				ErrorElement newError = new ErrorElement(pidElement.getID(), pidElement.getComponentName(),
+						pidElement.getComponentClass(), pidElement.getLineNumber());
 				newError.setSubDescription(drwElmErrors);
 				this.listOfErrors.add(newError);
 			}
@@ -196,9 +204,9 @@ public class GraphicBuilder {
 	}
 
 	/**
-	 * Checks the drawableElements of a pidElement for errors and draws them.
-	 * Should only minor errors occur, the drawableElement will be drawn with a
-	 * default "Presentation".
+	 * Checks the drawableElements of a pidElement for errors and draws them. Should
+	 * only minor errors occur, the drawableElement will be drawn with a default
+	 * "Presentation".
 	 * 
 	 * @param pidElement
 	 * @return list of errors that occured while drawing
@@ -214,10 +222,17 @@ public class GraphicBuilder {
 		int c = 0; // circle
 		int e = 0; // ellipse
 
+		// set the current group accordingly to the information given
+		//TODO update
+		this.gFac.setCurrentGroupNode(pidElement.getID(), pidElement.getTagName(), pidElement.getComponentName(), pidElement.getComponentClass());
+
+		int counter = 0;
+
 		// check if each drawableElement is correct -
 		// checkAndDraw generates errorMsg and draws element with default
 		// presentation if possible
 		for (Object object : pidElement.getDrawableElements()) {
+			++counter;
 			// NOTE: Switch not applicable due to switch(object) not being
 			// implemented in java || state Nov2015
 
@@ -261,11 +276,17 @@ public class GraphicBuilder {
 				if (checkEllipseElement(ellipse) == true) {
 					addEllipseElement(ellipse);
 				} else {
-					drwElmErrors
-							.add(checkAndDrawEllipse(e, ellipse, pidElement));
+					drwElmErrors.add(checkAndDrawEllipse(e, ellipse, pidElement));
 				}
 			}
 		}
+
+		if (counter != 0)
+			this.gFac.addNodeToRoot();
+
+		// reset current node
+		this.gFac.setCurrentGroupNode(null, null, null, null);
+
 		return drwElmErrors;
 	}
 
@@ -280,10 +301,8 @@ public class GraphicBuilder {
 	 *            the pidElement that contains the ellipse
 	 * @return the error message
 	 */
-	private String checkAndDrawEllipse(int e, EllipseElement ellipse,
-			PidElement pidElement) {
-		ellipse.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(),
-				e, "Ellipse"));
+	private String checkAndDrawEllipse(int e, EllipseElement ellipse, PidElement pidElement) {
+		ellipse.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(), e, "Ellipse"));
 		return getEllipseErrorMsg(ellipse);
 
 	}
@@ -299,10 +318,8 @@ public class GraphicBuilder {
 	 *            the pidElement that contains the circle
 	 * @return the error message
 	 */
-	private String checkAndDrawCircle(int c, CircleElement circle,
-			PidElement pidElement) {
-		circle.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(),
-				c, "Circle"));
+	private String checkAndDrawCircle(int c, CircleElement circle, PidElement pidElement) {
+		circle.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(), c, "Circle"));
 		return getCircleErrorMsg(circle);
 
 	}
@@ -318,10 +335,8 @@ public class GraphicBuilder {
 	 *            the pidElement that contains the text
 	 * @return the error message
 	 */
-	private String checkAndDrawText(int t, TextElement text,
-			PidElement pidElement) {
-		text.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(), t,
-				"Text"));
+	private String checkAndDrawText(int t, TextElement text, PidElement pidElement) {
+		text.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(), t, "Text"));
 		return getTextErrorMsg(text);
 	}
 
@@ -336,11 +351,9 @@ public class GraphicBuilder {
 	 *            the pidElement that contains the shape
 	 * @return the error message
 	 */
-	private String checkAndDrawShape(int s, ShapeElement shape,
-			PidElement pidElement) {
+	private String checkAndDrawShape(int s, ShapeElement shape, PidElement pidElement) {
 
-		shape.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(),
-				s, "Shape"));
+		shape.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(), s, "Shape"));
 		return getShapeErrorMsg(shape);
 	}
 
@@ -355,15 +368,12 @@ public class GraphicBuilder {
 	 *            the pidElement that contains the line
 	 * @return the error message
 	 */
-	private String checkAndDrawLine(int l, LineElement line,
-			PidElement pidElement) {
+	private String checkAndDrawLine(int l, LineElement line, PidElement pidElement) {
 
-		if (pidElement.getType() != null
-				&& pidElement.getType().equals("CenterLine")) {
+		if (pidElement.getType() != null && pidElement.getType().equals("CenterLine")) {
 			line.setLineNumber(pidElement.getLineNumber());
 		} else {
-			line.setLineNumber(this.locator.getLineNumber(
-					pidElement.getLineNumber(), l, "Line"));
+			line.setLineNumber(this.locator.getLineNumber(pidElement.getLineNumber(), l, "Line"));
 		}
 		return getLineErrorMsg(line);
 	}
@@ -382,8 +392,7 @@ public class GraphicBuilder {
 		String errorMsg = "";
 
 		if (pidElement.getID() == null && pidElement.getType() != "CenterLine") {
-			pidElement.setLineNumber(this.locator
-					.getLineNumberByMissingID(pidElement.getType()));
+			pidElement.setLineNumber(this.locator.getLineNumberByMissingID(pidElement.getType()));
 			errorMsg = errorMsg.replace(" ", ",") + "id ";
 		} else {
 			id = pidElement.getID();
@@ -403,21 +412,16 @@ public class GraphicBuilder {
 
 		if (errorMsg != "") {
 			// in case Sc-reference is used:
-			if (errorMsg.contains("reference") || errorMsg.contains("scale")
-					|| errorMsg.contains("position")
+			if (errorMsg.contains("reference") || errorMsg.contains("scale") || errorMsg.contains("position")
 					|| errorMsg.contains("extent")) {
-				if (pidElement.getSubElements() != null
-						&& pidElement.getScRef() == true) {
-					pidElement.setLineNumber(pidElement.getSubElements().get(0)
-							.getLineNumber());
+				if (pidElement.getSubElements() != null && pidElement.getScRef() == true) {
+					pidElement.setLineNumber(pidElement.getSubElements().get(0).getLineNumber());
 					id = pidElement.getSubElements().get(0).getID();
 				}
 			}
 
-			ErrorElement pidError = new ErrorElement(id, componentName,
-					componentClass, pidElement.getLineNumber());
-			errorMsg = errorMsg.substring(0, 1).toUpperCase()
-					+ errorMsg.substring(1);
+			ErrorElement pidError = new ErrorElement(id, componentName, componentClass, pidElement.getLineNumber());
+			errorMsg = errorMsg.substring(0, 1).toUpperCase() + errorMsg.substring(1);
 			pidError.setDescription(errorMsg + "missing or incorrect");
 			return pidError;
 		}
@@ -425,8 +429,8 @@ public class GraphicBuilder {
 	}
 
 	/**
-	 * if the pidElement is the "Drawing", its unique attributes get checked and
-	 * the error message gets modified
+	 * if the pidElement is the "Drawing", its unique attributes get checked and the
+	 * error message gets modified
 	 * 
 	 * @param pidElement
 	 *            the pidElement
@@ -490,10 +494,8 @@ public class GraphicBuilder {
 	 */
 	@SuppressWarnings("static-method")
 	private String getExtentErrorMsg(PidElement pidElement, String errorMsg) {
-		if (pidElement.getExtent() == null
-				&& pidElement.getType() != "PipingNetworkSystem"
-				&& pidElement.getType() != "PipingNetworkSegment"
-				&& pidElement.getID() != "Drawing") {
+		if (pidElement.getExtent() == null && pidElement.getType() != "PipingNetworkSystem"
+				&& pidElement.getType() != "PipingNetworkSegment" && pidElement.getID() != "Drawing") {
 			if (pidElement.getDrawableElements().isEmpty() == false) {
 				// if no drawableElements present extent is not necessary
 				errorMsg = errorMsg.replace(" ", ",") + "extent ";
@@ -538,25 +540,22 @@ public class GraphicBuilder {
 
 		if (errorMsg != "") {
 			addDefaultCircle(circleElement);
-			errorMsg = "Line #" + circleElement.getLineNumber()
-					+ " - Cannot draw circle: " + errorMsg
+			errorMsg = "Line #" + circleElement.getLineNumber() + " - Cannot draw circle: " + errorMsg
 					+ "missing or incorrect.";
 			return errorMsg;
 		}
-		
+
 		return null;
 	}
 
 	/**
-	 * if only "Presentation" is incorrect a default presentation is set for
-	 * drawing
+	 * if only "Presentation" is incorrect a default presentation is set for drawing
 	 * 
 	 * @param circle
 	 *            the circle
 	 */
 	private void addDefaultCircle(CircleElement circle) {
-		if (checkPosition(circle.getPosition()) == true
-				&& checkRadius(circle.getRadius()) == true) {
+		if (checkPosition(circle.getPosition()) == true && checkRadius(circle.getRadius()) == true) {
 			circle.setColor(this.defaultColor);
 			circle.setLineWeight(this.defaultLineWeight);
 			addCircleElement(circle);
@@ -596,28 +595,23 @@ public class GraphicBuilder {
 		String errorMsg = "";
 		errorMsg = getPresentationErrorMsg(errorMsg, ellipse);
 		errorMsg = getPositionErrorMsg(errorMsg, ellipse.getPosition());
-		errorMsg = getAxisErrorMsg(errorMsg, ellipse.getPrimaryAxis(),
-				ellipse.getSecondaryAxis());
+		errorMsg = getAxisErrorMsg(errorMsg, ellipse.getPrimaryAxis(), ellipse.getSecondaryAxis());
 
 		addDefaultEllipse(ellipse);
-		errorMsg = "Line #" + ellipse.getLineNumber()
-				+ " - Cannot draw ellipse: " + errorMsg
-				+ "missing or incorrect.";
+		errorMsg = "Line #" + ellipse.getLineNumber() + " - Cannot draw ellipse: " + errorMsg + "missing or incorrect.";
 		return errorMsg;
 
 	}
 
 	/**
-	 * if only "Presentation" is incorrect a default presentation is set for
-	 * drawing
+	 * if only "Presentation" is incorrect a default presentation is set for drawing
 	 * 
 	 * @param ellipse
 	 *            the ellipse
 	 */
 	private void addDefaultEllipse(EllipseElement ellipse) {
 		if (checkPosition(ellipse.getPosition()) == true
-				&& checkAxis(ellipse.getPrimaryAxis(),
-						ellipse.getSecondaryAxis()) == true) {
+				&& checkAxis(ellipse.getPrimaryAxis(), ellipse.getSecondaryAxis()) == true) {
 			ellipse.setColor(this.defaultColor);
 			ellipse.setLineWeight(this.defaultLineWeight);
 			addEllipseElement(ellipse);
@@ -680,31 +674,27 @@ public class GraphicBuilder {
 		}
 
 		if (textElement.getString().contains("ThisIsATrueTextErrorCode")) {
-			errorMsg = errorMsg.replace(" ", ",")
-					+ "Given dependent attribute could not be matched, is ";
+			errorMsg = errorMsg.replace(" ", ",") + "Given dependent attribute could not be matched, is ";
 		}
 
 		if (errorMsg != "") {
 			addDefaultTextElement(textElement);
-			errorMsg = "Line #" + textElement.getLineNumber()
-					+ " - Cannot draw text: " + errorMsg
+			errorMsg = "Line #" + textElement.getLineNumber() + " - Cannot draw text: " + errorMsg
 					+ "missing or incorrect.";
 			return errorMsg;
 		}
-		
+
 		return null;
 	}
 
 	/**
-	 * if only "Presentation" is incorrect a default presentation is set for
-	 * drawing
+	 * if only "Presentation" is incorrect a default presentation is set for drawing
 	 * 
 	 * @param textElement
 	 *            the text
 	 */
 	private void addDefaultTextElement(TextElement textElement) {
-		if (checkPosition(textElement.getPosition()) == false
-				&& checkExtent(textElement.getExtent()) == false) {
+		if (checkPosition(textElement.getPosition()) == false && checkExtent(textElement.getExtent()) == false) {
 			textElement.setFont(this.defaultFont);
 			textElement.setHeight(this.defaultTextHeight);
 			textElement.setColor(this.defaultColor);
@@ -742,30 +732,26 @@ public class GraphicBuilder {
 	private String getShapeErrorMsg(ShapeElement shapeElement) {
 		String errorMsg = "";
 		errorMsg = getPresentationErrorMsg(errorMsg, shapeElement);
-		errorMsg = getCoordinateErrorMsg(errorMsg,
-				shapeElement.getXCoordinates(), shapeElement.getYCoordinates());
+		errorMsg = getCoordinateErrorMsg(errorMsg, shapeElement.getXCoordinates(), shapeElement.getYCoordinates());
 
 		if (errorMsg != "") {
 			addDefaultShapeElement(shapeElement);
-			errorMsg = "Line #" + shapeElement.getLineNumber()
-					+ " - Cannot draw shape: " + errorMsg
+			errorMsg = "Line #" + shapeElement.getLineNumber() + " - Cannot draw shape: " + errorMsg
 					+ "missing or incorrect.";
 			return errorMsg;
 		}
-		
+
 		return null;
 	}
 
 	/**
-	 * if only "Presentation" is incorrect a default presentation is set for
-	 * drawing
+	 * if only "Presentation" is incorrect a default presentation is set for drawing
 	 * 
 	 * @param shapeElement
 	 *            the shape
 	 */
 	private void addDefaultShapeElement(ShapeElement shapeElement) {
-		if (checkCoordinates(shapeElement.getXCoordinates(),
-				shapeElement.getYCoordinates()) == true) {
+		if (checkCoordinates(shapeElement.getXCoordinates(), shapeElement.getYCoordinates()) == true) {
 			shapeElement.setColor(this.defaultColor);
 			shapeElement.setLineWeight(this.defaultLineWeight);
 			addShapeElement(shapeElement);
@@ -785,11 +771,10 @@ public class GraphicBuilder {
 		if (checkPresentation(lineElement) == false) {
 			correct = false;
 		}
-		if (checkCoordinates(lineElement.getXCoordinates(),
-				lineElement.getYCoordinates()) == false) {
+		if (checkCoordinates(lineElement.getXCoordinates(), lineElement.getYCoordinates()) == false) {
 			correct = false;
 		}
-		
+
 		return correct;
 	}
 
@@ -803,26 +788,23 @@ public class GraphicBuilder {
 	private String getLineErrorMsg(LineElement lineElement) {
 		String errorMsg = "";
 		errorMsg = getPresentationErrorMsg(errorMsg, lineElement);
-		errorMsg = getCoordinateErrorMsg(errorMsg,
-				lineElement.getXCoordinates(), lineElement.getYCoordinates());
+		errorMsg = getCoordinateErrorMsg(errorMsg, lineElement.getXCoordinates(), lineElement.getYCoordinates());
 
 		addDefaultLine(lineElement);
-		errorMsg = "Line #" + lineElement.getLineNumber()
-				+ " - Cannot draw line: " + errorMsg + "missing or incorrect.";
-		
+		errorMsg = "Line #" + lineElement.getLineNumber() + " - Cannot draw line: " + errorMsg
+				+ "missing or incorrect.";
+
 		return errorMsg;
 	}
 
 	/**
-	 * if only "Presentation" is incorrect a default presentation is set for
-	 * drawing
+	 * if only "Presentation" is incorrect a default presentation is set for drawing
 	 * 
 	 * @param lineElement
 	 *            the line
 	 */
 	private void addDefaultLine(LineElement lineElement) {
-		if (checkCoordinates(lineElement.getXCoordinates(),
-				lineElement.getYCoordinates()) == true) {
+		if (checkCoordinates(lineElement.getXCoordinates(), lineElement.getYCoordinates()) == true) {
 			lineElement.setColor(this.defaultColor);
 			lineElement.setLineWeight(this.defaultLineWeight);
 			addLineElement(lineElement);
@@ -842,7 +824,7 @@ public class GraphicBuilder {
 		if (de.getColor() == null || de.getLineWeight() == 0) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -863,7 +845,7 @@ public class GraphicBuilder {
 		if (de.getLineWeight() == 0) {
 			errorMsg = errorMsg.replace(" ", ",") + "lineweight ";
 		}
-		
+
 		return errorMsg;
 	}
 
@@ -878,8 +860,8 @@ public class GraphicBuilder {
 	private boolean checkExtent(double[] extent) {
 		if (extent == null) {
 			return false;
-		} 
-		
+		}
+
 		return true;
 	}
 
@@ -897,7 +879,7 @@ public class GraphicBuilder {
 		if (extent == null) {
 			errorMsg = errorMsg.replace(" ", ",") + "extent ";
 		}
-		
+
 		return errorMsg;
 	}
 
@@ -913,7 +895,7 @@ public class GraphicBuilder {
 		if (radius == 0) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -948,7 +930,7 @@ public class GraphicBuilder {
 		if (primAxis == 0 || secAxis == 0) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -964,12 +946,11 @@ public class GraphicBuilder {
 	 * @return the modified error message
 	 */
 	@SuppressWarnings("static-method")
-	private String getAxisErrorMsg(String errorMsg, double primAxis,
-			double secAxis) {
+	private String getAxisErrorMsg(String errorMsg, double primAxis, double secAxis) {
 		if (primAxis == 0 || secAxis == 0) {
 			errorMsg = errorMsg.replace(" ", ",") + "axis";
 		}
-		
+
 		return errorMsg;
 	}
 
@@ -985,7 +966,7 @@ public class GraphicBuilder {
 		if (position == null) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -1003,7 +984,7 @@ public class GraphicBuilder {
 		if (position == null) {
 			errorMsg = errorMsg.replace(" ", ",") + "position ";
 		}
-		
+
 		return errorMsg;
 	}
 
@@ -1017,12 +998,11 @@ public class GraphicBuilder {
 	 * @return true if correct
 	 */
 	@SuppressWarnings("static-method")
-	private boolean checkCoordinates(double[] xCoordinates,
-			double[] yCoordinates) {
+	private boolean checkCoordinates(double[] xCoordinates, double[] yCoordinates) {
 		if (xCoordinates == null || yCoordinates == null) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -1038,13 +1018,12 @@ public class GraphicBuilder {
 	 * @return the modified error message
 	 */
 	@SuppressWarnings("static-method")
-	private String getCoordinateErrorMsg(String errorMsg,
-			double[] xCoordinates, double[] yCoordinates) {
+	private String getCoordinateErrorMsg(String errorMsg, double[] xCoordinates, double[] yCoordinates) {
 
 		if (xCoordinates == null || yCoordinates == null) {
 			errorMsg = errorMsg.replace(" ", ",") + "coordinates ";
 		}
-		
+
 		return errorMsg;
 	}
 
@@ -1057,10 +1036,9 @@ public class GraphicBuilder {
 	private void addEllipseElement(EllipseElement ellipse) {
 		// calculate offset and apply it to start and end-angle
 
-		this.gFac.addEllipse(ellipse.getColor(), ellipse.getLineWeight(),
-				ellipse.getPosition(), ellipse.getPrimaryAxis(),
-				ellipse.getSecondaryAxis(), ellipse.getStartAngle(),
-				ellipse.getEndAngle(), ellipse.getFilled());
+		this.gFac.addEllipse(ellipse.getColor(), ellipse.getLineWeight(), ellipse.getPosition(),
+				ellipse.getPrimaryAxis(), ellipse.getSecondaryAxis(), ellipse.getStartAngle(), ellipse.getEndAngle(),
+				ellipse.getFilled());
 
 	}
 
@@ -1071,9 +1049,8 @@ public class GraphicBuilder {
 	 *            the circle
 	 */
 	private void addCircleElement(CircleElement circleElement) {
-		this.gFac.addCircle(circleElement.getColor(), circleElement.getLineWeight(),
-				circleElement.getPosition(), circleElement.getRadius(),
-				circleElement.getStartAngle(), circleElement.getEndAngle(),
+		this.gFac.addCircle(circleElement.getColor(), circleElement.getLineWeight(), circleElement.getPosition(),
+				circleElement.getRadius(), circleElement.getStartAngle(), circleElement.getEndAngle(),
 				circleElement.getFilled());
 	}
 
@@ -1084,10 +1061,8 @@ public class GraphicBuilder {
 	 *            the text
 	 */
 	private void addTextElement(TextElement textElement) {
-		this.gFac.addText(textElement.getColor(), textElement.getPosition(),
-				textElement.getExtent(), textElement.getTextAngle(),
-				textElement.getString(), textElement.getHeight(),
-				textElement.getFont());
+		this.gFac.addText(textElement.getColor(), textElement.getPosition(), textElement.getExtent(),
+				textElement.getTextAngle(), textElement.getString(), textElement.getHeight(), textElement.getFont());
 	}
 
 	/**
@@ -1097,9 +1072,8 @@ public class GraphicBuilder {
 	 *            the shape
 	 */
 	private void addShapeElement(ShapeElement shapeElement) {
-		this.gFac.addShape(shapeElement.getColor(), shapeElement.getLineWeight(),
-				shapeElement.getXCoordinates(), shapeElement.getYCoordinates(),
-				shapeElement.getFilled());
+		this.gFac.addShape(shapeElement.getColor(), shapeElement.getLineWeight(), shapeElement.getXCoordinates(),
+				shapeElement.getYCoordinates(), shapeElement.getFilled());
 	}
 
 	/**
@@ -1109,29 +1083,31 @@ public class GraphicBuilder {
 	 *            the line
 	 */
 	private void addLineElement(LineElement lineElement) {
-		this.gFac.addLine(lineElement.getColor(), lineElement.getLineWeight(),
-				lineElement.getXCoordinates(), lineElement.getYCoordinates());
+		this.gFac.addLine(lineElement.getColor(), lineElement.getLineWeight(), lineElement.getXCoordinates(),
+				lineElement.getYCoordinates());
 	}
-
+	
 	/**
 	 * creates the image, so that elements can be added to it via the graphic
 	 * factory and returns it after addition has been completed
 	 *
 	 * @param resolutionX
 	 *            the resolution in x direction
+	 * @param destination
+	 *            the destination of the output-file, needed for svg-writing
 	 * @return the buffered image
 	 */
-	public BufferedImage buildImage(int resolutionX) {
+	public BufferedImage buildImage(int resolutionX, String destination) {
 		// NOTE This is the entry-point of this class
 		// initialize image
+
 		if (this.inputRep.getZeroPoint() != null && this.inputRep.getSize() != null
 				&& this.inputRep.getBackgroundcolor() != null) {
 			this.gFac.init(resolutionX, this.inputRep.getZeroPoint(), this.inputRep.getSize(),
 					this.inputRep.getBackgroundcolor());
 		} else {
 			// in case size and zero point are missing
-			this.gFac.init(resolutionX, new double[] { 0, 0 }, new double[] { 500,
-					500 }, new Color(255, 255, 255));
+			this.gFac.init(resolutionX, new double[] { 0, 0 }, new double[] { 500, 500 }, new Color(255, 255, 255));
 		}
 
 		// check and add errors if necessary
@@ -1140,10 +1116,8 @@ public class GraphicBuilder {
 			newError.setDescription("Extent is missing or incorrect");
 			this.listOfErrors.add(newError);
 		}
-		if (this.inputRep.getBackgroundcolor() == null
-				&& this.inputRep.getDrawing() != null) {
-			ErrorElement newError = new ErrorElement("Drawing", "-", "-",
-					this.inputRep.getDrawing().getLineNumber());
+		if (this.inputRep.getBackgroundcolor() == null && this.inputRep.getDrawing() != null) {
+			ErrorElement newError = new ErrorElement("Drawing", "-", "-", this.inputRep.getDrawing().getLineNumber());
 			newError.setDescription("Presentation is missing or incorrect");
 			this.listOfErrors.add(newError);
 		}
@@ -1151,6 +1125,10 @@ public class GraphicBuilder {
 		getInputData();
 		this.errorRep.generateXmlErrorLog(this.listOfErrors);
 
+		if (destination != null) {
+			this.gFac.writeToDestination(destination);
+		}
+		
 		return this.gFac.buildImage();
 
 	}
@@ -1164,7 +1142,10 @@ public class GraphicBuilder {
 	 * @return a string containing the html-code
 	 */
 	public String generateHTMLimageMap(String mapName) {
-		return ImageMapObject.generateImageMap(this.gFac.getImageMapObjects(),
-				mapName);
+		return ImageMapObject.generateImageMap(this.gFac.getImageMapObjects(), mapName);
+	}
+
+	public void setOutStreamHandle(PrintStream newHandle) {
+		this.outStreamHandle = newHandle;
 	}
 }

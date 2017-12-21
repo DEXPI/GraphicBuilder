@@ -171,6 +171,8 @@ public interface GraphicFactory {
 	 */
 	public BufferedImage buildImage();
 
+	public boolean writeToDestination(String destination);
+	
 	/**
 	 * Creates an imageMapElement of a pidElement. The imageMapElement basically
 	 * defines the area occupied by the pidElement. This allows to display of
@@ -190,6 +192,18 @@ public interface GraphicFactory {
 	 */
 	public List<ImageMapObject> getImageMapObjects();
 
+	/**
+	 * This function sets the information for the current groupNode
+	 * @param id id of current groupNode
+	 * @param componentClass componentClass of current groupNode
+	 */
+	public void setCurrentGroupNode(String id, String tagName, String componentName, String componentClass);
+	
+	/**
+	 * to ensure, that we do not add empty nodes we have to call this function to finally write the group-node to the document
+	 */
+	public void addNodeToRoot();
+	
 	public ArrayList<ErrorElement> getErrorList();
 
 }

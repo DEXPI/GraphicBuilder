@@ -20,7 +20,7 @@ import javax.xml.stream.XMLStreamException;
 import org.dexpi.pid.imaging.GraphicBuilder;
 import org.dexpi.pid.imaging.GraphicBuilderImageWriteListener;
 import org.dexpi.pid.imaging.GraphicFactory;
-import org.dexpi.pid.imaging.ImageFactory;
+import org.dexpi.pid.imaging.ImageFactory_PNG;
 import org.dexpi.pid.imaging.InputRepository;
 import org.dexpi.pid.imaging.JaxbErrorLogRepository;
 import org.dexpi.pid.imaging.JaxbInputRepository;
@@ -72,13 +72,11 @@ public class XmlAndPngBuilder {
 
 		// get basic file stuff
 		String xmlHeader = readFile(this.INPUT_XML_HEADER);
-		String xmlBottom = readFile(this.INPUT_XML_FOOTER).replace("abc",
-				componentName);
+		String xmlBottom = readFile(this.INPUT_XML_FOOTER).replace("abc", componentName);
 
 		// create the new file
-		writeStringToFile(xmlHeader + "\n" + xmlSymbol + "\n"
-				+ "</ShapeCatalogue>" + "\n" + xmlBottom + "\n"
-				+ "</PlantModel>");
+		writeStringToFile(
+				xmlHeader + "\n" + xmlSymbol + "\n" + "</ShapeCatalogue>" + "\n" + xmlBottom + "\n" + "</PlantModel>");
 	}
 
 	/**
@@ -93,32 +91,32 @@ public class XmlAndPngBuilder {
 	 * @throws XMLStreamException
 	 *             exception thrown
 	 */
-	public void buildImage(String INPUT_XML_SYMBOL) throws IOException,
-			JAXBException, XMLStreamException {
+	public void buildImage(String INPUT_XML_SYMBOL) throws IOException, JAXBException, XMLStreamException {
 
 		File xmlFile = new File(OUTPUT_FILE_TEMP);
+
+		String outputFileName = (INPUT_XML_SYMBOL).replaceAll(".xml", ".png");
+		
 
 		int resolutionX = 500;
 		JaxbErrorLogRepository errorRep = new JaxbErrorLogRepository(xmlFile);
 		InputRepository inputRep = new JaxbInputRepository(xmlFile);
-		GraphicFactory gFac = new ImageFactory();
+		GraphicFactory gFac = new ImageFactory_PNG();
 		GraphicBuilder gBuilder = new GraphicBuilder(inputRep, gFac, errorRep);
-		BufferedImage image = gBuilder.buildImage(resolutionX);
+		BufferedImage image = gBuilder.buildImage(resolutionX, outputFileName);
 		image = trim(image);
 
 		// Writing image now:
 
 		// Get all possible Image Writers that are actually available for the
 		// type PNG
-		Iterator<ImageWriter> imageWriters = ImageIO
-				.getImageWritersBySuffix("PNG");
-
-		// select the first found Writer
-		ImageWriter imageWriter = (ImageWriter) imageWriters.next();
+		Iterator<ImageWriter> imageWriters = ImageIO.getImageWritersBySuffix("PNG");
 
 		// Ok, we need the output file of course
-		String outputFileName = (INPUT_XML_SYMBOL).replaceAll(".xml", ".png");
 		File file = new File(outputFileName);
+		
+		// select the first found Writer
+		ImageWriter imageWriter = (ImageWriter) imageWriters.next();
 
 		// Now we define the output stream
 		try (ImageOutputStream ios = ImageIO.createImageOutputStream(file)) {
@@ -127,16 +125,14 @@ public class XmlAndPngBuilder {
 			// Here we add the Listener which reports to the logger, so we can
 			// see
 			// the progress
-			imageWriter
-					.addIIOWriteProgressListener(new GraphicBuilderImageWriteListener());
+			imageWriter.addIIOWriteProgressListener(new GraphicBuilderImageWriteListener());
 
 			// Now start writing the image
 			imageWriter.write(image);
 		}
 
 		// delete errorLog and output_file_temp
-		String errorLog = OUTPUT_FILE_TEMP.replace(".xml",
-				".graphic_errors.xml");
+		String errorLog = OUTPUT_FILE_TEMP.replace(".xml", ".graphic_errors.xml");
 		File tempErrorLogFile = new File(errorLog);
 		tempErrorLogFile.delete();
 
@@ -159,8 +155,7 @@ public class XmlAndPngBuilder {
 		int yMin = getYmin(img); // the upper border of the symbol
 		int yMax = getYmax(img); // the lower border of the symbol
 
-		BufferedImage newImg = new BufferedImage(xMax - xMin + 10, yMax - yMin
-				+ 10, BufferedImage.TYPE_INT_RGB);
+		BufferedImage newImg = new BufferedImage(xMax - xMin + 10, yMax - yMin + 10, BufferedImage.TYPE_INT_RGB);
 		Graphics g = newImg.createGraphics();
 		g.drawImage(img, -xMin + 5, -yMin + 5, null);
 		img = newImg;
@@ -182,8 +177,7 @@ public class XmlAndPngBuilder {
 		// returns right border
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				if (img.getRGB(j, i) != Color.WHITE.getRGB()
-						&& j < trimmedWidth) {
+				if (img.getRGB(j, i) != Color.WHITE.getRGB() && j < trimmedWidth) {
 					trimmedWidth = j;
 				}
 			}
@@ -205,8 +199,7 @@ public class XmlAndPngBuilder {
 		int trimmedWidth = 0;
 		for (int i = 0; i < height; i++) {
 			for (int j = width - 1; j >= 0; j--) {
-				if (img.getRGB(j, i) != Color.WHITE.getRGB()
-						&& j > trimmedWidth) {
+				if (img.getRGB(j, i) != Color.WHITE.getRGB() && j > trimmedWidth) {
 					trimmedWidth = j;
 					break;
 				}
@@ -229,8 +222,7 @@ public class XmlAndPngBuilder {
 		int trimmedHeight = height;
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (img.getRGB(i, j) != Color.WHITE.getRGB()
-						&& j < trimmedHeight) {
+				if (img.getRGB(i, j) != Color.WHITE.getRGB() && j < trimmedHeight) {
 					trimmedHeight = j;
 				}
 			}
@@ -252,8 +244,7 @@ public class XmlAndPngBuilder {
 		int trimmedHeight = 0;
 		for (int i = 0; i < width; i++) {
 			for (int j = height - 1; j >= 0; j--) {
-				if (img.getRGB(i, j) != Color.WHITE.getRGB()
-						&& j > trimmedHeight) {
+				if (img.getRGB(i, j) != Color.WHITE.getRGB() && j > trimmedHeight) {
 					trimmedHeight = j;
 					break;
 				}
@@ -293,8 +284,7 @@ public class XmlAndPngBuilder {
 	 *            the string
 	 */
 	private static void writeStringToFile(String string) {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(
-				OUTPUT_FILE_TEMP))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE_TEMP))) {
 			writer.write(string);
 		} catch (IOException e) {
 			e.printStackTrace();

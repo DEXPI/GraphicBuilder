@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="D-_DEXPI_Branches_GraphicBuilder_Branch_Branch_Servers_Tomcat 7.0"/>
+  <runtime name="jre1.8.0_144"/>
   <fixed facet="java"/>
   <fixed facet="jst.utility"/>
   <installed facet="jst.utility" version="1.0"/>

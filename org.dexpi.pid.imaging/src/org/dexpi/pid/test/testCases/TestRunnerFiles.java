@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 
@@ -14,14 +13,13 @@ import org.apache.logging.log4j.Logger;
 import org.dexpi.pid.test.old.Tester;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
 
 public class TestRunnerFiles {
+	@SuppressWarnings("unused")
 	private static String INPUT_FOLDER_NAME;
+	@SuppressWarnings("unused")
 	private static String INPUT_FILE_NAME;
 	private static String INPUT_FOLDER_AND_FILE_NAME;
 
@@ -85,7 +83,7 @@ public class TestRunnerFiles {
 	 * standard-testCase
 	 * 
 	 */
-	@SuppressWarnings("static-method")
+	@SuppressWarnings({ "static-method", "unused" })
 	private void computeTest(String INPUT_FOLDER_NAME, String INPUT_FILE_NAME) {
 		INPUT_FOLDER_AND_FILE_NAME = INPUT_FOLDER_NAME + INPUT_FILE_NAME;
 		

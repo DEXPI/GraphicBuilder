@@ -1,5 +1,13 @@
 package org.dexpi.pid.imaging;
 
+import java.io.PrintStream;
+import java.util.logging.Level;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.logging.StreamHandler;
+
 /**
  * This class is designed as a listener, attached to the 
  * GraphicBuilder - the sole purpose is to tunnel the
@@ -13,9 +21,7 @@ package org.dexpi.pid.imaging;
 import javax.imageio.ImageWriter;
 import javax.imageio.event.IIOWriteProgressListener;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.dexpi.pid.test.old.Tester;
+import org.dexpi.pid.test.old.StandAloneTester;
 
 public class GraphicBuilderImageWriteListener implements
 		IIOWriteProgressListener {
@@ -26,12 +32,20 @@ public class GraphicBuilderImageWriteListener implements
 	private Logger logger;
 
 	public GraphicBuilderImageWriteListener() {
-		this.logger = LogManager.getLogger(Tester.class.getName());
+		this.logger = Logger.getLogger(GraphicBuilder.class.getName());
+		this.logger.setLevel(Level.ALL);
+		
+		PrintStream psh = StandAloneTester.getPrintStreamHandle();
+		if(psh != null) {
+			TinyFormatter fmt = new TinyFormatter();
+			StreamHandler sh = new StreamHandler(psh, fmt);
+			this.logger.addHandler(sh);
+		}
 	}
 
 	@Override
 	public void imageComplete(ImageWriter source) {
-		this.logger.debug("Image complete.");
+		this.logger.log(Level.FINE , "Image complete.");
 
 	}
 
@@ -44,7 +58,7 @@ public class GraphicBuilderImageWriteListener implements
 		int iPercentageDone = Math.round(percentageDone);
 		if ((iPercentageDone % this.percentageSteps == 0)
 				&& iPercentageDone != this.lastPercentage) {
-			this.logger.debug(iPercentageDone + "% written.");
+			this.logger.info(iPercentageDone + "% written.");
 			this.lastPercentage = iPercentageDone;
 		}
 
@@ -52,32 +66,32 @@ public class GraphicBuilderImageWriteListener implements
 
 	@Override
 	public void imageStarted(ImageWriter source, int imageIndex) {
-		this.logger.debug("Writing image Nr. " + imageIndex + 1);
+		this.logger.log(Level.INFO, "Writing image Nr. " + imageIndex + 1);
 
 	}
 
 	@Override
 	public void thumbnailComplete(ImageWriter source) {
-		this.logger.debug("Thumbnail complete");
+		this.logger.log(Level.INFO, "Thumbnail complete");
 
 	}
 
 	@Override
 	public void thumbnailProgress(ImageWriter source, float percentageDone) {
-		this.logger.debug("Thumbnail: " + percentageDone + "% written.");
+		this.logger.log(Level.INFO, "Thumbnail: " + percentageDone + "% written.");
 
 	}
 
 	@Override
 	public void thumbnailStarted(ImageWriter source, int imageIndex,
 			int thumbnailIndex) {
-		this.logger.debug("Thumbnail Nr. " + imageIndex + " written.");
+		this.logger.log(Level.INFO, "Thumbnail Nr. " + imageIndex + " written.");
 
 	}
 
 	@Override
 	public void writeAborted(ImageWriter source) {
-		this.logger.warn("Write aborted.");
+		this.logger.log(Level.INFO, "Write aborted.");
 
 	}
 
