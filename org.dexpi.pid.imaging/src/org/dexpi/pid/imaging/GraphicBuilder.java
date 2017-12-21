@@ -18,6 +18,7 @@ import org.dexpi.pid.imaging.drawableElements.ShapeElement;
 import org.dexpi.pid.imaging.drawableElements.TextElement;
 import org.dexpi.pid.imaging.pidElements.ErrorElement;
 import org.dexpi.pid.imaging.pidElements.PidElement;
+import org.dexpi.pid.xml.PlantItem;
 
 /**
  * Gets all relevant data from the input repository, checks it for errors and
@@ -176,7 +177,6 @@ public class GraphicBuilder {
 	 *            the element to be drawn
 	 */
 	private void drawPidElement(PidElement pidElement) {
-
 		// check element for Errors
 		ErrorElement eE = checkPidElement(pidElement);
 		if (eE != null) {
@@ -223,7 +223,8 @@ public class GraphicBuilder {
 		int e = 0; // ellipse
 
 		// set the current group accordingly to the information given
-		this.gFac.setCurrentGroupNode(pidElement.getComponentName(), pidElement.getComponentClass());
+		//TODO update
+		this.gFac.setCurrentGroupNode(pidElement.getID(), pidElement.getTagName(), pidElement.getComponentName(), pidElement.getComponentClass());
 
 		int counter = 0;
 
@@ -284,7 +285,7 @@ public class GraphicBuilder {
 			this.gFac.addNodeToRoot();
 
 		// reset current node
-		this.gFac.setCurrentGroupNode(null, null);
+		this.gFac.setCurrentGroupNode(null, null, null, null);
 
 		return drwElmErrors;
 	}
@@ -1085,7 +1086,7 @@ public class GraphicBuilder {
 		this.gFac.addLine(lineElement.getColor(), lineElement.getLineWeight(), lineElement.getXCoordinates(),
 				lineElement.getYCoordinates());
 	}
-
+	
 	/**
 	 * creates the image, so that elements can be added to it via the graphic
 	 * factory and returns it after addition has been completed
@@ -1127,7 +1128,7 @@ public class GraphicBuilder {
 		if (destination != null) {
 			this.gFac.writeToDestination(destination);
 		}
-
+		
 		return this.gFac.buildImage();
 
 	}

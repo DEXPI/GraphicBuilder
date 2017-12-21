@@ -122,8 +122,7 @@ public class JaxbInputRepository implements InputRepository {
 	 * @throws XMLStreamException
 	 *             exception thrown
 	 */
-	public JaxbInputRepository(File file) throws JAXBException,
-			FileNotFoundException, XMLStreamException {
+	public JaxbInputRepository(File file) throws JAXBException, FileNotFoundException, XMLStreamException {
 
 		int lines = 0;
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -152,8 +151,7 @@ public class JaxbInputRepository implements InputRepository {
 						}
 					}
 
-					JaxbInputRepository.this.locator.addElement(localName, id,
-							this.getLocation().getLineNumber());
+					JaxbInputRepository.this.locator.addElement(localName, id, this.getLocation().getLineNumber());
 				}
 				return localName;
 			}
@@ -164,8 +162,7 @@ public class JaxbInputRepository implements InputRepository {
 		// initialize Marshaller
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-		LocationListener ll = new LocationListener(xsr, lines,
-				this.listOfErrors);
+		LocationListener ll = new LocationListener(xsr, lines, this.listOfErrors);
 		unmarshaller.setListener(ll);
 
 		unmarshaller.unmarshal(xsr);
@@ -184,8 +181,8 @@ public class JaxbInputRepository implements InputRepository {
 
 	/*
 	 * LocationListener is a private class that is attached to a
-	 * XMLStreamReader-Object. The goal is to backtrace the line-number
-	 * information that is normally lost while unmarshalling.
+	 * XMLStreamReader-Object. The goal is to backtrace the line-number information
+	 * that is normally lost while unmarshalling.
 	 */
 	private static class LocationListener extends Listener {
 
@@ -202,8 +199,7 @@ public class JaxbInputRepository implements InputRepository {
 
 		}
 
-		public LocationListener(XMLStreamReader xsr, int lines,
-				ArrayList<ErrorElement> listOfErrors) {
+		public LocationListener(XMLStreamReader xsr, int lines, ArrayList<ErrorElement> listOfErrors) {
 			this.xsr = xsr;
 			this.lines = lines;
 			this.lineNumberHandleList = new ArrayList<Integer>();
@@ -230,8 +226,7 @@ public class JaxbInputRepository implements InputRepository {
 
 				if (this.xsr.getLocation().getLineNumber() != this.lines) {
 					// This is the old shit
-					method = GeneratedClass.class.getMethod("setLineNumber",
-							new Class[] { int.class });
+					method = GeneratedClass.class.getMethod("setLineNumber", new Class[] { int.class });
 					int lineNumber = this.xsr.getLocation().getLineNumber();
 					method.invoke(target, lineNumber);
 
@@ -239,15 +234,13 @@ public class JaxbInputRepository implements InputRepository {
 					this.lineNumberHandleList.add(lineNumber);
 
 				} else {
-					method = GeneratedClass.class.getMethod("setLineNumber",
-							new Class[] { int.class });
+					method = GeneratedClass.class.getMethod("setLineNumber", new Class[] { int.class });
 					try {
 
 						if (target instanceof JAXBElement)
 							return;
 
-						method.invoke(target,
-								this.lineNumberHandleList.get(this.count++));
+						method.invoke(target, this.lineNumberHandleList.get(this.count++));
 					} catch (Exception e) {
 						ErrorElement eE = new ErrorElement("");
 						eE.setDescription("GB-Error while marshalling LineNumbers - they might not all be correct!");
@@ -275,8 +268,7 @@ public class JaxbInputRepository implements InputRepository {
 		FileInputStream stream = new FileInputStream(file);
 		try {
 			FileChannel fc = stream.getChannel();
-			MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0,
-					fc.size());
+			MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
 			/* Instead of using default, pass in a decoder. */
 			return Charset.defaultCharset().decode(bb).toString();
 		} finally {
@@ -295,8 +287,7 @@ public class JaxbInputRepository implements InputRepository {
 		// Refactored due to us now taking the extent of the drawing!
 
 		// set Drawing and ShapeCatalogue
-		for (Object object : this.plantModel
-				.getPresentationOrShapeCatalogueOrDrawing()) {
+		for (Object object : this.plantModel.getPresentationOrShapeCatalogueOrDrawing()) {
 
 			if (object instanceof Drawing) {
 				this.drawing = (Drawing) object;
@@ -309,15 +300,12 @@ public class JaxbInputRepository implements InputRepository {
 					// handled in GraphicBuilder
 				}
 
-				this.zeroPoint = new double[] { this.extent.getMin().getX(),
-						this.extent.getMin().getY() };
-				this.size = new double[] { this.extent.getMax().getX(),
-						this.extent.getMax().getY() };
+				this.zeroPoint = new double[] { this.extent.getMin().getX(), this.extent.getMin().getY() };
+				this.size = new double[] { this.extent.getMax().getX(), this.extent.getMax().getY() };
 
 				// set backgroundColor
 				if (this.drawing.getPresentation() != null) {
-					this.backgroundColor = getColor(this.drawing
-							.getPresentation());
+					this.backgroundColor = getColor(this.drawing.getPresentation());
 				}
 			} else if (object instanceof ShapeCatalogue) {
 				this.shapeCatalogue = (ShapeCatalogue) object;
@@ -334,8 +322,7 @@ public class JaxbInputRepository implements InputRepository {
 	public ArrayList<PidElement> getAnnotationItems() {
 
 		// check if PlantItem and its SubPlantItems contain AnnotationItems
-		for (Object object : this.plantModel
-				.getPresentationOrShapeCatalogueOrDrawing()) {
+		for (Object object : this.plantModel.getPresentationOrShapeCatalogueOrDrawing()) {
 
 			// level1 (PI) sys
 			if (object instanceof AnnotationItem) {
@@ -367,115 +354,102 @@ public class JaxbInputRepository implements InputRepository {
 	 * elements have been added
 	 * 
 	 * @param annotationItem
-	 *            the item whose attributes and graphic elements get transfered
-	 *            to the pidElement
+	 *            the item whose attributes and graphic elements get transfered to
+	 *            the pidElement
 	 */
 	public void initializeAnnotationItemElements(AnnotationItem annotationItem) {
 
-		PidElement aiElement = new PidElement(annotationItem.getID(),
-				annotationItem.getComponentName(),
+		PidElement aiElement = new PidElement(annotationItem.getID(), null, annotationItem.getComponentName(),
 				annotationItem.getComponentClass());
 		aiElement.init();
-		this.listOfAnnotationItems.add(handleAnnotationItem(annotationItem,
-				aiElement));
+		this.listOfAnnotationItems.add(handleAnnotationItem(annotationItem, aiElement));
 
 	}
 
 	/**
-	 * creates a PidElement corresponding to the plantItem, initializes its
-	 * basic attributes and adds it to the listOfPlantItems after graphic
-	 * elements have been added
+	 * creates a PidElement corresponding to the plantItem, initializes its basic
+	 * attributes and adds it to the listOfPlantItems after graphic elements have
+	 * been added
 	 * 
 	 * @param plantItem
-	 *            the item whose attributes and graphic elements get transfered
-	 *            to the pidElement
+	 *            the item whose attributes and graphic elements get transfered to
+	 *            the pidElement
 	 */
 	public void initializePlantItemElements(PlantItem plantItem) {
 		// System.out.println("triggered by " + plantItem.getClass());
 		if (plantItem instanceof Component) {
 			Component component = (Component) plantItem;
-			PidElement componentElement = new PidElement(component.getID(),
+			PidElement componentElement = new PidElement(component.getID(), component.getTagName(),
 					component.getComponentName(), component.getComponentClass());
 			componentElement.init();
-			this.listOfPlantItems.add(handlePlantItem(component,
-					componentElement));
+			this.listOfPlantItems.add(handlePlantItem(component, componentElement));
 		} else if (plantItem instanceof Equipment) {
 			Equipment equipment = (Equipment) plantItem;
-			PidElement equipmentElement = new PidElement(equipment.getID(),
+			PidElement equipmentElement = new PidElement(equipment.getID(), equipment.getTagName(),
 					equipment.getComponentName(), equipment.getComponentClass());
 			equipmentElement.init();
-			this.listOfPlantItems.add(handlePlantItem(equipment,
-					equipmentElement));
+			this.listOfPlantItems.add(handlePlantItem(equipment, equipmentElement));
 		} else if (plantItem instanceof DrawableObjectThatInheritsDirectlyFromPlantItem) {
 			DrawableObjectThatInheritsDirectlyFromPlantItem dotidfpi = (DrawableObjectThatInheritsDirectlyFromPlantItem) plantItem;
-			PidElement dotidfpiElement = new PidElement(dotidfpi.getID(),
-					dotidfpi.getComponentName(), dotidfpi.getComponentClass());
+			PidElement dotidfpiElement = new PidElement(dotidfpi.getID(), null, dotidfpi.getComponentName(),
+					dotidfpi.getComponentClass());
 			dotidfpiElement.init();
-			this.listOfPlantItems
-					.add(handlePlantItem(dotidfpi, dotidfpiElement));
+			this.listOfPlantItems.add(handlePlantItem(dotidfpi, dotidfpiElement));
 		} else if (plantItem instanceof Nozzle) {
 			Nozzle nozzle = (Nozzle) plantItem;
-			PidElement nozzleElement = new PidElement(nozzle.getID(),
-					nozzle.getComponentName(), nozzle.getComponentClass());
+			PidElement nozzleElement = new PidElement(nozzle.getID(), nozzle.getTagName(), nozzle.getComponentName(),
+					nozzle.getComponentClass());
 			nozzleElement.init();
 			this.listOfPlantItems.add(handlePlantItem(nozzle, nozzleElement));
 		} else if (plantItem instanceof PipingComponent) {
 			PipingComponent pipingComponent = (PipingComponent) plantItem;
-			PidElement pipingCompElement = new PidElement(
-					pipingComponent.getID(),
-					pipingComponent.getComponentName(),
-					pipingComponent.getComponentClass());
+			PidElement pipingCompElement = new PidElement(pipingComponent.getID(), pipingComponent.getTagName(),
+					pipingComponent.getComponentName(), pipingComponent.getComponentClass());
 			pipingCompElement.init();
-			this.listOfPlantItems.add(handlePlantItem(pipingComponent,
-					pipingCompElement));
+			this.listOfPlantItems.add(handlePlantItem(pipingComponent, pipingCompElement));
 		} else if (plantItem instanceof PipingNetworkSegment) {
 			PipingNetworkSegment pnSeg = (PipingNetworkSegment) plantItem;
 
-			PidElement pnSegElement = new PidElement(pnSeg.getID(),
-					"PipingSegment", pnSeg.getComponentClass());
+			PidElement pnSegElement = new PidElement(pnSeg.getID(), pnSeg.getTagName(), "PipingSegment",
+					pnSeg.getComponentClass());
 			pnSegElement.setType("PipingNetworkSegment");
 			pnSegElement.init();
 			this.listOfPlantItems.add(handlePlantItem(pnSeg, pnSegElement));
 		} else if (plantItem instanceof PipingNetworkSystem) {
 			PipingNetworkSystem pnSys = (PipingNetworkSystem) plantItem;
-			PidElement pnSysElement = new PidElement(pnSys.getID(),
-					"PipingSystem", pnSys.getComponentClass());
+			PidElement pnSysElement = new PidElement(pnSys.getID(), pnSys.getTagName(), "PipingSystem",
+					pnSys.getComponentClass());
 			pnSysElement.setType("PipingNetworkSystem");
 			pnSysElement.init();
 			this.listOfPlantItems.add(handlePlantItem(pnSys, pnSysElement));
 		} else if (plantItem instanceof InformationFlow) {
 			InformationFlow iFlow = (InformationFlow) plantItem;
 
-			PidElement iFlowElement = new PidElement(iFlow.getID(),
-					"InformationFlow", iFlow.getComponentClass());
+			PidElement iFlowElement = new PidElement(iFlow.getID(), iFlow.getTagName(), "InformationFlow",
+					iFlow.getComponentClass());
 
 			iFlowElement.setType("InformationFlow");
 			iFlowElement.init();
 			this.listOfPlantItems.add(handlePlantItem(iFlow, iFlowElement));
 		} else if (plantItem instanceof ProcessInstrument) {
 			ProcessInstrument processInstrument = (ProcessInstrument) plantItem;
-			PidElement procInstrElement = new PidElement(
-					processInstrument.getID(),
-					processInstrument.getComponentName(),
-					processInstrument.getComponentClass());
+			PidElement procInstrElement = new PidElement(processInstrument.getID(), processInstrument.getTagName(),
+					processInstrument.getComponentName(), processInstrument.getComponentClass());
 			procInstrElement.init();
-			this.listOfPlantItems.add(handlePlantItem(processInstrument,
-					procInstrElement));
+			this.listOfPlantItems.add(handlePlantItem(processInstrument, procInstrElement));
 		} else if (plantItem instanceof SignalLine) {
 			SignalLine signalLine = (SignalLine) plantItem;
-			PidElement signalLineElement = new PidElement(signalLine.getID(),
-					signalLine.getComponentName(),
-					signalLine.getComponentClass());
+			PidElement signalLineElement = new PidElement(signalLine.getID(), signalLine.getTagName(),
+					signalLine.getComponentName(), signalLine.getComponentClass());
 			signalLineElement.init();
 			signalLineElement.setType("SignalLine");
-			this.listOfPlantItems.add(handlePlantItem(signalLine,
-					signalLineElement));
+			this.listOfPlantItems.add(handlePlantItem(signalLine, signalLineElement));
 		}
 	}
 
 	/**
-	 * handles (create PidElement, add graphics) centerLines and adds them to
-	 * the listOfPiping
+	 * handles (create PidElement, add graphics) centerLines and adds them to the
+	 * listOfPiping
 	 * 
 	 * @param object
 	 *            a CenterLine
@@ -495,34 +469,30 @@ public class JaxbInputRepository implements InputRepository {
 			double xCoordinates[] = getXcoordinates(centerLine.getCoordinate());
 			double yCoordinates[] = getYcoordinates(centerLine.getCoordinate());
 
-			LineElement lineElement = new LineElement(c, lineWeight,
-					xCoordinates, yCoordinates);
+			LineElement lineElement = new LineElement(c, lineWeight, xCoordinates, yCoordinates);
 
-			PidElement centerLineElement = new PidElement(centerLine.getID(),
-					"CenterLine", "CenterLine", "CenterLine");
-			
+			PidElement centerLineElement = new PidElement(centerLine.getID(), "CenterLine", "CenterLine", "CenterLine");
+
+			centerLineElement.init();
+
 			centerLineElement.setExtent(getExtent(this.extent));
+			centerLineElement.setOldExtent(getExtent(centerLine.getExtent()));
 			centerLineElement.addDrawableElement(lineElement);
 
 			// check if CenterLine has already been added to the list
 			boolean add = true;
 			for (PidElement cL : this.listOfPiping) {
 				if (cL.getID().equals(centerLine.getID())
-						|| cL.getID().equals(
-								centerLine.toString().replace(
-										"org.dexpi.pid.xml.", ""))) {
+						|| cL.getID().equals(centerLine.toString().replace("org.dexpi.pid.xml.", ""))) {
 					add = false;
 				}
 			}
 			// get LineNumber and add to list
 			if (centerLine.getID() == null && add == true) {
-				centerLineElement.setID(centerLine.toString().replace(
-						"org.dexpi.pid.xml.", ""));
-				centerLineElement.setLineNumber(this.locator
-						.getLineNumberByMissingID("CenterLine"));
+				centerLineElement.setID(centerLine.toString().replace("org.dexpi.pid.xml.", ""));
+				centerLineElement.setLineNumber(this.locator.getLineNumberByMissingID("CenterLine"));
 			} else {
-				centerLineElement.setLineNumber(this.locator
-						.getLineNumber(centerLineElement.getID()));
+				centerLineElement.setLineNumber(this.locator.getLineNumber(centerLineElement.getID()));
 			}
 
 			if (add == true) {
@@ -551,8 +521,7 @@ public class JaxbInputRepository implements InputRepository {
 
 		PlantItem piItemID = null;
 		// check PlantItems for ItemID
-		for (Object object : this.plantModel
-				.getPresentationOrShapeCatalogueOrDrawing()) {
+		for (Object object : this.plantModel.getPresentationOrShapeCatalogueOrDrawing()) {
 			if (object instanceof PlantItem) {
 				if (object.equals(itemID)) {
 					piItemID = (PlantItem) object;
@@ -626,14 +595,12 @@ public class JaxbInputRepository implements InputRepository {
 			}
 		} else if (plantItem instanceof DrawableObjectThatInheritsDirectlyFromPlantItem) {
 			// To keep this path clean we have to use a sub-function
-			handleDrawableObjectThatInheritsDirectlyFromPlantItem(plantItem,
-					listOfSubItems);
+			handleDrawableObjectThatInheritsDirectlyFromPlantItem(plantItem, listOfSubItems);
 		} else if (plantItem instanceof Nozzle) {
 			// Scanning through nozzles to get nodes with persistent IDs and add
 			// them to a help-list
 			Nozzle nozzle = (Nozzle) plantItem;
-			for (Object subObject : nozzle
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object subObject : nozzle.getPresentationOrExtentOrPersistentID()) {
 
 				if (subObject instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) subObject);
@@ -649,8 +616,7 @@ public class JaxbInputRepository implements InputRepository {
 						if (node.getID() != null) {
 							nodeID = node.getID();
 						}
-						List<Object> nodeContent = node
-								.getPositionOrPersistentIDOrNominalDiameter();
+						List<Object> nodeContent = node.getPositionOrPersistentIDOrNominalDiameter();
 						if (nodeContent.size() > 1) {
 							// Now we got nodes with Position, PersistentID
 							// and
@@ -664,8 +630,7 @@ public class JaxbInputRepository implements InputRepository {
 								} else if (nodeContentObject instanceof PersistentID) {
 									PersistentID persistentID = (PersistentID) nodeContentObject;
 									if (nodeID == null) {
-										text.setItemID(persistentID
-												.getIdentifier());
+										text.setItemID(persistentID.getIdentifier());
 									} else {
 										text.setItemID(nodeID);
 									}
@@ -677,23 +642,17 @@ public class JaxbInputRepository implements InputRepository {
 									for (Object subContent : genericAttributesContent) {
 										if (subContent instanceof GenericAttribute) {
 											GenericAttribute genericAttribute = (GenericAttribute) subContent;
-											if (genericAttribute
-													.getName()
-													.equals("NominalDiameterNumericalValueRepresentationAssignmentClass")) {
-												text.setDependantAttribute(genericAttribute
-														.getName());
-												text.setString(genericAttribute
-														.getValue());
-												text.setDependantAttributeContents(genericAttribute
-														.getValue());
+											if (genericAttribute.getName().equals(
+													"NominalDiameterNumericalValueRepresentationAssignmentClass")) {
+												text.setDependantAttribute(genericAttribute.getName());
+												text.setString(genericAttribute.getValue());
+												text.setDependantAttributeContents(genericAttribute.getValue());
 											}
 										}
 									}
 								} else {
-									System.out.println(nodeContentObject
-											.getClass().toString());
-									System.out
-											.println("Something went wrong - maybe throw error?");
+									System.out.println(nodeContentObject.getClass().toString());
+									System.out.println("Something went wrong - maybe throw error?");
 								}
 							}
 
@@ -711,8 +670,7 @@ public class JaxbInputRepository implements InputRepository {
 		} else if (plantItem instanceof PipingComponent) {
 
 			PipingComponent pipingComponent = (PipingComponent) plantItem;
-			for (Object object : pipingComponent
-					.getPipingComponentOrComponentOrNominalDiameter()) {
+			for (Object object : pipingComponent.getPipingComponentOrComponentOrNominalDiameter()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -722,8 +680,7 @@ public class JaxbInputRepository implements InputRepository {
 		} else if (plantItem instanceof PipingNetworkSegment) {
 			PipingNetworkSegment pnSeg = (PipingNetworkSegment) plantItem;
 
-			for (Object object : pnSeg
-					.getNominalDiameterOrInsideDiameterOrOutsideDiameter()) {
+			for (Object object : pnSeg.getNominalDiameterOrInsideDiameterOrOutsideDiameter()) {
 
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
@@ -735,16 +692,14 @@ public class JaxbInputRepository implements InputRepository {
 
 			}
 			// needed for some annotationItems like PipeSlopeSymbol etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
 			}
 		} else if (plantItem instanceof PipingNetworkSystem) {
 			PipingNetworkSystem pnSys = (PipingNetworkSystem) plantItem;
-			for (Object object : pnSys
-					.getNominalDiameterOrInsideDiameterOrOutsideDiameter()) {
+			for (Object object : pnSys.getNominalDiameterOrInsideDiameterOrOutsideDiameter()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -753,8 +708,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 		} else if (plantItem instanceof ProcessInstrument) {
 			ProcessInstrument processInstrument = (ProcessInstrument) plantItem;
-			for (Object object : processInstrument
-					.getProcessInstrumentOrComponentOrNominalDiameter()) {
+			for (Object object : processInstrument.getProcessInstrumentOrComponentOrNominalDiameter()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -763,8 +717,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 		} else if (plantItem instanceof SignalLine) {
 			SignalLine signalLine = (SignalLine) plantItem;
-			for (Object object : signalLine
-					.getConnectionOrCenterLineOrComponent()) {
+			for (Object object : signalLine.getConnectionOrCenterLineOrComponent()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -779,14 +732,13 @@ public class JaxbInputRepository implements InputRepository {
 
 	}
 
-	private void handleDrawableObjectThatInheritsDirectlyFromPlantItem(
-			PlantItem plantItem, ArrayList<Object> listOfSubItems) {
+	private void handleDrawableObjectThatInheritsDirectlyFromPlantItem(PlantItem plantItem,
+			ArrayList<Object> listOfSubItems) {
 
 		if (plantItem instanceof Equipment) {
 			Equipment equipment = (Equipment) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -795,8 +747,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -806,8 +757,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ProcessSignalGeneratingSystem) {
 			ProcessSignalGeneratingSystem equipment = (ProcessSignalGeneratingSystem) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -816,8 +766,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -827,8 +776,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ProcessSignalGeneratingSystemComponent) {
 			ProcessSignalGeneratingSystemComponent equipment = (ProcessSignalGeneratingSystemComponent) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -837,8 +785,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -848,8 +795,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ActuatingFunction) {
 			ActuatingFunction equipment = (ActuatingFunction) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -858,8 +804,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -869,8 +814,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ActuatingSystem) {
 			ActuatingSystem equipment = (ActuatingSystem) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -879,8 +823,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -890,8 +833,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ProcessSignalGeneratingFunction) {
 			ProcessSignalGeneratingFunction equipment = (ProcessSignalGeneratingFunction) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -900,8 +842,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -911,8 +852,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ActuatingSystemComponent) {
 			ActuatingSystemComponent equipment = (ActuatingSystemComponent) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -921,8 +861,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -932,8 +871,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof ProcessInstrumentationFunction) {
 			ProcessInstrumentationFunction equipment = (ProcessInstrumentationFunction) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -942,8 +880,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -956,8 +893,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof InstrumentationLoopFunction) {
 			InstrumentationLoopFunction equipment = (InstrumentationLoopFunction) plantItem;
 
-			for (Object object : equipment
-					.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
+			for (Object object : equipment.getDisciplineOrMinimumDesignPressureOrMaximumDesignPressure()) {
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
 				} else if (object instanceof AnnotationItem) {
@@ -966,8 +902,7 @@ public class JaxbInputRepository implements InputRepository {
 			}
 
 			// needed for some annotationItems like Labels etc
-			for (Object object : plantItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : plantItem.getPresentationOrExtentOrPersistentID()) {
 				if (object instanceof AnnotationItem) {
 					listOfSubItems.add((AnnotationItem) object);
 				}
@@ -977,8 +912,7 @@ public class JaxbInputRepository implements InputRepository {
 		else if (plantItem instanceof InformationFlow) {
 			InformationFlow infoFlow = (InformationFlow) plantItem;
 
-			for (Object object : infoFlow
-					.getNominalDiameterOrInsideDiameterOrOutsideDiameter()) {
+			for (Object object : infoFlow.getNominalDiameterOrInsideDiameterOrOutsideDiameter()) {
 
 				if (object instanceof PlantItem) {
 					listOfSubItems.add((PlantItem) object);
@@ -989,8 +923,7 @@ public class JaxbInputRepository implements InputRepository {
 				}
 			}
 		} else
-			System.out
-					.println("This should not be reached! Please supply the developer with your input-file");
+			System.out.println("This should not be reached! Please supply the developer with your input-file");
 	}
 
 	/**
@@ -1001,8 +934,7 @@ public class JaxbInputRepository implements InputRepository {
 	@Override
 	public ArrayList<PidElement> getPlantItems() {
 
-		for (Object object : this.plantModel
-				.getPresentationOrShapeCatalogueOrDrawing()) {
+		for (Object object : this.plantModel.getPresentationOrShapeCatalogueOrDrawing()) {
 			if (object instanceof PlantItem) {
 				initializePlantItemElements((PlantItem) object);
 
@@ -1024,17 +956,14 @@ public class JaxbInputRepository implements InputRepository {
 		if (this.drawing == null) {
 			return null;
 		}
-		PidElement drawingElement = new PidElement("Drawing",
-				this.drawing.getName(), this.drawing.getType());
+		PidElement drawingElement = new PidElement("Drawing", null, this.drawing.getName(), this.drawing.getType());
 		drawingElement.init();
-		drawingElement.setLineNumber(this.locator
-				.getLineNumberByType("Drawing"));
+		drawingElement.setLineNumber(this.locator.getLineNumberByType("Drawing"));
 
 		for (Object object : this.drawing.getComponentOrCurveOrSurface()) {
 			if (object instanceof JAXBElement) {
 				JAXBElement<?> jaxbElement = (JAXBElement<?>) object;
-				drawingElement
-						.addDrawableElements(handleDrawableElements(jaxbElement));
+				drawingElement.addDrawableElements(handleDrawableElements(jaxbElement));
 			} else if (object instanceof Text) {
 				// DEBUG: never happened so far
 				Text text = (Text) object;
@@ -1045,8 +974,7 @@ public class JaxbInputRepository implements InputRepository {
 					// all curves (lines,circles etc) are JaxbElements
 					if (objectDB instanceof JAXBElement) {
 						JAXBElement<?> jaxbElement = (JAXBElement<?>) objectDB;
-						drawingElement
-								.addDrawableElements(handleDrawableElements(jaxbElement));
+						drawingElement.addDrawableElements(handleDrawableElements(jaxbElement));
 					} else if (objectDB instanceof Text) {
 						Text text = (Text) objectDB;
 						drawingElement.addDrawableElement(addText(text));
@@ -1060,10 +988,13 @@ public class JaxbInputRepository implements InputRepository {
 		return drawingElement;
 	}
 
-	public PidElement handleAnnotationItem(AnnotationItem annotationItem,
-			PidElement pidElement) {
+	public PidElement handleAnnotationItem(AnnotationItem annotationItem, PidElement pidElement) {
 
 		pidElement.setExtent(getExtent(this.extent));
+		for (Object mayBeAnExtent : annotationItem.getPresentationOrExtentOrPersistentID()) {
+			if (mayBeAnExtent instanceof Extent)
+				pidElement.setOldExtent(getExtent((Extent) mayBeAnExtent));
+		}
 
 		// **********************************
 		// this part supports relative coordinates in labels
@@ -1071,8 +1002,7 @@ public class JaxbInputRepository implements InputRepository {
 		// shapeCatalogue reference
 		if (annotationItem instanceof Label) {
 
-			for (Object object : annotationItem
-					.getPresentationOrExtentOrPersistentID()) {
+			for (Object object : annotationItem.getPresentationOrExtentOrPersistentID()) {
 				double[] extent = getExtent(this.extent);
 
 				// TODO verify
@@ -1083,15 +1013,12 @@ public class JaxbInputRepository implements InputRepository {
 					// if extent is smaller than position it is save to assume,
 					// that relative coordinates are used
 
-					if (extent[0] < position.getLocation().getX()
-							&& extent[1] < position.getLocation().getX()) {
+					if (extent[0] < position.getLocation().getX() && extent[1] < position.getLocation().getX()) {
 						pidElement.setScRef(true);
 						setScaleRefPos(annotationItem, pidElement);
-						pidElement = aiAddDrawableElements(annotationItem,
-								pidElement);
+						pidElement = aiAddDrawableElements(annotationItem, pidElement);
 
-						pidElement.setLineNumber(this.locator
-								.getLineNumber(pidElement.getID()));
+						pidElement.setLineNumber(this.locator.getLineNumber(pidElement.getID()));
 					}
 				}
 			}
@@ -1100,38 +1027,31 @@ public class JaxbInputRepository implements InputRepository {
 
 		// find shapeCatalogue Reference
 		if (this.shapeCatalogue != null) {
-			for (Object object : this.shapeCatalogue
-					.getEquipmentOrNozzleOrPipingComponent()) {
+			for (Object object : this.shapeCatalogue.getEquipmentOrNozzleOrPipingComponent()) {
 
 				if (object instanceof AnnotationItem) {
 					AnnotationItem annotationItemShape = (AnnotationItem) object;
 
 					// in case SC Reference found:
-					if ((annotationItemShape.getComponentName() != null)
-							&& (annotationItem.getComponentName() != null)
-							&& annotationItem.getComponentName().equals(
-									annotationItemShape.getComponentName())) {
+					if ((annotationItemShape.getComponentName() != null) && (annotationItem.getComponentName() != null)
+							&& annotationItem.getComponentName().equals(annotationItemShape.getComponentName())) {
 
 						setScaleRefPos(annotationItem, pidElement);
 						pidElement.setScRef(true);
-						pidElement = aiAddDrawableElements(annotationItemShape,
-								pidElement);
+						pidElement = aiAddDrawableElements(annotationItemShape, pidElement);
 
-						pidElement.setLineNumber(locator
-								.getLineNumber(annotationItemShape.getID()));
+						pidElement.setLineNumber(locator.getLineNumber(annotationItemShape.getID()));
 
 						// inline Elements not in the Sc will be added as
 						// subElement
-						PidElement subElement = new PidElement(
-								pidElement.getID(),
-								pidElement.getComponentName(),
-								pidElement.getComponentName());
+						PidElement subElement = new PidElement(pidElement.getID(), pidElement.getTagName(),
+								pidElement.getComponentName(), pidElement.getComponentName());
 						subElement.init();
 						subElement.setExtent(getExtent(this.extent));
-						subElement.setLineNumber(this.locator
-								.getLineNumber(pidElement.getID()));
-						pidElement.addSubElement(aiAddDrawableElements(
-								annotationItem, subElement));
+						subElement.setOldExtent(pidElement.getOldExtent());
+
+						subElement.setLineNumber(this.locator.getLineNumber(pidElement.getID()));
+						pidElement.addSubElement(aiAddDrawableElements(annotationItem, subElement));
 						break;
 					}
 				}
@@ -1141,22 +1061,18 @@ public class JaxbInputRepository implements InputRepository {
 		// add drawableElements if no SC-reference exists
 		if (pidElement.getScRef() != true) {
 			pidElement = aiAddDrawableElements(annotationItem, pidElement);
-			pidElement.setLineNumber(this.locator.getLineNumber(pidElement
-					.getID()));
+			pidElement.setLineNumber(this.locator.getLineNumber(pidElement.getID()));
 		}
 
 		return pidElement;
 	}
 
-	private PidElement aiAddDrawableElements(AnnotationItem annotationItem,
-			PidElement pidElement) {
-		for (Object scObject : annotationItem
-				.getPresentationOrExtentOrPersistentID()) {
+	private PidElement aiAddDrawableElements(AnnotationItem annotationItem, PidElement pidElement) {
+		for (Object scObject : annotationItem.getPresentationOrExtentOrPersistentID()) {
 
 			if (scObject instanceof JAXBElement) {
 				JAXBElement<?> jaxbElement = (JAXBElement<?>) scObject;
-				pidElement
-						.addDrawableElements(handleDrawableElements(jaxbElement));
+				pidElement.addDrawableElements(handleDrawableElements(jaxbElement));
 			}
 			if (scObject instanceof Text) {
 				Text text = (Text) scObject;
@@ -1170,42 +1086,39 @@ public class JaxbInputRepository implements InputRepository {
 
 		pidElement.setExtent(getExtent(this.extent));// setExtent(getExtent(object));
 
+		for (Object obj : plantItem.getPresentationOrExtentOrPersistentID()) {
+			if (obj instanceof Extent)
+				pidElement.setOldExtent(getExtent((Extent) obj));
+		}
+
 		// find shapeCatalogue Reference
 		if (this.shapeCatalogue != null) {
-			for (Object object : this.shapeCatalogue
-					.getEquipmentOrNozzleOrPipingComponent()) {
+			for (Object object : this.shapeCatalogue.getEquipmentOrNozzleOrPipingComponent()) {
 
 				if (object instanceof PlantItem) {
 					PlantItem plantItemShape = (PlantItem) object;
 
 					// in case SC Reference found:
-					if ((plantItemShape.getComponentName() != null)
-							&& (plantItem.getComponentName() != null)
-							&& plantItem.getComponentName().equals(
-									plantItemShape.getComponentName())) {
+					if ((plantItemShape.getComponentName() != null) && (plantItem.getComponentName() != null)
+							&& plantItem.getComponentName().equals(plantItemShape.getComponentName())) {
 
 						// set position and scale
 						setScaleRefPos(plantItem, pidElement);
 						pidElement.setScRef(true);
-						pidElement = piAddDrawableElements(plantItemShape,
-								pidElement);
-						pidElement.setLineNumber(this.locator
-								.getLineNumber(plantItemShape.getID()));
+						pidElement = piAddDrawableElements(plantItemShape, pidElement);
+						pidElement.setLineNumber(this.locator.getLineNumber(plantItemShape.getID()));
 						// inline Elements not in the Sc will be added as
 						// subElement
-						PidElement subElement = new PidElement(
-								pidElement.getID(),
-								pidElement.getComponentName(),
-								pidElement.getComponentClass());
+						PidElement subElement = new PidElement(pidElement.getID(), pidElement.getTagName(),
+								pidElement.getComponentName(), pidElement.getComponentClass());
 						subElement.init();
 						subElement.setExtent(getExtent(this.extent));// pidElement.getExtent());
+						subElement.setOldExtent(getExtent(pidElement.getOldExtent()));
 						// subElement.setScale(pidElement.getScale());
 						// subElement.setPosition(pidElement.getPosition());
 						// subElement.setReference(pidElement.getReference());
-						subElement.setLineNumber(this.locator
-								.getLineNumber(pidElement.getID()));
-						pidElement.addSubElement(piAddDrawableElements(
-								plantItem, subElement));
+						subElement.setLineNumber(this.locator.getLineNumber(pidElement.getID()));
+						pidElement.addSubElement(piAddDrawableElements(plantItem, subElement));
 						pidElement.setID(plantItemShape.getID());
 						break;
 						// subElement has ID+linenumber of original PI
@@ -1218,22 +1131,18 @@ public class JaxbInputRepository implements InputRepository {
 		// add drawableElements if no ref to SC
 		if (pidElement.getScRef() != true) {
 			pidElement = piAddDrawableElements(plantItem, pidElement);
-			pidElement.setLineNumber(this.locator.getLineNumber(pidElement
-					.getID()));
+			pidElement.setLineNumber(this.locator.getLineNumber(pidElement.getID()));
 
 		}
 
 		return pidElement;
 	}
 
-	private PidElement piAddDrawableElements(PlantItem plantItem,
-			PidElement pidElement) {
-		for (Object scObject : plantItem
-				.getPresentationOrExtentOrPersistentID()) {
+	private PidElement piAddDrawableElements(PlantItem plantItem, PidElement pidElement) {
+		for (Object scObject : plantItem.getPresentationOrExtentOrPersistentID()) {
 			if (scObject instanceof JAXBElement) {
 				JAXBElement<?> jaxbElement = (JAXBElement<?>) scObject;
-				pidElement
-						.addDrawableElements(handleDrawableElements(jaxbElement));
+				pidElement.addDrawableElements(handleDrawableElements(jaxbElement));
 			} else if (scObject instanceof Text) {
 				pidElement.addDrawableElement(addText((Text) scObject));
 			}
@@ -1263,8 +1172,7 @@ public class JaxbInputRepository implements InputRepository {
 	 *            the Curve
 	 * @return ArrayList of drawableElements
 	 */
-	public ArrayList<DrawableElement> handleDrawableElements(
-			JAXBElement<?> jaxbElement) {
+	public ArrayList<DrawableElement> handleDrawableElements(JAXBElement<?> jaxbElement) {
 
 		ArrayList<DrawableElement> drawableElements = new ArrayList<DrawableElement>();
 
@@ -1314,8 +1222,7 @@ public class JaxbInputRepository implements InputRepository {
 			double xCoordinates[] = getXcoordinates(polyLine.getCoordinate());
 			double yCoordinates[] = getYcoordinates(polyLine.getCoordinate());
 
-			lineElement = new LineElement(c, lineWeight, xCoordinates,
-					yCoordinates);
+			lineElement = new LineElement(c, lineWeight, xCoordinates, yCoordinates);
 		}
 		if (curve instanceof Line) {
 			Line line = (Line) curve;
@@ -1325,8 +1232,7 @@ public class JaxbInputRepository implements InputRepository {
 			double xCoordinates[] = getXcoordinates(line.getCoordinate());
 			double yCoordinates[] = getYcoordinates(line.getCoordinate());
 
-			lineElement = new LineElement(c, lineWeight, xCoordinates,
-					yCoordinates);
+			lineElement = new LineElement(c, lineWeight, xCoordinates, yCoordinates);
 		}
 		return lineElement;
 	}
@@ -1345,8 +1251,7 @@ public class JaxbInputRepository implements InputRepository {
 			if (shape.getFilled() != null && shape.getFilled().equals("Solid")) {
 				filled = true;
 			}
-			shapeElement = new ShapeElement(c, lineWeight, xCoordinates,
-					yCoordinates, filled);
+			shapeElement = new ShapeElement(c, lineWeight, xCoordinates, yCoordinates, filled);
 		}
 		return shapeElement;
 	}
@@ -1386,8 +1291,8 @@ public class JaxbInputRepository implements InputRepository {
 			filled = true;
 		}
 
-		ellipseElement = new EllipseElement(c, lineWeight, position,
-				primaryAxis, secondaryAxis, startAngle, endAngle, filled);
+		ellipseElement = new EllipseElement(c, lineWeight, position, primaryAxis, secondaryAxis, startAngle, endAngle,
+				filled);
 		return ellipseElement;
 
 	}
@@ -1424,8 +1329,7 @@ public class JaxbInputRepository implements InputRepository {
 			filled = true;
 		}
 
-		circleElement = new CircleElement(c, lineWeight, position, radius,
-				startAngle, endAngle, filled);
+		circleElement = new CircleElement(c, lineWeight, position, radius, startAngle, endAngle, filled);
 		return circleElement;
 
 	}
@@ -1470,18 +1374,17 @@ public class JaxbInputRepository implements InputRepository {
 		if (text.getString() == null) {
 			ErrorElement eE_3 = new ErrorElement("" + text.getLineNumber());
 
-			eE_3.setDescription("Text does not have the mandatory String-Attribute. Creation of Text tried with Dependant Attributes - DEPRECATED!");
+			eE_3.setDescription(
+					"Text does not have the mandatory String-Attribute. Creation of Text tried with Dependant Attributes - DEPRECATED!");
 			this.listOfErrors.add(eE_3);
 
 			// check if ItemID is present and has a
 			// corresponding ID
 			textElement.setString("DEP-ATTRIBUTE");
 
-			if (text.getDependantAttribute()
-					.equals("[NominalDiameterNumericalValueRepresentationAssignmentClass]")) {
-				this.loggerList
-						.add("WARNING: USAGE OF NODES FOR DEPENDANT ATTRIBUTES IS UNSAFE! @Line"
-								+ text.getLineNumber());
+			if (text.getDependantAttribute().equals("[NominalDiameterNumericalValueRepresentationAssignmentClass]")) {
+				this.loggerList.add(
+						"WARNING: USAGE OF NODES FOR DEPENDANT ATTRIBUTES IS UNSAFE! @Line" + text.getLineNumber());
 				if (this.counter < this.persistentIDTextElements.size()) {
 					text = this.persistentIDTextElements.get(this.counter);
 					++this.counter;
@@ -1489,15 +1392,13 @@ public class JaxbInputRepository implements InputRepository {
 				text.setDependantAttribute(text.getString());
 			}
 
-			if (text.getItemID() != null
-					&& text.getDependantAttribute() != null) {
+			if (text.getItemID() != null && text.getDependantAttribute() != null) {
 
 				PlantItem plantItem = checkItemID(text.getItemID());
 
 				if (plantItem == null) {
 					textElement.setString("");
-					ErrorElement eE_2 = new ErrorElement(""
-							+ text.getLineNumber());
+					ErrorElement eE_2 = new ErrorElement("" + text.getLineNumber());
 
 					eE_2.setDescription("ItemID doesnt correspond to any ID");
 
@@ -1513,20 +1414,16 @@ public class JaxbInputRepository implements InputRepository {
 
 				boolean isItemIDMissing = (text.getItemID() == null);
 				boolean isStringMissing = (text.getString() == null);
-				boolean isDependantAttributeMissing = (text
-						.getDependantAttribute() == null);
+				boolean isDependantAttributeMissing = (text.getDependantAttribute() == null);
 
 				String errorMessage = "The following attributes are null: \n";
 
 				if (!isItemIDMissing) {
-					eE = new ErrorElement(text.getLineNumber()
-							+ text.getItemID().toString());
+					eE = new ErrorElement(text.getLineNumber() + text.getItemID().toString());
 				} else if (!isStringMissing) {
-					eE = new ErrorElement(text.getLineNumber()
-							+ text.getString());
+					eE = new ErrorElement(text.getLineNumber() + text.getString());
 				} else {
-					eE = new ErrorElement(text.getLineNumber()
-							+ "unkown identifier");
+					eE = new ErrorElement(text.getLineNumber() + "unkown identifier");
 				}
 
 				if (isItemIDMissing)
@@ -1559,8 +1456,7 @@ public class JaxbInputRepository implements InputRepository {
 	 */
 
 	@Deprecated
-	private java.lang.String getDepAttrText(PlantItem plantItem, Text text)
-			throws NullPointerException {
+	private java.lang.String getDepAttrText(PlantItem plantItem, Text text) throws NullPointerException {
 
 		// TODO retransform this function so it checks in multiple sets and make
 		// it a check-function whether string && depAttr. are equal!
@@ -1577,9 +1473,8 @@ public class JaxbInputRepository implements InputRepository {
 		// Split depAttributes into Array
 		// Pattern.quote(.) necessary due to "[" causing a regex-error
 		// else
-		java.lang.String[] depAttributes = (text.getDependantAttribute()
-				.toString().split("(?=" + Pattern.quote("[") + ")|(?<="
-				+ Pattern.quote("]") + ")"));
+		java.lang.String[] depAttributes = (text.getDependantAttribute().toString()
+				.split("(?=" + Pattern.quote("[") + ")|(?<=" + Pattern.quote("]") + ")"));
 
 		// this var is necessary so we can get information on runtime whether
 		// this information has changed
@@ -1592,8 +1487,7 @@ public class JaxbInputRepository implements InputRepository {
 			// genericAttribute in textForLabel
 
 			// so we have found what we were out to find and have applied it
-			if (!textForLabel.contains("ThisIsATrueTextErrorCode")
-					&& !textForLabel.equals(comparisionString))
+			if (!textForLabel.contains("ThisIsATrueTextErrorCode") && !textForLabel.equals(comparisionString))
 				break;
 
 			boolean[] markerMatrix = new boolean[depAttributes.length];
@@ -1627,18 +1521,13 @@ public class JaxbInputRepository implements InputRepository {
 								// genericAttribute
 
 								try {
-									textForLabel = textForLabel.replace(
-											depAttribute,
-											genericAttribute.getValue()
-													.toString()
-													+ checkUnits(
-															genericAttribute,
-															text));
+									textForLabel = textForLabel.replace(depAttribute,
+											genericAttribute.getValue().toString()
+													+ checkUnits(genericAttribute, text));
 									// this marks the attribute as used
 									markerMatrix[i] = false;
 								} catch (Exception e) {
-									textForLabel = textForLabel.replace(
-											depAttribute, "");
+									textForLabel = textForLabel.replace(depAttribute, "");
 									ErrorElement eE = new ErrorElement("" + genericAttribute.getLineNumber());
 
 									eE.setDescription("Catched a nullpointer-exception in getDepAttrText");
@@ -1666,8 +1555,7 @@ public class JaxbInputRepository implements InputRepository {
 						boolean isInvalid = true;
 
 						validationCheck: if (curElement.contains(".")) {
-							String[] possibleValidCandidate = curElement
-									.split(Pattern.quote("."));
+							String[] possibleValidCandidate = curElement.split(Pattern.quote("."));
 
 							if (possibleValidCandidate.length != 2)
 								break validationCheck;
@@ -1685,36 +1573,27 @@ public class JaxbInputRepository implements InputRepository {
 							}
 
 							// catch possible uppercase-problem
-							possibleValidCandidate[1] = possibleValidCandidate[1]
-									.toLowerCase();
+							possibleValidCandidate[1] = possibleValidCandidate[1].toLowerCase();
 
 							// get handle on genericAttributes
-							for (Object object2 : genericAttributes
-									.getContent()) {
+							for (Object object2 : genericAttributes.getContent()) {
 
 								if (object2 instanceof GenericAttribute) {
 
 									GenericAttribute genericAttribute = (GenericAttribute) object2;
-									if (genericAttribute.getName().equals(
-											possibleValidCandidate[0])) {
+									if (genericAttribute.getName().equals(possibleValidCandidate[0])) {
 
 										switch (possibleValidCandidate[1]) {
 										case ("values"):
 										case ("value"):
-											textForLabel = textForLabel
-													.replace(curElement,
-															genericAttribute
-																	.getValue());
+											textForLabel = textForLabel.replace(curElement,
+													genericAttribute.getValue());
 											isInvalid = false;
 											break;
 										case ("unit"):
 										case ("units"):
-											textForLabel = textForLabel
-													.replace(
-															curElement,
-															checkUnits(
-																	genericAttribute,
-																	text));
+											textForLabel = textForLabel.replace(curElement,
+													checkUnits(genericAttribute, text));
 											isInvalid = false;
 											break;
 										default:
@@ -1726,8 +1605,7 @@ public class JaxbInputRepository implements InputRepository {
 
 						if (isInvalid) {
 							textForLabel = textForLabel.replace(curElement, "");
-							textForLabel = "[ThisIsATrueTextErrorCode"
-									+ text.getLineNumber() + "]";
+							textForLabel = "[ThisIsATrueTextErrorCode" + text.getLineNumber() + "]";
 						}
 					}
 				}
@@ -1741,8 +1619,7 @@ public class JaxbInputRepository implements InputRepository {
 		}
 
 		if (plantItem.getTagName() != null)
-			textForLabel = textForLabel.replace("[TagName]",
-					plantItem.getTagName());
+			textForLabel = textForLabel.replace("[TagName]", plantItem.getTagName());
 		else
 			textForLabel = textForLabel.replace("[TagName]", "");
 
@@ -1752,20 +1629,18 @@ public class JaxbInputRepository implements InputRepository {
 	}
 
 	/**
-	 * checks if unit should be included in the string and abbreviates some of
-	 * them according to the SI standard
+	 * checks if unit should be included in the string and abbreviates some of them
+	 * according to the SI standard
 	 * 
 	 * @param genericAttribute
 	 * @param text
 	 * @return
 	 */
 	@SuppressWarnings("static-method")
-	private java.lang.String checkUnits(GenericAttribute genericAttribute,
-			Text text) {
+	private java.lang.String checkUnits(GenericAttribute genericAttribute, Text text) {
 		// check for Units
 		java.lang.String unit = "";
-		if (genericAttribute.getUnits() != null
-				&& text.getDependantAttributeContents() == "ValueAndUnits") {
+		if (genericAttribute.getUnits() != null && text.getDependantAttributeContents() == "ValueAndUnits") {
 
 			// make better looking units
 			switch (genericAttribute.getUnits()) {
@@ -1857,8 +1732,7 @@ public class JaxbInputRepository implements InputRepository {
 	@SuppressWarnings("static-method")
 	public Color getColor(Presentation presentation) {
 		try {
-			Color c = new Color((int) (presentation.getR() * 255),
-					(int) (presentation.getG() * 255),
+			Color c = new Color((int) (presentation.getR() * 255), (int) (presentation.getG() * 255),
 					(int) (presentation.getB() * 255));
 			return c;
 		} catch (NullPointerException n) {
@@ -1890,8 +1764,8 @@ public class JaxbInputRepository implements InputRepository {
 	}
 
 	/**
-	 * in case the shapeCatalogue is referenced, the position, reference, and
-	 * scale of a pidElement is set here
+	 * in case the shapeCatalogue is referenced, the position, reference, and scale
+	 * of a pidElement is set here
 	 *
 	 * @param annotationItem
 	 *            the annotationItem
@@ -1900,19 +1774,15 @@ public class JaxbInputRepository implements InputRepository {
 	 * @return modified pidElement
 	 */
 	@SuppressWarnings("static-method")
-	private PidElement setScaleRefPos(AnnotationItem annotationItem,
-			PidElement pidElement) {
-		for (Object object : annotationItem
-				.getPresentationOrExtentOrPersistentID()) {
+	private PidElement setScaleRefPos(AnnotationItem annotationItem, PidElement pidElement) {
+		for (Object object : annotationItem.getPresentationOrExtentOrPersistentID()) {
 			if (object instanceof Position) {
 				Position position = (Position) object;
 				if (position.getReference() != null) {
-					pidElement.setReference(new double[] {
-							position.getReference().getX(),
-							position.getReference().getY() });
-					pidElement.setPosition(new double[] {
-							position.getLocation().getX(),
-							position.getLocation().getY() });
+					pidElement.setReference(
+							new double[] { position.getReference().getX(), position.getReference().getY() });
+					pidElement
+							.setPosition(new double[] { position.getLocation().getX(), position.getLocation().getY() });
 				} else {
 					pidElement.setReference(null);
 				}
@@ -1920,16 +1790,15 @@ public class JaxbInputRepository implements InputRepository {
 			}
 			if (object instanceof Scale) {
 				Scale scale = (Scale) object;
-				pidElement
-						.setScale(new double[] { scale.getX(), scale.getY() });
+				pidElement.setScale(new double[] { scale.getX(), scale.getY() });
 			}
 		}
 		return pidElement;
 	}
 
 	/**
-	 * in case the shapeCatalogue is referenced, the position, reference, and
-	 * scale of a pidElement is set here
+	 * in case the shapeCatalogue is referenced, the position, reference, and scale
+	 * of a pidElement is set here
 	 * 
 	 * @param plantItem
 	 *            the plantItem
@@ -1944,16 +1813,12 @@ public class JaxbInputRepository implements InputRepository {
 			if (object instanceof Position) {
 				Position position = (Position) object;
 
-				pidElement.setReference(new double[] {
-						position.getReference().getX(),
-						position.getReference().getY() });
-				pidElement.setPosition(new double[] {
-						position.getLocation().getX(),
-						position.getLocation().getY() });
+				pidElement
+						.setReference(new double[] { position.getReference().getX(), position.getReference().getY() });
+				pidElement.setPosition(new double[] { position.getLocation().getX(), position.getLocation().getY() });
 			} else if (object instanceof Scale) {
 				Scale scale = (Scale) object;
-				pidElement
-						.setScale(new double[] { scale.getX(), scale.getY() });
+				pidElement.setScale(new double[] { scale.getX(), scale.getY() });
 			}
 		}
 		return pidElement;

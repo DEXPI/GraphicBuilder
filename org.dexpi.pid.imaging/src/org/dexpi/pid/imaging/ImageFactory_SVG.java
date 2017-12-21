@@ -33,6 +33,7 @@ import org.dexpi.pid.imaging.pidElements.PidElement;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
 import SVGElements.Coordinate;
@@ -84,10 +85,13 @@ public class ImageFactory_SVG implements GraphicFactory {
 															// Transformation
 															// and Rotation
 
+	private String groupNodeId;
 	private String groupNodeTagName;
+	private String groupNodeComponentName;
 	private String groupNodeComponentClass;
 	private Element groupNode;
-	
+	private Element imageMapGroupNode;
+
 	private List<ImageMapObject> imageMapObjects = new ArrayList<ImageMapObject>();
 	private ArrayList<ErrorElement> listOfErrors = new ArrayList<ErrorElement>();
 
@@ -114,7 +118,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		this.groupNodeTagName = null;
 		this.groupNodeComponentClass = null;
 		this.groupNode = null;
-		
+
 		// calculate offset for x if x < 0;
 		double offsetX = 0.;
 		offsetX = (-1) * origin[0];
@@ -144,19 +148,19 @@ public class ImageFactory_SVG implements GraphicFactory {
 		// Create a root-element for the SVG
 		this.svgRoot = this.doc.getDocumentElement();
 
-		//add DEXPI-namespace
+		// add DEXPI-namespace
 		this.dexpiNS = "http://sandbox.dexpi.org/rdl/";
 		this.dexpiPrefix = "dexpi";
-		
+
 		svgRoot.setAttribute("xmlns:" + this.dexpiPrefix, this.dexpiNS);
-		
+
 		// Set the width and height attributes on the root 'svg' element.
 		this.svgRoot.setAttributeNS(null, "width", "" + resolutionX);
 		this.svgRoot.setAttributeNS(null, "height", "" + resolutionY);
 
 		this.resolutionX = resolutionX;
 		this.resolutionY = resolutionY;
-		
+
 		/* Create the background of the image */
 		// First we have to convert the background-color into an svg-format
 		String color = convertAWTColorToSVGColor(backgroundColor);
@@ -168,10 +172,15 @@ public class ImageFactory_SVG implements GraphicFactory {
 		rectangle.setAttributeNS(null, "height", "" + resolutionY);
 		rectangle.setAttributeNS(null, "fill", color);
 
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			this.groupNode.appendChild(rectangle);
 		else
-			this.svgRoot.appendChild(rectangle);		
+			this.svgRoot.appendChild(rectangle);
+
+		// now also add ImageMap-GroupNode
+		this.imageMapGroupNode = this.doc.createElementNS(svgNS, "g");
+		this.imageMapGroupNode.setAttributeNS(null, "id", "ImageMap");
+		this.svgRoot.appendChild(this.imageMapGroupNode);
 	}
 
 	/**
@@ -202,7 +211,6 @@ public class ImageFactory_SVG implements GraphicFactory {
 		DOMSource source = new DOMSource(doc);
 		FileWriter writer;
 		try {
-			// TODO outsource this function
 			writer = new FileWriter(new File("c:/uni/output.svg"));
 
 			StreamResult result = new StreamResult(writer);
@@ -230,6 +238,10 @@ public class ImageFactory_SVG implements GraphicFactory {
 	 */
 	@Override
 	public boolean writeToDestination(String destination) {
+		// we are calling the cleanup here, so we do not need to extent the
+		// GraphicFactory
+		cleanUpEmptyGroupNodes();
+
 		// now write to file
 		destination = destination.replace("xml", "svg").replaceAll("png", "svg");
 
@@ -308,7 +320,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		polyline.setAttributeNS(null, "points", points);
 
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			this.groupNode.appendChild(polyline);
 		else
 			this.svgRoot.appendChild(polyline);
@@ -373,7 +385,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		polygon.setAttributeNS(null, "points", points);
 
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			this.groupNode.appendChild(polygon);
 		else
 			this.svgRoot.appendChild(polygon);
@@ -404,8 +416,6 @@ public class ImageFactory_SVG implements GraphicFactory {
 	public void addEllipse(Color c, float lineWeight, double[] position, double primAxis, double secAxis,
 			double startAngle, double endAngle, boolean filled) {
 
-		// TODO test ellipse with new testcase
-
 		String color = convertAWTColorToSVGColor(c);
 
 		Element ellipse = this.doc.createElementNS(svgNS, "path");
@@ -422,20 +432,12 @@ public class ImageFactory_SVG implements GraphicFactory {
 		int height = (int) (primAxis * this.scaleY * this.x);
 		int width = (int) (secAxis * this.scaleX * this.x);
 
-		// startAngle = (startAngle + r) % 360;
-		// endAngle = (endAngle + r) % 360;
-
 		double arcAngle;
 		if (endAngle < startAngle) {
 			arcAngle = endAngle + 360 - startAngle;
 		} else {
 			arcAngle = endAngle - startAngle;
 		}
-
-		/*
-		 * x1 - width / 2 y1 - height / 2 width height (int) (startAngle) (int)
-		 * (arcAngle));
-		 */
 
 		double[] newPos = { (double) (x1), (double) (y1) };
 		int clockWise = (arcAngle < 180) ? 1 : 0;
@@ -450,19 +452,10 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		ellipse.setAttributeNS(null, "d", ellipsePath);
 
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			this.groupNode.appendChild(ellipse);
 		else
 			this.svgRoot.appendChild(ellipse);
-
-		// TODO: verify ellipse-call
-
-		/*
-		 * if (filled != true) { this.g.drawArc(x1 - width / 2, y1 - height / 2, width,
-		 * height, (int) (startAngle), (int) (arcAngle)); } else { this.g.fillArc(x1 -
-		 * width / 2, y1 - height / 2, width, height, (int) (startAngle), (int)
-		 * (arcAngle)); }
-		 */
 
 	}
 
@@ -607,7 +600,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		circle.setAttributeNS(null, "d", path);
 
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			this.groupNode.appendChild(circle);
 		else
 			this.svgRoot.appendChild(circle);
@@ -638,12 +631,12 @@ public class ImageFactory_SVG implements GraphicFactory {
 		 * check for linebreaks and call this function recursively with corrected
 		 * substrings
 		 */
-		
+
 		if (string.contains("\r") || string.contains("\n") || string.contains("&#xD;") || string.contains("&#xA;")) {
 			String[] subStrings = linebreakPattern.split(string);
 			double posYBackup = this.posY;
 			for (int i = 0; i < subStrings.length; ++i) {
-//				System.out.println(subStrings[i]);
+				// System.out.println(subStrings[i]);
 				double[] newPos = position.clone();
 				addText(c, newPos, extent, textAngle, subStrings[i], height, font);
 				this.posY += height * 0.8; // 0.8 is a magic constant that is also
@@ -661,30 +654,6 @@ public class ImageFactory_SVG implements GraphicFactory {
 
 		double minX = 0;
 		double minY = 0;
-//		if (extent == null) {
-//			extent = new double[4];
-//			extent[0] = 0;
-//			extent[2] = 0;
-//			// error--> extent is missing
-//		}
-
-		/*
-		 * NOTE: As we only use absolute coordinates now, the next section is relative
-		 * (as the extent is no longer of interest)
-		 * Hence, it is replaced with the reduced part below
-		 */
-
-		// if text is rotated, lower left corner is reference point
-		// if (extent[0] <= 0) {
-		// minX = position[0];
-		// } else {
-		// minX = position[0] + height / 1.44 * Math.sin(textAngle);
-		// }
-		// if (extent[2] <= 0) {
-		// minY = position[1];
-		// } else {
-		// minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
-		// }
 
 		minX = position[0] + height / 1.44 * Math.sin(textAngle);
 		minY = position[1];
@@ -693,22 +662,10 @@ public class ImageFactory_SVG implements GraphicFactory {
 		intPos[0] = (int) ((minX - this.posX) * this.x);
 		intPos[1] = (int) ((this.posY - minY) * this.x);
 
-		// set font
-		// Font textFont = new Font(font, Font.PLAIN, (int) (height * FONT_SIZE_FACTOR *
-		// this.x));
-		// this.g.setFont(textFont);
-
 		// set Rotation Point
 		int rotPt[] = new int[2];
 		rotPt[0] = (int) ((position[0] - this.posX) * this.x);
 		rotPt[1] = (int) ((this.posY - position[1]) * this.x);
-
-		// rotating text is not possible, so the drawing will get rotated
-		// arround
-		// the text element
-
-		// rotate
-		// ((Graphics2D) this.g).rotate(Math.toRadians(-textAngle), rotPt[0], rotPt[1]);
 
 		String rotation = "rotate(" + (-textAngle) + " " + rotPt[0] + "," + rotPt[1] + ")";
 
@@ -721,16 +678,10 @@ public class ImageFactory_SVG implements GraphicFactory {
 		Text textString = this.doc.createTextNode(string);
 		text.appendChild(textString);
 
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			this.groupNode.appendChild(text);
 		else
 			this.svgRoot.appendChild(text);
-
-		// draw string
-		// this.g.drawString(string, intPos[0], intPos[1]);
-
-		// rotate back
-		// ((Graphics2D) this.g).rotate(Math.toRadians(textAngle), rotPt[0], rotPt[1]);
 
 	}
 
@@ -778,6 +729,23 @@ public class ImageFactory_SVG implements GraphicFactory {
 	}
 
 	/**
+	 * Must be called, once the SVG is finished. Loops through all nodes and removes
+	 * empty group-nodes
+	 */
+	public void cleanUpEmptyGroupNodes() {
+		NodeList listOfNodes = this.svgRoot.getChildNodes();
+
+		// we are looping backwards, so we can remove nodes on the fly instead of using
+		// two iterations
+		for (int i = listOfNodes.getLength() - 1; 0 < i; --i) {
+			// remove only empty <g>roup-nodes!
+			if (listOfNodes.item(i).getNodeName().equals("g") && listOfNodes.item(i).getChildNodes().getLength() == 0)
+				this.svgRoot.removeChild(listOfNodes.item(i));
+		}
+
+	}
+
+	/**
 	 * return a buffered-image, hence the build svg will be transformed to a
 	 * buffered image
 	 * 
@@ -797,25 +765,6 @@ public class ImageFactory_SVG implements GraphicFactory {
 		pngTranscoder.addTranscodingHint(PNGTranscoder.KEY_HEIGHT, new Float(this.resolutionY));
 
 		TranscoderInput input = new TranscoderInput(doc);
-
-		// //NOTE: This section of the code writes the image directly as an PNG to the
-		// given destination
-		// try {
-		// String destination = "c:/destination/name.png";
-		// OutputStream ostream = new FileOutputStream(destination);
-		// TranscoderOutput output = new TranscoderOutput(ostream);
-		//
-		// pngTranscoder.transcode(source, output);
-		//
-		// ret = pngTranscoder.createImage(resolutionX, resolutionY);
-		//
-		// // Flush and close the stream.
-		// ostream.flush();
-		// ostream.close();
-		// } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 
 		ByteArrayOutputStream ostream = null;
 		try {
@@ -854,7 +803,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		bGr.drawImage(img, 0, 0, null);
 		bGr.dispose();
 
-//		System.out.println("ret");
+		// System.out.println("ret");
 
 		// Return the newly rendered image.
 		return ret;
@@ -876,18 +825,51 @@ public class ImageFactory_SVG implements GraphicFactory {
 			if (pidElement.getExtent() != null && pidElement.getType() == null
 					&& pidElement.getComponentClass().contains("Line") == false) {
 
-				double[] extent = pidElement.getExtent();
+				double[] extent = pidElement.getOldExtent();
 
 				String id = pidElement.getID();
+				String tagName = pidElement.getTagName();
 				String componentName = pidElement.getComponentName();
+				String componentClass = pidElement.getComponentClass();
 
 				int startX = (int) ((extent[0] - this.x0) * this.x);
-				int rangeX = (int) ((extent[1] - extent[0]) * this.x);
 				int startY = (int) ((this.y0 - extent[3]) * this.x);
-				int rangeY = (int) ((extent[3] - extent[2]) * this.x);
 
-				this.imageMapObjects.add(
-						new ImageMapObject(startX, startY, (startX + rangeX), (startY + rangeY), id, componentName));
+				/* Add ImageMap-Element to SVG */
+				Element rectangle = this.doc.createElementNS(svgNS, "rect");
+				rectangle.setAttributeNS(null, "id", id);
+				rectangle.setAttributeNS(null, "tagName", tagName);
+				rectangle.setAttributeNS(null, "componentName", componentName);
+				rectangle.setAttributeNS(null, "componentClass", componentClass);
+
+				rectangle.setAttributeNS(null, "x", "" + startX);
+				rectangle.setAttributeNS(null, "y", "" + startY);
+
+				// I know this is a bit of blurry overkill, but it is written this way, so we
+				// can get the more precise double-values in the SVG
+				int width = -1;
+				int height = -1;
+				if (extent[1] > extent[0]) {
+					width = (int) ((extent[1] - extent[0]) * this.x);
+					rectangle.setAttributeNS(null, "width", "" + (extent[1] - extent[0]) * this.x);
+				} else {
+					width = (int) ((extent[0] - extent[1]) * this.x);
+					rectangle.setAttributeNS(null, "height", "" + (extent[2] - extent[3]) * this.x);
+				}
+				if (extent[3] > extent[2]) {
+					height = (int) ((extent[3] - extent[2]) * this.x);
+					rectangle.setAttributeNS(null, "height", "" + (extent[3] - extent[2]) * this.x);
+				} else {
+					height = (int) ((extent[2] - extent[3]) * this.x);
+					rectangle.setAttributeNS(null, "height", "" + (extent[2] - extent[3]) * this.x);
+				}
+
+				rectangle.setAttributeNS(null, "fill", "none");
+
+				this.imageMapGroupNode.appendChild(rectangle);
+				/* Add Object to imageMapObjects for HTML-File */
+
+				this.imageMapObjects.add(new ImageMapObject(startX, startY, width, height, id, componentName));
 			} else if (pidElement.getType() != null || pidElement.getComponentClass().contains("Line") == true) {
 				// TODO somehow this is not required?
 			}
@@ -907,34 +889,44 @@ public class ImageFactory_SVG implements GraphicFactory {
 	}
 
 	@Override
-	public void setCurrentGroupNode(String tagName, String componentClass) {
+	public void setCurrentGroupNode(String id, String tagName, String componentName, String componentClass) {
 
-		if(tagName != null && componentClass != null) {
+		if (id != null || tagName != null || componentName != null || componentClass != null) {
 			this.groupNode = this.doc.createElementNS(svgNS, "g");
+			this.groupNodeId = id;
 			this.groupNodeTagName = tagName;
+			this.groupNodeComponentName = componentName;
 			this.groupNodeComponentClass = componentClass;
 
-			this.groupNode.setAttributeNS(dexpiNS, "tagName", this.groupNodeTagName );
-			this.groupNode.setAttributeNS(dexpiNS, "componentClass", this.groupNodeComponentClass );
-			
-//			svgRoot.appendChild(this.groupNode);
-		}
-		else {
+			if (this.groupNodeId != null)
+				this.groupNode.setAttributeNS(dexpiNS, "id", this.groupNodeId);
+			if (this.groupNodeTagName != null)
+				this.groupNode.setAttributeNS(dexpiNS, "tagName", this.groupNodeTagName);
+			if (this.groupNodeComponentName != null)
+				this.groupNode.setAttributeNS(dexpiNS, "componentName", this.groupNodeComponentName);
+			if (this.groupNodeComponentClass != null)
+				this.groupNode.setAttributeNS(dexpiNS, "componentClass", this.groupNodeComponentClass);
+
+			svgRoot.appendChild(this.groupNode);
+		} else {
 			this.groupNode = null;
+			this.groupNodeId = null;
 			this.groupNodeTagName = null;
+			this.groupNodeComponentName = null;
 			this.groupNodeComponentClass = null;
 		}
 	}
-	
+
 	@Override
 	public void addNodeToRoot() {
-		if(this.groupNode != null)
+		if (this.groupNode != null)
 			svgRoot.appendChild(this.groupNode);
 
-		//as this funciton is only called, when a node is written, the node is no longer written to. Hence, we can nullify it to prevent errors
+		// as this funciton is only called, when a node is written, the node is no
+		// longer written to. Hence, we can nullify it to prevent errors
 		this.groupNode = null;
 	}
-	
+
 	@Override
 	public ArrayList<ErrorElement> getErrorList() {
 		return this.listOfErrors;

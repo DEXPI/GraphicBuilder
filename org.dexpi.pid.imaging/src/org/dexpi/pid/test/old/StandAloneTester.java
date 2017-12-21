@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
  */
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintStream;
 import java.util.Iterator;
 //import org.apache.logging.log4j.LogManager;
@@ -21,6 +23,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -62,8 +65,10 @@ public class StandAloneTester {
 
 	private static PrintStream printStreamHandle = null;
 
+	private static JCheckBox handleForImageMapBox = null;
+
 	public static void main(String[] args) throws Exception {
-		
+
 		if (args.length == 0) {
 			// 1. Create the frame.
 			JFrame.setDefaultLookAndFeelDecorated(false);
@@ -72,9 +77,8 @@ public class StandAloneTester {
 			// 2. Optional: What happens when the frame closes?
 			JPanel buttonPanel = new JPanel();
 			// buttonPanel.setLayout(new GridLayout(1, 2));
-			buttonPanel.setLayout(new MigLayout( new LC().fillX(),
-					 new AC().align("left").gap("rel").grow().fill(),
-					 new AC().gap("10") ));
+			buttonPanel.setLayout(new MigLayout(new LC().fillX(), new AC().align("left").gap("rel").grow().fill(),
+					new AC().gap("10")));
 
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			// frame.getContentPane().setLayout(new GridLayout(2, 1));
@@ -84,12 +88,17 @@ public class StandAloneTester {
 			JButton buttonFolder = new JButton("Select folder");
 			JButton buttonFile = new JButton("Select file");
 
+			JCheckBox checkboxWriteImageMap = new JCheckBox("Write ImageMap? ", false);
+
+			handleForImageMapBox = checkboxWriteImageMap;
+
 			buttonFolder.addActionListener(createFolderListener());
 			buttonFile.addActionListener(createFileListener());
 
 			// 3. Create components and put them in the frame.
 			buttonPanel.add(buttonFile, "Cell 0 0");
 			buttonPanel.add(buttonFolder, "Cell 0 1");
+			buttonPanel.add(checkboxWriteImageMap, "Cell 0 2");
 
 			frame.getContentPane().add(buttonPanel, "Cell 0 0");
 			textArea = new JTextArea(10, 80);
@@ -102,7 +111,7 @@ public class StandAloneTester {
 			TinyFormatter fmt = new TinyFormatter();
 			StreamHandler sh = new StreamHandler(printStreamHandle, fmt);
 			logger.addHandler(sh);
-			
+
 			System.setOut(printStream);
 			System.setErr(printStream);
 
@@ -336,6 +345,15 @@ public class StandAloneTester {
 			imageWriter.write(image);
 		}
 
+		if (handleForImageMapBox.isSelected()) {
+			try (FileWriter writer = new FileWriter(inputFileName.replaceAll(".xml", ".imageMap.html"));) {
+				try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+					bufferedWriter.write(gBuilder.generateHTMLimageMap("TestImageMap"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// logger.info(builder.generateHTMLimageMap("TestImageMap"));
 
 		logger.info("Tester finished.");

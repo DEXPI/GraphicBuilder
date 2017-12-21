@@ -39,8 +39,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 	// works on the first match
 	// IFF this changes this pattern needs to be refactored with lookaheads and
 	// lookbehinds, so it is more general!
-	private static Pattern linebreakPattern = Pattern
-			.compile("\r\n|\r|\n|&#xD;&#xA;|&#xD;|&#xA;");
+	private static Pattern linebreakPattern = Pattern.compile("\r\n|\r|\n|&#xD;&#xA;|&#xD;|&#xA;");
 
 	private static final double FONT_SIZE_FACTOR = 1.2;
 	private Graphics g;
@@ -58,10 +57,9 @@ public class ImageFactory_PNG implements GraphicFactory {
 	private ArrayList<ErrorElement> listOfErrors = new ArrayList<ErrorElement>();
 
 	/**
-	 * Creates a basic image of a desired size and background color.
-	 * Additionally the scale factor for coordinate transformation gets
-	 * calculated. Once the image is created it can be filled with all kinds of
-	 * geometric shapes.
+	 * Creates a basic image of a desired size and background color. Additionally
+	 * the scale factor for coordinate transformation gets calculated. Once the
+	 * image is created it can be filled with all kinds of geometric shapes.
 	 * 
 	 * @param resolutionX
 	 *            the desired resolution in x direction (in pixels)
@@ -73,8 +71,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 *            the backgroundColor
 	 */
 	@Override
-	public void init(int resolutionX, double[] origin, double[] size,
-			Color backgroundColor) {
+	public void init(int resolutionX, double[] origin, double[] size, Color backgroundColor) {
 
 		// calculate offset for x if x < 0;
 		double offsetX = 0.;
@@ -95,8 +92,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 		double y = Math.abs(size[1] - origin[1]);
 		int resolutionY = (int) (this.x * y);
 
-		this.image = new BufferedImage(resolutionX, resolutionY,
-				BufferedImage.TYPE_INT_ARGB);
+		this.image = new BufferedImage(resolutionX, resolutionY, BufferedImage.TYPE_INT_ARGB);
 		this.g = this.image.createGraphics();
 
 		// initialize posX, posY, phi and Theta
@@ -106,7 +102,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 		this.g.setColor(backgroundColor);
 		this.g.fillRect((int) origin[0], (int) origin[1], resolutionX, resolutionY);
 	}
-	
+
 	/**
 	 * adds a line to the image
 	 * 
@@ -120,8 +116,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 *            the y-coordinates of the line
 	 */
 	@Override
-	public void addLine(Color c, float lineWeight, double[] xCoordinates,
-			double[] yCoordinates) {
+	public void addLine(Color c, float lineWeight, double[] xCoordinates, double[] yCoordinates) {
 
 		double cosPhi1;
 		double sinPhi1;
@@ -135,8 +130,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 
 		// transform to polar coordinates for easier rotation
 		for (int i = 0; i < xCoordinates.length; i++) {
-			this.r = Math.sqrt(Math.pow(xCoordinates[i], 2)
-					+ Math.pow(yCoordinates[i], 2));
+			this.r = Math.sqrt(Math.pow(xCoordinates[i], 2) + Math.pow(yCoordinates[i], 2));
 			if (this.r == 0) {
 				cosPhi1 = 0;
 				sinPhi1 = 0;
@@ -150,7 +144,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 			xIntCoord[i] = (int) ((this.scaleX * this.r * cosPhi1 - this.posX) * this.x);
 			yIntCoord[i] = (int) ((this.posY - this.scaleY * this.r * sinPhi1) * this.x);
 		}
-		
+
 		this.g.drawPolyline(xIntCoord, yIntCoord, xIntCoord.length);
 
 	}
@@ -170,9 +164,8 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 *            if filled is set to true the shape will be filled with color
 	 */
 	@Override
-	public void addShape(Color c, float lineWeight, double xCoordinates[],
-			double yCoordinates[], boolean filled) {
-		
+	public void addShape(Color c, float lineWeight, double xCoordinates[], double yCoordinates[], boolean filled) {
+
 		double cosPhi1;
 		double sinPhi1;
 		this.g.setColor(c);
@@ -183,8 +176,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 		int yIntCoord[] = new int[yCoordinates.length];
 
 		for (int i = 0; i < xCoordinates.length; i++) {
-			this.r = Math.sqrt(Math.pow(xCoordinates[i], 2)
-					+ Math.pow(yCoordinates[i], 2));
+			this.r = Math.sqrt(Math.pow(xCoordinates[i], 2) + Math.pow(yCoordinates[i], 2));
 			if (this.r == 0) {
 				cosPhi1 = 0;
 				sinPhi1 = 0;
@@ -228,9 +220,8 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 *            if filled is set to true the ellipse will be filled with color
 	 */
 	@Override
-	public void addEllipse(Color c, float lineWeight, double[] position,
-			double primAxis, double secAxis, double startAngle,
-			double endAngle, boolean filled) {
+	public void addEllipse(Color c, float lineWeight, double[] position, double primAxis, double secAxis,
+			double startAngle, double endAngle, boolean filled) {
 
 		this.g.setColor(c);
 		BasicStroke stroke = new BasicStroke(lineWeight * this.s);
@@ -252,11 +243,9 @@ public class ImageFactory_PNG implements GraphicFactory {
 		}
 
 		if (filled != true) {
-			this.g.drawArc(x1 - width / 2, y1 - height / 2, width, height,
-					(int) (startAngle), (int) (arcAngle));
+			this.g.drawArc(x1 - width / 2, y1 - height / 2, width, height, (int) (startAngle), (int) (arcAngle));
 		} else {
-			this.g.fillArc(x1 - width / 2, y1 - height / 2, width, height,
-					(int) (startAngle), (int) (arcAngle));
+			this.g.fillArc(x1 - width / 2, y1 - height / 2, width, height, (int) (startAngle), (int) (arcAngle));
 		}
 
 	}
@@ -280,16 +269,15 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 *            if filled is set to true the circle will be filled with color
 	 */
 	@Override
-	public void addCircle(Color c, float lineWeight, double[] position,
-			double radius, double startAngle, double endAngle, boolean filled) {
+	public void addCircle(Color c, float lineWeight, double[] position, double radius, double startAngle,
+			double endAngle, boolean filled) {
 
 		this.g.setColor(c);
 		BasicStroke stroke = new BasicStroke(lineWeight * this.s);
 		((Graphics2D) this.g).setStroke(stroke);
 		/*
-		 * DEPRECATED int x1 = (int) ((scaleX * position[0] - posX) * x); int y1
-		 * = (int) ((posY - scaleY * position[1]) * x); int r = (int) (radius *
-		 * scaleX * x);
+		 * DEPRECATED int x1 = (int) ((scaleX * position[0] - posX) * x); int y1 = (int)
+		 * ((posY - scaleY * position[1]) * x); int r = (int) (radius * scaleX * x);
 		 */
 		double cosPhi1;
 		double sinPhi1;
@@ -328,11 +316,9 @@ public class ImageFactory_PNG implements GraphicFactory {
 
 		// NOTE: Remember: r is radius in this case, not rotation!
 		if (filled != true) {
-			this.g.drawArc(x1 - r, y1 - r, 2 * r, 2 * r, (int) (startAngle),
-					(int) (arcAngle));
+			this.g.drawArc(x1 - r, y1 - r, 2 * r, 2 * r, (int) (startAngle), (int) (arcAngle));
 		} else {
-			this.g.fillArc(x1 - r, y1 - r, 2 * r, 2 * r, (int) (startAngle),
-					(int) (arcAngle));
+			this.g.fillArc(x1 - r, y1 - r, 2 * r, 2 * r, (int) (startAngle), (int) (arcAngle));
 		}
 	}
 
@@ -355,23 +341,21 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 *            the font
 	 */
 	@Override
-	public void addText(Color c, double[] position, double[] extent,
-			double textAngle, String string, double height, String font) {
+	public void addText(Color c, double[] position, double[] extent, double textAngle, String string, double height,
+			String font) {
 		/*
-		 * check for linebreaks and call this function recursively with
-		 * corrected substrings
+		 * check for linebreaks and call this function recursively with corrected
+		 * substrings
 		 */
-		if (string.contains("\r") || string.contains("\n")
-				|| string.contains("&#xD;") || string.contains("&#xA;")) {
+		if (string.contains("\r") || string.contains("\n") || string.contains("&#xD;") || string.contains("&#xA;")) {
 			String[] subStrings = linebreakPattern.split(string);
 			double posYBackup = this.posY;
 			for (int i = 0; i < subStrings.length; ++i) {
 				System.out.println(subStrings[i]);
 				double[] newPos = position.clone();
-				addText(c, newPos, extent, textAngle, subStrings[i], height,
-						font);
+				addText(c, newPos, extent, textAngle, subStrings[i], height, font);
 				this.posY += height * 0.8; // 0.8 is a magic constant that is also
-										// used in JaxbInputRepository
+											// used in JaxbInputRepository
 			}
 			this.posY = posYBackup;
 			return;
@@ -381,33 +365,32 @@ public class ImageFactory_PNG implements GraphicFactory {
 
 		double minX = 0;
 		double minY = 0;
-//		if (extent == null) {
-//			extent = new double[4];
-//			extent[0] = 0;
-//			extent[2] = 0;
-//			// error--> extent is missing
-//		}
+		// if (extent == null) {
+		// extent = new double[4];
+		// extent[0] = 0;
+		// extent[2] = 0;
+		// // error--> extent is missing
+		// }
 		// if text is rotated, lower left corner is reference point
-//		if (extent[0] <= 0) {
-			minX = position[0];
-//		} else {
-//			minX = position[0] + height / 1.44 * Math.sin(textAngle);
-//		}
-//		if (extent[2] <= 0) {
-			minY = position[1];
-//		} else {
-//
-//			minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
-//
-//		}
+		// if (extent[0] <= 0) {
+		minX = position[0];
+		// } else {
+		// minX = position[0] + height / 1.44 * Math.sin(textAngle);
+		// }
+		// if (extent[2] <= 0) {
+		minY = position[1];
+		// } else {
+		//
+		// minY = Math.min(Math.min(extent[2], extent[3]), position[1]);
+		//
+		// }
 
 		int intPos[] = new int[2];
 		intPos[0] = (int) ((minX - this.posX) * this.x);
 		intPos[1] = (int) ((this.posY - minY) * this.x);
 
 		// set font
-		Font textFont = new Font(font, Font.PLAIN, (int) (height
-				* FONT_SIZE_FACTOR * this.x));
+		Font textFont = new Font(font, Font.PLAIN, (int) (height * FONT_SIZE_FACTOR * this.x));
 		this.g.setFont(textFont);
 
 		// set Rotation Point
@@ -435,16 +418,15 @@ public class ImageFactory_PNG implements GraphicFactory {
 	 * shapeCatalogue
 	 * 
 	 * @param reference
-	 *            the reference, rotates the image. The two numbers represent
-	 *            the cosinus and sinus of the desired angle.
+	 *            the reference, rotates the image. The two numbers represent the
+	 *            cosinus and sinus of the desired angle.
 	 * @param scale
 	 *            the scale
 	 * @param position
 	 *            the position a shapeCatalogue-element should be drawn to
 	 */
 	@Override
-	public void setScaleAnglePos(double[] reference, double[] scale,
-			double[] position) {
+	public void setScaleAnglePos(double[] reference, double[] scale, double[] position) {
 		// in case a shapeCatalogue reference is used, the position (and angle)
 		// for the symbol to be drawn to, is set here
 		this.posX = this.x0 - position[0];
@@ -455,8 +437,7 @@ public class ImageFactory_PNG implements GraphicFactory {
 
 		// check if Reference is correct (to 3 decimal places)
 		if (Math.abs(1 - (this.cosPhi * this.cosPhi + this.sinPhi * this.sinPhi)) > 0.000303) {
-			System.out
-					.println("Reference is incorrect (X\u00b2+Y\u00b2 should equal 1)");
+			System.out.println("Reference is incorrect (X\u00b2+Y\u00b2 should equal 1)");
 		}
 		this.scaleX = scale[0];
 		this.scaleY = scale[1];
@@ -487,8 +468,8 @@ public class ImageFactory_PNG implements GraphicFactory {
 	/**
 	 * Creates an imageMapElement of a pidElement. The imageMapElement basically
 	 * defines the area occupied by the pidElement. This allows to display of
-	 * additional information when hovering over this area with the mouse, if
-	 * used in a html website.
+	 * additional information when hovering over this area with the mouse, if used
+	 * in a html website.
 	 * 
 	 * @param pidElement
 	 *            the pidElement
@@ -510,13 +491,10 @@ public class ImageFactory_PNG implements GraphicFactory {
 				int startY = (int) ((this.y0 - extent[3]) * this.x);
 				int rangeY = (int) ((extent[3] - extent[2]) * this.x);
 
-				this.imageMapObjects
-						.add(new ImageMapObject(startX, startY,
-								(startX + rangeX), (startY + rangeY), id,
-								componentName));
-			} else if (pidElement.getType() != null
-					|| pidElement.getComponentClass().contains("Line") == true) {
-				//TODO somehow this is not required?
+				this.imageMapObjects.add(
+						new ImageMapObject(startX, startY, (startX + rangeX), (startY + rangeY), id, componentName));
+			} else if (pidElement.getType() != null || pidElement.getComponentClass().contains("Line") == true) {
+				// TODO somehow this is not required?
 			}
 		}
 
@@ -537,9 +515,9 @@ public class ImageFactory_PNG implements GraphicFactory {
 	public ArrayList<ErrorElement> getErrorList() {
 		return this.listOfErrors;
 	}
-	
+
 	@Override
-	public void setCurrentGroupNode(String id, String componentClass) {
+	public void setCurrentGroupNode(String id, String tagName, String componentName, String componentClass) {
 		// PNG cannot use groupNodes
 		return;
 	}
@@ -548,16 +526,17 @@ public class ImageFactory_PNG implements GraphicFactory {
 	public void addNodeToRoot() {
 		// PNG cannot use groupNodes
 	}
-	
+
 	/**
 	 * Currently not implemented for PNG
+	 * 
 	 * @param destination
 	 * @return
 	 */
 	@Override
 	public boolean writeToDestination(String destination) {
-		//TODO currently not implemented
-		
+		// TODO currently not implemented
+
 		return false;
 	}
 }

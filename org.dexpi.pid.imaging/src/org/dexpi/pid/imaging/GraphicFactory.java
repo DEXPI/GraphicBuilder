@@ -197,7 +197,7 @@ public interface GraphicFactory {
 	 * @param id id of current groupNode
 	 * @param componentClass componentClass of current groupNode
 	 */
-	public void setCurrentGroupNode(String id, String componentClass);
+	public void setCurrentGroupNode(String id, String tagName, String componentName, String componentClass);
 	
 	/**
 	 * to ensure, that we do not add empty nodes we have to call this function to finally write the group-node to the document

@@ -27,6 +27,7 @@ public class PidElement {
 	String id;
 	String componentName;
 	String componentClass;
+	String tagName;
 	String type;
 	int lineNumber;
 	boolean scRef;
@@ -34,6 +35,8 @@ public class PidElement {
 	double[] scale;
 	double[] position;
 	double[] extent;
+	double[] oldExtent;
+
 	ArrayList<DrawableElement> drawableElements;
 	ArrayList<PidElement> subElements;
 
@@ -47,8 +50,9 @@ public class PidElement {
 	 * @param componentClass
 	 *            the componentClass
 	 */
-	public PidElement(String id, String componentName, String componentClass) {
+	public PidElement(String id, String tagName, String componentName, String componentClass) {
 		this.id = id;
+		this.tagName = tagName;
 		this.componentName = componentName;
 		this.componentClass = componentClass;
 	}
@@ -63,16 +67,16 @@ public class PidElement {
 	 * @param componentClass
 	 *            the componentClass
 	 * @param type
-	 *            the type, as shown in the xml file. For example
-	 *            &lt;equipment&gt; or &lt;component&gt; etc.
+	 *            the type, as shown in the xml file. For example &lt;equipment&gt;
+	 *            or &lt;component&gt; etc.
 	 */
-	public PidElement(String id, String componentName, String componentClass,
-			String type) {
+	public PidElement(String id, String tagName, String componentName, String componentClass, String type) {
 		this.id = id;
+		this.tagName = tagName;
 		this.componentName = componentName;
 		this.componentClass = componentClass;
 		this.type = type;
-//		System.out.println("TY: " + this.type);
+		// System.out.println("TY: " + this.type);
 		init();
 	}
 
@@ -95,8 +99,7 @@ public class PidElement {
 	}
 
 	/**
-	 * Creates the necessary ArrayLists and sets defaultScale and
-	 * defaultReference.
+	 * Creates the necessary ArrayLists and sets defaultScale and defaultReference.
 	 */
 	public void init() {
 		this.drawableElements = new ArrayList<DrawableElement>();
@@ -286,8 +289,8 @@ public class PidElement {
 	}
 
 	/**
-	 * If a pidElement has a reference to the shapeCatalogue, scRef should be
-	 * set to true.
+	 * If a pidElement has a reference to the shapeCatalogue, scRef should be set to
+	 * true.
 	 * 
 	 * @param scRef
 	 *            the shapeCatalogueReference
@@ -331,6 +334,43 @@ public class PidElement {
 	public void setID(String id) {
 		this.id = id;
 
+	}
+
+	/**
+	 * 
+	 * @return the tagName
+	 */
+	public String getTagName() {
+		return tagName;
+	}
+
+	/**
+	 * sets the tagName
+	 * 
+	 * @param tagName
+	 *            the tagName
+	 */
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
+	/**
+	 * 
+	 * @return the initially parsed extent
+	 */
+	public double[] getOldExtent() {
+		return oldExtent;
+	}
+
+	/**
+	 * sets the extent while parsing to this (so it can be used for the
+	 * imageMapCalculation
+	 * 
+	 * @param oldExtent
+	 *            the oldExtent, which was initially parsed for this object
+	 */
+	public void setOldExtent(double[] oldExtent) {
+		this.oldExtent = oldExtent;
 	}
 
 }
