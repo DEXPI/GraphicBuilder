@@ -157,6 +157,7 @@ public class ImageFactory_SVG implements GraphicFactory {
 		// Set the width and height attributes on the root 'svg' element.
 		this.svgRoot.setAttributeNS(null, "width", "" + resolutionX);
 		this.svgRoot.setAttributeNS(null, "height", "" + resolutionY);
+		this.svgRoot.setAttributeNS(null, "viewBox", "0 0 " + resolutionX + " " + resolutionY);
 
 		this.resolutionX = resolutionX;
 		this.resolutionY = resolutionY;
