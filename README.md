@@ -1,5 +1,2 @@
-# GraphicBuilder
-GraphicBuilder Software to visualize the graphical part of ProteusXML
-
-Please find the latest compiled version of the GraphicBuilder here: 
-https://github.com/DEXPI/GraphicBuilder/releases/latest
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+# THIS REPOSITORY MOVED TO GITLAB. Please access https://gitlab.com/dexpi/GraphicBuilder
